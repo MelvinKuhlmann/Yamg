@@ -13,6 +13,18 @@ TagManager:
   - UI
   - 
   - 
+  - Level
+  - Enemy
+  - Usable
+  - Interactable
+  - IgnorePlayer
+  - Player
+  - Cameras
+  - LitSprites
+  - Destructable
+  - EnemyWeapon
+  - BossWeakPoint
+  - Bullet
   - 
   - 
   - 
@@ -23,21 +35,18 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerDrop
+  - Platform
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Water
+    uniqueID: 1945122225
+    locked: 0
+  - name: Level
+    uniqueID: 4285142875
+    locked: 0
+  - name: Front
+    uniqueID: 3485952025
     locked: 0
