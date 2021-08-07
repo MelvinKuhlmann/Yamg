@@ -442,7 +442,7 @@ public class PlayerCharacter : MonoBehaviour
 
             if (!wasGrounded && m_MoveVector.y < -1.0f)
             {//only play the landing sound if falling "fast" enough (avoid small bump playing the landing sound)
-                landingAudioPlayer.PlayRandomSound(m_CurrentSurface);
+        //        landingAudioPlayer.PlayRandomSound(m_CurrentSurface);
             }
         }
         else
@@ -749,7 +749,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         meleeDamager.EnableDamage();
         meleeDamager.disableDamageAfterHit = true;
-        meleeAttackAudioPlayer.PlayRandomSound();
+      //  meleeAttackAudioPlayer.PlayRandomSound();
     }
 
     public void DisableMeleeAttack()
