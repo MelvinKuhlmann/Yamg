@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Gamekit2D
+public class InventoryController : MonoBehaviour, IDataPersister
 {
-    public class InventoryController : MonoBehaviour, IDataPersister
-    {
         [System.Serializable]
         public class InventoryEvent
         {
@@ -132,4 +130,3 @@ namespace Gamekit2D
             if (OnInventoryLoaded != null) OnInventoryLoaded();
         }
     }
-}

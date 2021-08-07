@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gamekit2D
+
+public class FallthroughReseter : MonoBehaviour
 {
-    public class FallthroughReseter : MonoBehaviour
+    public void StartFall(PlatformEffector2D effector)
     {
-        public void StartFall(PlatformEffector2D effector)
-        {
-            StartCoroutine(FallCoroutine(effector));
-        }
+        StartCoroutine(FallCoroutine(effector));
+    }
 
-        IEnumerator FallCoroutine(PlatformEffector2D effector)
-        {
-            int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
-        
-            effector.colliderMask &= ~playerLayerMask;
-            gameObject.layer = LayerMask.NameToLayer ("Default");
+    IEnumerator FallCoroutine(PlatformEffector2D effector)
+    {
+        int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
 
-            yield return new WaitForSeconds(0.5f);
+        effector.colliderMask &= ~playerLayerMask;
+        gameObject.layer = LayerMask.NameToLayer("Default");
 
-            effector.colliderMask |= playerLayerMask;
-            gameObject.layer = LayerMask.NameToLayer ("Platform");
+        yield return new WaitForSeconds(0.5f);
 
-            Destroy(this);
-        }
+        effector.colliderMask |= playerLayerMask;
+        gameObject.layer = LayerMask.NameToLayer("Platform");
+
+        Destroy(this);
     }
 }

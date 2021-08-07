@@ -2,133 +2,131 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gamekit2D
+
+public abstract class ObjectPool<TPool, TObject, TInfo> : ObjectPool<TPool, TObject>
+    where TPool : ObjectPool<TPool, TObject, TInfo>
+    where TObject : PoolObject<TPool, TObject, TInfo>, new()
 {
-    public abstract class ObjectPool<TPool, TObject, TInfo> : ObjectPool<TPool, TObject>
-        where TPool : ObjectPool<TPool, TObject, TInfo>
-        where TObject : PoolObject<TPool, TObject, TInfo>, new()
+    void Start()
     {
-        void Start()
+        for (int i = 0; i < initialPoolCount; i++)
         {
-            for (int i = 0; i < initialPoolCount; i++)
-            {
-                TObject newPoolObject = CreateNewPoolObject();
-                pool.Add(newPoolObject);
-            }
-        }
-
-        public virtual TObject Pop(TInfo info)
-        {
-            for (int i = 0; i < pool.Count; i++)
-            {
-                if (pool[i].inPool)
-                {
-                    pool[i].inPool = false;
-                    pool[i].WakeUp(info);
-                    return pool[i];
-                }
-            }
-
             TObject newPoolObject = CreateNewPoolObject();
             pool.Add(newPoolObject);
-            newPoolObject.inPool = false;
-            newPoolObject.WakeUp(info);
-            return newPoolObject;
         }
     }
 
-    public abstract class ObjectPool<TPool, TObject> : MonoBehaviour
-        where TPool : ObjectPool<TPool, TObject>
-        where TObject : PoolObject<TPool, TObject>, new()
+    public virtual TObject Pop(TInfo info)
     {
-        public GameObject prefab;
-        public int initialPoolCount = 10;
-        [HideInInspector]
-        public List<TObject> pool = new List<TObject>();
-
-        void Start()
+        for (int i = 0; i < pool.Count; i++)
         {
-            for (int i = 0; i < initialPoolCount; i++)
+            if (pool[i].inPool)
             {
-                TObject newPoolObject = CreateNewPoolObject();
-                pool.Add(newPoolObject);
+                pool[i].inPool = false;
+                pool[i].WakeUp(info);
+                return pool[i];
             }
         }
 
-        protected TObject CreateNewPoolObject()
-        {
-            TObject newPoolObject = new TObject();
-            newPoolObject.instance = Instantiate(prefab);
-            newPoolObject.instance.transform.SetParent(transform);
-            newPoolObject.inPool = true;
-            newPoolObject.SetReferences(this as TPool);
-            newPoolObject.Sleep();
-            return newPoolObject;
-        }
+        TObject newPoolObject = CreateNewPoolObject();
+        pool.Add(newPoolObject);
+        newPoolObject.inPool = false;
+        newPoolObject.WakeUp(info);
+        return newPoolObject;
+    }
+}
 
-        public virtual TObject Pop()
-        {
-            for (int i = 0; i < pool.Count; i++)
-            {
-                if (pool[i].inPool)
-                {
-                    pool[i].inPool = false;
-                    pool[i].WakeUp();
-                    return pool[i];
-                }
-            }
+public abstract class ObjectPool<TPool, TObject> : MonoBehaviour
+    where TPool : ObjectPool<TPool, TObject>
+    where TObject : PoolObject<TPool, TObject>, new()
+{
+    public GameObject prefab;
+    public int initialPoolCount = 10;
+    [HideInInspector]
+    public List<TObject> pool = new List<TObject>();
 
+    void Start()
+    {
+        for (int i = 0; i < initialPoolCount; i++)
+        {
             TObject newPoolObject = CreateNewPoolObject();
             pool.Add(newPoolObject);
-            newPoolObject.inPool = false;
-            newPoolObject.WakeUp();
-            return newPoolObject;
-        }
-
-        public virtual void Push(TObject poolObject)
-        {
-            poolObject.inPool = true;
-            poolObject.Sleep();
         }
     }
 
-    [Serializable]
-    public abstract class PoolObject<TPool, TObject, TInfo> : PoolObject<TPool, TObject>
-        where TPool : ObjectPool<TPool, TObject, TInfo>
-        where TObject : PoolObject<TPool, TObject, TInfo>, new()
+    protected TObject CreateNewPoolObject()
     {
-        public virtual void WakeUp(TInfo info)
-        { }
+        TObject newPoolObject = new TObject();
+        newPoolObject.instance = Instantiate(prefab);
+        newPoolObject.instance.transform.SetParent(transform);
+        newPoolObject.inPool = true;
+        newPoolObject.SetReferences(this as TPool);
+        newPoolObject.Sleep();
+        return newPoolObject;
     }
 
-    [Serializable]
-    public abstract class PoolObject<TPool, TObject>
-        where TPool : ObjectPool<TPool, TObject>
-        where TObject : PoolObject<TPool, TObject>, new()
+    public virtual TObject Pop()
     {
-        public bool inPool;
-        public GameObject instance;
-        public TPool objectPool;
-
-        public void SetReferences(TPool pool)
+        for (int i = 0; i < pool.Count; i++)
         {
-            objectPool = pool;
-            SetReferences();
+            if (pool[i].inPool)
+            {
+                pool[i].inPool = false;
+                pool[i].WakeUp();
+                return pool[i];
+            }
         }
 
-        protected virtual void SetReferences()
-        { }
+        TObject newPoolObject = CreateNewPoolObject();
+        pool.Add(newPoolObject);
+        newPoolObject.inPool = false;
+        newPoolObject.WakeUp();
+        return newPoolObject;
+    }
 
-        public virtual void WakeUp()
-        { }
+    public virtual void Push(TObject poolObject)
+    {
+        poolObject.inPool = true;
+        poolObject.Sleep();
+    }
+}
 
-        public virtual void Sleep()
-        { }
+[Serializable]
+public abstract class PoolObject<TPool, TObject, TInfo> : PoolObject<TPool, TObject>
+    where TPool : ObjectPool<TPool, TObject, TInfo>
+    where TObject : PoolObject<TPool, TObject, TInfo>, new()
+{
+    public virtual void WakeUp(TInfo info)
+    { }
+}
 
-        public virtual void ReturnToPool()
-        {
-            TObject thisObject = this as TObject;
-            objectPool.Push(thisObject);
-        }
+[Serializable]
+public abstract class PoolObject<TPool, TObject>
+    where TPool : ObjectPool<TPool, TObject>
+    where TObject : PoolObject<TPool, TObject>, new()
+{
+    public bool inPool;
+    public GameObject instance;
+    public TPool objectPool;
+
+    public void SetReferences(TPool pool)
+    {
+        objectPool = pool;
+        SetReferences();
+    }
+
+    protected virtual void SetReferences()
+    { }
+
+    public virtual void WakeUp()
+    { }
+
+    public virtual void Sleep()
+    { }
+
+    public virtual void ReturnToPool()
+    {
+        TObject thisObject = this as TObject;
+        objectPool.Push(thisObject);
     }
 }
