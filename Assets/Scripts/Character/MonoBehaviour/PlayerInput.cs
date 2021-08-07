@@ -38,9 +38,11 @@ public class PlayerInput : InputComponent, IDataPersister
     {
        
             //  Debug.Log("PlayerChar Update");
-            if (Pause.Down)
+            if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("TESTT");
+            Debug.Log(m_HaveControl);
+            Debug.Log(inputType);
         }
     }
 
@@ -79,7 +81,6 @@ public class PlayerInput : InputComponent, IDataPersister
 
     public override void GainControl()
     {
-        Debug.Log("GAIN CONTROLL");
         m_HaveControl = true;
 
         GainControl(Pause);
