@@ -176,8 +176,10 @@ public class PlayerCharacter : MonoBehaviour
 
     void Update()
     {
+      //  Debug.Log("PlayerChar Update");
         if (PlayerInput.Instance.Pause.Down)
         {
+            Debug.Log("Pause Down");
             if (!m_InPause)
             {
                 if (ScreenFader.IsFading)

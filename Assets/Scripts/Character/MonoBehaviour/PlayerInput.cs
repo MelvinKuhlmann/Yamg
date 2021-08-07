@@ -36,6 +36,12 @@ public class PlayerInput : InputComponent, IDataPersister
 
     void Update()
     {
+       
+            //  Debug.Log("PlayerChar Update");
+            if (Pause.Down)
+        {
+            Debug.Log("TESTT");
+        }
     }
 
     void OnEnable()
@@ -57,7 +63,6 @@ public class PlayerInput : InputComponent, IDataPersister
 
     protected override void GetInputs(bool fixedUpdateHappened)
     {
-        Debug.Log("Komt hij hier wel?");
         Pause.Get(fixedUpdateHappened, inputType);
         Interact.Get(fixedUpdateHappened, inputType);
         MeleeAttack.Get(fixedUpdateHappened, inputType);
@@ -74,6 +79,7 @@ public class PlayerInput : InputComponent, IDataPersister
 
     public override void GainControl()
     {
+        Debug.Log("GAIN CONTROLL");
         m_HaveControl = true;
 
         GainControl(Pause);

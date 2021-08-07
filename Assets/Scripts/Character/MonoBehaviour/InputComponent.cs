@@ -11,7 +11,6 @@ public abstract class InputComponent : MonoBehaviour
         Controller,
     }
 
-
     public enum XboxControllerButtons
     {
         None,
@@ -27,7 +26,6 @@ public abstract class InputComponent : MonoBehaviour
         RightBumper,
     }
 
-
     public enum XboxControllerAxes
     {
         None,
@@ -40,7 +38,6 @@ public abstract class InputComponent : MonoBehaviour
         LeftTrigger,
         RightTrigger,
     }
-
 
     [Serializable]
     public class InputButton
@@ -87,6 +84,8 @@ public abstract class InputComponent : MonoBehaviour
 
         public void Get(bool fixedUpdateHappened, InputType inputType)
         {
+            Debug.Log("GET met andere dingen");
+
             if (!m_Enabled)
             {
                 Down = false;
