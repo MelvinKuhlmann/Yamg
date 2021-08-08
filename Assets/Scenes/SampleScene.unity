@@ -458,17 +458,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3827800671806840929, guid: 1b2eb245901a0d84f9b839f0aa27686c, type: 3}
   m_PrefabInstance: {fileID: 3827800671841078844}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1951122030 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1951122026, guid: 1b2eb245901a0d84f9b839f0aa27686c, type: 3}
-  m_PrefabInstance: {fileID: 3827800671841078844}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951122025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49de84fa3d321d245bc900e599de015f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1951122031 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1951122027, guid: 1b2eb245901a0d84f9b839f0aa27686c, type: 3}
@@ -1465,7 +1454,7 @@ PrefabInstance:
     - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
       propertyPath: playerCharacter
       value: 
-      objectReference: {fileID: 1951122030}
+      objectReference: {fileID: 0}
     - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
       propertyPath: animatorStateName
       value: Airborne
