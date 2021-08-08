@@ -26,7 +26,7 @@ public class PlayerInput : InputComponent, IDataPersister
 
     protected bool m_DebugMenuIsOpen = false;
 
-    void Awake ()
+    void Awake()
     {
         if (s_Instance == null)
             s_Instance = this;
@@ -34,23 +34,11 @@ public class PlayerInput : InputComponent, IDataPersister
             throw new UnityException("There cannot be more than one PlayerInput script.  The instances are " + s_Instance.name + " and " + name + ".");
     }
 
-    void Update()
-    {
-       
-            //  Debug.Log("PlayerChar Update");
-            if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("TESTT");
-            Debug.Log(m_HaveControl);
-            Debug.Log(inputType);
-        }
-    }
-
     void OnEnable()
     {
         if (s_Instance == null)
             s_Instance = this;
-        else if(s_Instance != this)
+        else if (s_Instance != this)
             throw new UnityException("There cannot be more than one PlayerInput script.  The instances are " + s_Instance.name + " and " + name + ".");
 
         PersistentDataManager.RegisterPersister(this);

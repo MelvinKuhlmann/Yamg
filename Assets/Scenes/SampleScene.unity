@@ -458,6 +458,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3827800671806840929, guid: 1b2eb245901a0d84f9b839f0aa27686c, type: 3}
   m_PrefabInstance: {fileID: 3827800671841078844}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1951122030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1951122026, guid: 1b2eb245901a0d84f9b839f0aa27686c, type: 3}
+  m_PrefabInstance: {fileID: 3827800671841078844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951122025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49de84fa3d321d245bc900e599de015f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1951122031 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1951122027, guid: 1b2eb245901a0d84f9b839f0aa27686c, type: 3}
+  m_PrefabInstance: {fileID: 3827800671841078844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1991575132
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,17 +509,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9119412282781731468, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
   m_PrefabInstance: {fileID: 9119412284681987666}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2001186016 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9119412282781731506, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
-  m_PrefabInstance: {fileID: 9119412284681987666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e90d6bad8e1ac3b4eb0757d5d919b241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2038536269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1278,7 @@ PrefabInstance:
     - target: {fileID: 4170902315902659425, guid: 03869ece4dd81e441af23d43733811f8, type: 3}
       propertyPath: initialSceneTransitionDestination
       value: 
-      objectReference: {fileID: 2001186016}
+      objectReference: {fileID: 0}
     - target: {fileID: 4170902315902659431, guid: 03869ece4dd81e441af23d43733811f8, type: 3}
       propertyPath: m_Name
       value: SceneController
@@ -1411,7 +1416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119412282781731468, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 9119412282781731468, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1443,6 +1448,62 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119412282781731468, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1951122031}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: setState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: setParameters
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: playerCharacter
+      value: 
+      objectReference: {fileID: 1951122030}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: animatorStateName
+      value: Airborne
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: setCharacterFacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: characterVelocity.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: setCharacterVelocity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: parameterSetters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: parameterSetters.Array.data[0].floatValue
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: parameterSetters.Array.data[0].parameterName
+      value: VerticalSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: parameterSetters.Array.data[0].parameterType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: parameterSetters.Array.data[1].parameterName
+      value: Grounded
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119412282781731469, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}
+      propertyPath: parameterSetters.Array.data[1].parameterType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119412282781731471, guid: 26512ed2876d3ea4bb71fea7c293d79e, type: 3}

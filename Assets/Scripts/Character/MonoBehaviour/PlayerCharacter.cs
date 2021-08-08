@@ -19,8 +19,9 @@ public class PlayerCharacter : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Damageable damageable;
     public Damager meleeDamager;
-/*      public Transform facingLeftBulletSpawnPoint;
-    public Transform facingRightBulletSpawnPoint;*/
+//    public Transform facingLeftBulletSpawnPoint;
+ //   public Transform facingRightBulletSpawnPoint;
+//    public BulletPool bulletPool;
     public Transform cameraFollowTarget;
 
     public float maxSpeed = 10f;
@@ -41,12 +42,12 @@ public class PlayerCharacter : MonoBehaviour
     public float meleeAttackDashSpeed = 5f;
     public bool dashWhileAirborne = false;
 
-    public RandomAudioPlayer footstepAudioPlayer;
+/*    public RandomAudioPlayer footstepAudioPlayer;
     public RandomAudioPlayer landingAudioPlayer;
     public RandomAudioPlayer hurtAudioPlayer;
     public RandomAudioPlayer meleeAttackAudioPlayer;
     public RandomAudioPlayer rangedAttackAudioPlayer;
-
+*/
     public float shotsPerSecond = 1f;
     public float bulletSpeed = 5f;
     public float holdingGunTimeoutDuration = 10f;
@@ -71,7 +72,7 @@ public class PlayerCharacter : MonoBehaviour
     protected float m_TanHurtJumpAngle;
     protected WaitForSeconds m_FlickeringWait;
     protected Coroutine m_FlickerCoroutine;
-    protected Transform m_CurrentBulletSpawnPoint;
+//    protected Transform m_CurrentBulletSpawnPoint;
     protected float m_ShotSpawnGap;
     protected WaitForSeconds m_ShotSpawnWait;
     protected Coroutine m_ShootingCoroutine;
@@ -122,7 +123,7 @@ public class PlayerCharacter : MonoBehaviour
         m_Transform = transform;
         m_InventoryController = GetComponent<InventoryController>();
 
-       /* m_CurrentBulletSpawnPoint = spriteOriginallyFacesLeft ? facingLeftBulletSpawnPoint : facingRightBulletSpawnPoint;*/
+ //       m_CurrentBulletSpawnPoint = spriteOriginallyFacesLeft ? facingLeftBulletSpawnPoint : facingRightBulletSpawnPoint;
     }
 
     void Start()
@@ -176,10 +177,8 @@ public class PlayerCharacter : MonoBehaviour
 
     void Update()
     {
-      //  Debug.Log("PlayerChar Update");
         if (PlayerInput.Instance.Pause.Down)
         {
-            Debug.Log("Pause Down");
             if (!m_InPause)
             {
                 if (ScreenFader.IsFading)
@@ -201,15 +200,15 @@ public class PlayerCharacter : MonoBehaviour
     void FixedUpdate()
     {
         m_CharacterController2D.Move(m_MoveVector * Time.deltaTime);
-        /*m_Animator.SetFloat(m_HashHorizontalSpeedPara, m_MoveVector.x);*/
-        /*m_Animator.SetFloat(m_HashVerticalSpeedPara, m_MoveVector.y);*/
-        /*UpdateBulletSpawnPointPositions();*/
+        m_Animator.SetFloat(m_HashHorizontalSpeedPara, m_MoveVector.x);
+        m_Animator.SetFloat(m_HashVerticalSpeedPara, m_MoveVector.y);
+        UpdateBulletSpawnPointPositions();
         UpdateCameraFollowTargetPosition();
     }
 
     public void Unpause()
     {
-        //if the timescale is already > 0, we
+        //if the timescale is already > 0, we 
         if (Time.timeScale > 0)
             return;
 
@@ -229,9 +228,9 @@ public class PlayerCharacter : MonoBehaviour
     }
 
     // Protected functions.
-    /*protected void UpdateBulletSpawnPointPositions()
+    protected void UpdateBulletSpawnPointPositions()
     {
-        if (rightBulletSpawnPointAnimated)
+ /*       if (rightBulletSpawnPointAnimated)
         {
             Vector2 leftPosition = facingRightBulletSpawnPoint.localPosition;
             leftPosition.x *= -1f;
@@ -242,8 +241,8 @@ public class PlayerCharacter : MonoBehaviour
             Vector2 rightPosition = facingLeftBulletSpawnPoint.localPosition;
             rightPosition.x *= -1f;
             facingRightBulletSpawnPoint.localPosition = rightPosition;
-        }
-    }*/
+        }*/
+    }
 
     protected void UpdateCameraFollowTargetPosition()
     {
@@ -303,34 +302,34 @@ public class PlayerCharacter : MonoBehaviour
         {
             if (Time.time >= m_NextShotTime)
             {
-                /*SpawnBullet();*/
+                SpawnBullet();
                 m_NextShotTime = Time.time + m_ShotSpawnGap;
             }
             yield return null;
         }
     }
 
-/*        protected void SpawnBullet()
+    protected void SpawnBullet()
     {
         //we check if there is a wall between the player and the bullet spawn position, if there is, we don't spawn a bullet
         //otherwise, the player can "shoot throught wall" because the arm extend to the other side of the wall
         Vector2 testPosition = transform.position;
-        testPosition.y = m_CurrentBulletSpawnPoint.position.y;
-        Vector2 direction = (Vector2)m_CurrentBulletSpawnPoint.position - testPosition;
-        float distance = direction.magnitude;
-        direction.Normalize();
+//        testPosition.y = m_CurrentBulletSpawnPoint.position.y;
+//        Vector2 direction = (Vector2)m_CurrentBulletSpawnPoint.position - testPosition;
+//        float distance = direction.magnitude;
+//        direction.Normalize();
 
         RaycastHit2D[] results = new RaycastHit2D[12];
-        if (Physics2D.Raycast(testPosition, direction, m_CharacterController2D.ContactFilter, results, distance) > 0)
-            return;
+//        if (Physics2D.Raycast(testPosition, direction, m_CharacterController2D.ContactFilter, results, distance) > 0)
+//            return;
 
-        BulletObject bullet = bulletPool.Pop(m_CurrentBulletSpawnPoint.position);
+/*        BulletObject bullet = bulletPool.Pop(m_CurrentBulletSpawnPoint.position);
         bool facingLeft = m_CurrentBulletSpawnPoint == facingLeftBulletSpawnPoint;
         bullet.rigidbody2D.velocity = new Vector2(facingLeft ? -bulletSpeed : bulletSpeed, 0f);
         bullet.spriteRenderer.flipX = facingLeft ^ bullet.bullet.spriteOriginallyFacesLeft;
-
-        rangedAttackAudioPlayer.PlayRandomSound();
-    }*/
+*/
+ //       rangedAttackAudioPlayer.PlayRandomSound();
+    }
 
     // Public functions - called mostly by StateMachineBehaviours in the character's Animator Controller but also by Events.
     public void SetMoveVector(Vector2 newMoveVector)
@@ -391,12 +390,12 @@ public class PlayerCharacter : MonoBehaviour
         if (faceLeft)
         {
             spriteRenderer.flipX = !spriteOriginallyFacesLeft;
-            /*m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;*/
+ //           m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;
         }
         else if (faceRight)
         {
             spriteRenderer.flipX = spriteOriginallyFacesLeft;
-            /*m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;*/
+ //           m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;
         }
     }
 
@@ -405,12 +404,12 @@ public class PlayerCharacter : MonoBehaviour
         if (faceLeft)
         {
             spriteRenderer.flipX = !spriteOriginallyFacesLeft;
-            /*m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;*/
+ //           m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;
         }
         else
         {
             spriteRenderer.flipX = spriteOriginallyFacesLeft;
-            /*m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;*/
+//            m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;
         }
     }
 
@@ -442,7 +441,7 @@ public class PlayerCharacter : MonoBehaviour
 
             if (!wasGrounded && m_MoveVector.y < -1.0f)
             {//only play the landing sound if falling "fast" enough (avoid small bump playing the landing sound)
-        //        landingAudioPlayer.PlayRandomSound(m_CurrentSurface);
+ //               landingAudioPlayer.PlayRandomSound(m_CurrentSurface);
             }
         }
         else
@@ -502,7 +501,7 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
 
-        if(previousPushable != null && m_CurrentPushable != previousPushable)
+        if (previousPushable != null && m_CurrentPushable != previousPushable)
         {//we changed pushable (or don't have one anymore), stop the old one sound
             previousPushable.EndPushing();
         }
@@ -525,7 +524,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void StopPushing()
     {
-        if(m_CurrentPushable)
+        if (m_CurrentPushable)
             m_CurrentPushable.EndPushing();
     }
 
@@ -578,12 +577,12 @@ public class PlayerCharacter : MonoBehaviour
         for (int i = 0; i < m_CharacterController2D.GroundColliders.Length; i++)
         {
             Collider2D col = m_CharacterController2D.GroundColliders[i];
-            if(col == null)
+            if (col == null)
                 continue;
 
             colliderCount++;
 
-            if (PhysicsHelper.ColliderHasPlatformEffector (col))
+            if (PhysicsHelper.ColliderHasPlatformEffector(col))
                 fallthroughColliderCount++;
         }
 
@@ -596,7 +595,7 @@ public class PlayerCharacter : MonoBehaviour
                     continue;
 
                 PlatformEffector2D effector;
-                PhysicsHelper.TryGetPlatformEffector (col, out effector);
+                PhysicsHelper.TryGetPlatformEffector(col, out effector);
                 FallthroughReseter reseter = effector.gameObject.AddComponent<FallthroughReseter>();
                 reseter.StartFall(effector);
                 //set invincible for half a second when falling through a platform, as it will make the player "standup"
@@ -691,14 +690,14 @@ public class PlayerCharacter : MonoBehaviour
         m_Animator.SetTrigger(m_HashHurtPara);
 
         //we only force respawn if helath > 0, otherwise both forceRespawn & Death trigger are set in the animator, messing with each other.
-        if(damageable.CurrentHealth > 0 && damager.forceRespawn)
+        if (damageable.CurrentHealth > 0 && damager.forceRespawn)
             m_Animator.SetTrigger(m_HashForcedRespawnPara);
 
         m_Animator.SetBool(m_HashGroundedPara, false);
-        hurtAudioPlayer.PlayRandomSound();
+ //       hurtAudioPlayer.PlayRandomSound();
 
         //if the health is < 0, mean die callback will take care of respawn
-        if(damager.forceRespawn && damageable.CurrentHealth > 0)
+        if (damager.forceRespawn && damageable.CurrentHealth > 0)
         {
             StartCoroutine(DieRespawnCoroutine(false, true));
         }
@@ -716,8 +715,8 @@ public class PlayerCharacter : MonoBehaviour
         PlayerInput.Instance.ReleaseControl(true);
         yield return new WaitForSeconds(1.0f); //wait one second before respawing
         yield return StartCoroutine(ScreenFader.FadeSceneOut(useCheckPoint ? ScreenFader.FadeType.Black : ScreenFader.FadeType.GameOver));
-        if(!useCheckPoint)
-            yield return new WaitForSeconds (2f);
+        if (!useCheckPoint)
+            yield return new WaitForSeconds(2f);
         Respawn(resetHealth, useCheckPoint);
         yield return new WaitForEndOfFrame();
         yield return StartCoroutine(ScreenFader.FadeSceneIn());
@@ -749,7 +748,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         meleeDamager.EnableDamage();
         meleeDamager.disableDamageAfterHit = true;
-      //  meleeAttackAudioPlayer.PlayRandomSound();
+ //       meleeAttackAudioPlayer.PlayRandomSound();
     }
 
     public void DisableMeleeAttack()
@@ -765,7 +764,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PlayFootstep()
     {
-        footstepAudioPlayer.PlayRandomSound(m_CurrentSurface);
+//        footstepAudioPlayer.PlayRandomSound(m_CurrentSurface);
         var footstepPosition = transform.position;
         footstepPosition.z -= 1;
         VFXController.Instance.Trigger("DustPuff", footstepPosition, 0, false, null, m_CurrentSurface);

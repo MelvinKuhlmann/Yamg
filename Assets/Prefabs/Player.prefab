@@ -40,14 +40,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3827800671806840925}
   - component: {fileID: 3827800671806840924}
+  - component: {fileID: 1951122027}
   - component: {fileID: 3827800671806840931}
   - component: {fileID: 102411870}
-  - component: {fileID: 1951122027}
-  - component: {fileID: 1951122026}
-  - component: {fileID: 1951122028}
-  - component: {fileID: 1951122029}
-  - component: {fileID: 1951122034}
-  - component: {fileID: 1951122035}
+  - component: {fileID: 8154896857613305521}
+  - component: {fileID: 3869713081834144198}
+  - component: {fileID: 634662801937465810}
+  - component: {fileID: 533351439147831125}
+  - component: {fileID: 2331192920163624916}
   m_Layer: 13
   m_Name: Player
   m_TagString: Untagged
@@ -121,6 +121,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1951122027
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827800671806840929}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6326b5f83eae78d4f92080b9105f938d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!70 &3827800671806840931
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -152,32 +171,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 4f122cbb026fd9144a03c97978b9d1e7, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!95 &1951122027
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827800671806840929}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6326b5f83eae78d4f92080b9105f938d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1951122026
+--- !u!114 &8154896857613305521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,44 +186,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3827800671806840929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49de84fa3d321d245bc900e599de015f, type: 3}
+  m_Script: {fileID: 11500000, guid: f9630ef9434df4048aafe7bffcc5bc1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 3827800671806840924}
-  damageable: {fileID: 1951122035}
-  meleeDamager: {fileID: 1951122034}
-  cameraFollowTarget: {fileID: 8046786690669050789}
-  maxSpeed: 10
-  groundAcceleration: 100
-  groundDeceleration: 100
-  pushingSpeedProportion: 0.5
-  airborneAccelProportion: 1
-  airborneDecelProportion: 0.5
-  gravity: 38
-  jumpSpeed: 16.5
-  jumpAbortSpeedReduction: 100
-  hurtJumpAngle: 45
-  hurtJumpSpeed: 5
-  flickeringDuration: 0.1
-  meleeAttackDashSpeed: 5
-  dashWhileAirborne: 0
-  footstepAudioPlayer: {fileID: 0}
-  landingAudioPlayer: {fileID: 0}
-  hurtAudioPlayer: {fileID: 0}
-  meleeAttackAudioPlayer: {fileID: 0}
-  rangedAttackAudioPlayer: {fileID: 0}
-  shotsPerSecond: 1
-  bulletSpeed: 5
-  holdingGunTimeoutDuration: 10
-  rightBulletSpawnPointAnimated: 1
-  cameraHorizontalFacingOffset: 2
-  cameraHorizontalSpeedOffset: 0.2
-  cameraVerticalInputOffset: 2
-  maxHorizontalDeltaDampTime: 0.4
-  maxVerticalDeltaDampTime: 0.6
-  verticalCameraOffsetDelay: 1
-  spriteOriginallyFacesLeft: 0
---- !u!114 &1951122028
+  groundedLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147549184
+  groundedRaycastDistance: 0.1
+--- !u!114 &3869713081834144198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,11 +217,11 @@ MonoBehaviour:
   MeleeAttack:
     key: 107
     controllerButton: 3
-    m_Enabled: 0
+    m_Enabled: 1
   RangedAttack:
     key: 111
     controllerButton: 2
-    m_Enabled: 0
+    m_Enabled: 1
   Jump:
     key: 32
     controllerButton: 1
@@ -267,7 +237,7 @@ MonoBehaviour:
   dataSettings:
     dataTag: PlayerInput
     persistenceType: 3
---- !u!114 &1951122029
+--- !u!114 &634662801937465810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,44 +246,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 3827800671806840929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9630ef9434df4048aafe7bffcc5bc1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 49de84fa3d321d245bc900e599de015f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundedLayerMask:
-    serializedVersion: 2
-    m_Bits: 2147549184
-  groundedRaycastDistance: 0.1
---- !u!114 &1951122034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827800671806840929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28f6d70523485714c85bbf31d2eaf7dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  offset: {x: 1.5, y: 1}
-  size: {x: 2.5, y: 1}
-  offsetBasedOnSpriteFacing: 1
-  spriteRenderer: {fileID: 0}
-  canHitTriggers: 0
-  disableDamageAfterHit: 0
-  forceRespawn: 0
-  ignoreInvincibility: 0
-  hittableLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  OnDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNonDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1951122035
+  spriteRenderer: {fileID: 3827800671806840924}
+  damageable: {fileID: 533351439147831125}
+  meleeDamager: {fileID: 2331192920163624916}
+  cameraFollowTarget: {fileID: 8046786690669050789}
+  maxSpeed: 7
+  groundAcceleration: 100
+  groundDeceleration: 100
+  pushingSpeedProportion: 0.5
+  airborneAccelProportion: 1
+  airborneDecelProportion: 0.5
+  gravity: 38
+  jumpSpeed: 16.5
+  jumpAbortSpeedReduction: 100
+  hurtJumpAngle: 45
+  hurtJumpSpeed: 5
+  flickeringDuration: 0.1
+  meleeAttackDashSpeed: 5
+  dashWhileAirborne: 0
+  shotsPerSecond: 1
+  bulletSpeed: 5
+  holdingGunTimeoutDuration: 10
+  rightBulletSpawnPointAnimated: 1
+  cameraHorizontalFacingOffset: 2
+  cameraHorizontalSpeedOffset: 0.2
+  cameraVerticalInputOffset: 2
+  maxHorizontalDeltaDampTime: 0.4
+  maxVerticalDeltaDampTime: 0.6
+  verticalCameraOffsetDelay: 1
+  spriteOriginallyFacesLeft: 0
+--- !u!114 &533351439147831125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -343,5 +308,35 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   dataSettings:
-    dataTag: 1bb91d62-fbcd-4283-9d54-cea4e29d2527
+    dataTag: acc6698b-2f63-483b-9ce5-36acfbd37f90
     persistenceType: 3
+--- !u!114 &2331192920163624916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827800671806840929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f6d70523485714c85bbf31d2eaf7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  offset: {x: 1.5, y: 1}
+  size: {x: 2.5, y: 1}
+  offsetBasedOnSpriteFacing: 1
+  spriteRenderer: {fileID: 0}
+  canHitTriggers: 0
+  disableDamageAfterHit: 0
+  forceRespawn: 0
+  ignoreInvincibility: 0
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  OnDamageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNonDamageableHit:
+    m_PersistentCalls:
+      m_Calls: []

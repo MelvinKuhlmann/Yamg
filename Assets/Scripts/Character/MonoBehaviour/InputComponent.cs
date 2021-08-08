@@ -84,8 +84,6 @@ public abstract class InputComponent : MonoBehaviour
 
         public void Get(bool fixedUpdateHappened, InputType inputType)
         {
-            Debug.Log("GET met andere dingen");
-
             if (!m_Enabled)
             {
                 Down = false;
@@ -218,9 +216,6 @@ public abstract class InputComponent : MonoBehaviour
 
         public void Get(InputType inputType)
         {
-            Debug.Log("Inputtype =" + inputType);
-            Debug.Log(m_GettingInput);
-
             if (!m_Enabled)
             {
                 Value = 0f;
@@ -241,7 +236,6 @@ public abstract class InputComponent : MonoBehaviour
             }
             else if (inputType == InputType.MouseAndKeyboard)
             {
-                Debug.Log("Keyboard Input detected.");
                 positiveHeld = Input.GetKey(positive);
                 negativeHeld = Input.GetKey(negative);
             }
@@ -252,8 +246,6 @@ public abstract class InputComponent : MonoBehaviour
                 Value = 1f;
             else
                 Value = -1f;
-
-            Debug.Log(Value);
 
             ReceivingInput = positiveHeld || negativeHeld;
         }
