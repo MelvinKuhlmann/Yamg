@@ -275,11 +275,11 @@ public class PlayerCharacterEditor : Editor
 
         if (m_AudioSettingsFoldout)
         {
-            EditorGUILayout.PropertyField(m_FootstepAudioPlayerProp, m_FootstepPlayerContent);
-            EditorGUILayout.PropertyField(m_LandingAudioPlayerProp, m_LandingAudioPlayerContent);
-            EditorGUILayout.PropertyField(m_HurtAudioPlayerProp, m_HurtAudioPlayerContent);
-            EditorGUILayout.PropertyField(m_MeleeAttackAudioPlayerProp, m_MeleeAttackAudioPlayerContent);
-            EditorGUILayout.PropertyField(m_RangedAttackAudioPlayerProp, m_RangedAttackAudioPlayerContent);
+//            EditorGUILayout.PropertyField(m_FootstepAudioPlayerProp, m_FootstepPlayerContent);
+//            EditorGUILayout.PropertyField(m_LandingAudioPlayerProp, m_LandingAudioPlayerContent);
+//            EditorGUILayout.PropertyField(m_HurtAudioPlayerProp, m_HurtAudioPlayerContent);
+//            EditorGUILayout.PropertyField(m_MeleeAttackAudioPlayerProp, m_MeleeAttackAudioPlayerContent);
+//            EditorGUILayout.PropertyField(m_RangedAttackAudioPlayerProp, m_RangedAttackAudioPlayerContent);
         }
 
         EditorGUI.indentLevel--;

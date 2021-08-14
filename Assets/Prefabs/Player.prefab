@@ -267,7 +267,7 @@ MonoBehaviour:
   hurtJumpAngle: 45
   hurtJumpSpeed: 5
   flickeringDuration: 0.1
-  meleeAttackDashSpeed: 5
+  meleeAttackDashSpeed: 8
   dashWhileAirborne: 0
   shotsPerSecond: 1
   bulletSpeed: 5
