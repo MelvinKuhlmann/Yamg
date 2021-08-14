@@ -153,8 +153,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0019524992, y: 0.506861}
-  m_Size: {x: 0.29778695, y: 1.042357}
+  m_Offset: {x: 0.0030317903, y: 1.0376849}
+  m_Size: {x: 0.5769056, y: 2.1040049}
   m_Direction: 0
 --- !u!50 &102411870
 Rigidbody2D:
@@ -253,15 +253,15 @@ MonoBehaviour:
   damageable: {fileID: 533351439147831125}
   meleeDamager: {fileID: 2331192920163624916}
   cameraFollowTarget: {fileID: 8046786690669050789}
-  maxSpeed: 7
+  maxSpeed: 10
   groundAcceleration: 100
   groundDeceleration: 100
   pushingSpeedProportion: 0.5
   airborneAccelProportion: 1
   airborneDecelProportion: 0.5
   gravity: 38
-  jumpSpeed: 16.5
-  jumpAbortSpeedReduction: 100
+  jumpSpeed: 17
+  jumpAbortSpeedReduction: 110
   hurtJumpAngle: 45
   hurtJumpSpeed: 5
   flickeringDuration: 0.1
