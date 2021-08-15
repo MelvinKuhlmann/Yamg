@@ -19,9 +19,9 @@ public class PlayerCharacter : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Damageable damageable;
     public Damager meleeDamager;
-//    public Transform facingLeftBulletSpawnPoint;
- //   public Transform facingRightBulletSpawnPoint;
-//    public BulletPool bulletPool;
+    public Transform facingLeftBulletSpawnPoint;
+    public Transform facingRightBulletSpawnPoint;
+    public BulletPool bulletPool;
     public Transform cameraFollowTarget;
 
     public float maxSpeed = 10f;
@@ -72,7 +72,7 @@ public class PlayerCharacter : MonoBehaviour
     protected float m_TanHurtJumpAngle;
     protected WaitForSeconds m_FlickeringWait;
     protected Coroutine m_FlickerCoroutine;
-//    protected Transform m_CurrentBulletSpawnPoint;
+    protected Transform m_CurrentBulletSpawnPoint;
     protected float m_ShotSpawnGap;
     protected WaitForSeconds m_ShotSpawnWait;
     protected Coroutine m_ShootingCoroutine;
@@ -123,7 +123,7 @@ public class PlayerCharacter : MonoBehaviour
         m_Transform = transform;
         m_InventoryController = GetComponent<InventoryController>();
 
- //       m_CurrentBulletSpawnPoint = spriteOriginallyFacesLeft ? facingLeftBulletSpawnPoint : facingRightBulletSpawnPoint;
+        m_CurrentBulletSpawnPoint = spriteOriginallyFacesLeft ? facingLeftBulletSpawnPoint : facingRightBulletSpawnPoint;
     }
 
     void Start()
@@ -230,7 +230,7 @@ public class PlayerCharacter : MonoBehaviour
     // Protected functions.
     protected void UpdateBulletSpawnPointPositions()
     {
- /*       if (rightBulletSpawnPointAnimated)
+        if (rightBulletSpawnPointAnimated)
         {
             Vector2 leftPosition = facingRightBulletSpawnPoint.localPosition;
             leftPosition.x *= -1f;
@@ -241,7 +241,7 @@ public class PlayerCharacter : MonoBehaviour
             Vector2 rightPosition = facingLeftBulletSpawnPoint.localPosition;
             rightPosition.x *= -1f;
             facingRightBulletSpawnPoint.localPosition = rightPosition;
-        }*/
+        }
     }
 
     protected void UpdateCameraFollowTargetPosition()
@@ -314,20 +314,20 @@ public class PlayerCharacter : MonoBehaviour
         //we check if there is a wall between the player and the bullet spawn position, if there is, we don't spawn a bullet
         //otherwise, the player can "shoot throught wall" because the arm extend to the other side of the wall
         Vector2 testPosition = transform.position;
-//        testPosition.y = m_CurrentBulletSpawnPoint.position.y;
-//        Vector2 direction = (Vector2)m_CurrentBulletSpawnPoint.position - testPosition;
-//        float distance = direction.magnitude;
-//        direction.Normalize();
+        testPosition.y = m_CurrentBulletSpawnPoint.position.y;
+        Vector2 direction = (Vector2)m_CurrentBulletSpawnPoint.position - testPosition;
+        float distance = direction.magnitude;
+        direction.Normalize();
 
         RaycastHit2D[] results = new RaycastHit2D[12];
-//        if (Physics2D.Raycast(testPosition, direction, m_CharacterController2D.ContactFilter, results, distance) > 0)
-//            return;
+        if (Physics2D.Raycast(testPosition, direction, m_CharacterController2D.ContactFilter, results, distance) > 0)
+            return;
 
-/*        BulletObject bullet = bulletPool.Pop(m_CurrentBulletSpawnPoint.position);
+        BulletObject bullet = bulletPool.Pop(m_CurrentBulletSpawnPoint.position);
         bool facingLeft = m_CurrentBulletSpawnPoint == facingLeftBulletSpawnPoint;
         bullet.rigidbody2D.velocity = new Vector2(facingLeft ? -bulletSpeed : bulletSpeed, 0f);
         bullet.spriteRenderer.flipX = facingLeft ^ bullet.bullet.spriteOriginallyFacesLeft;
-*/
+
  //       rangedAttackAudioPlayer.PlayRandomSound();
     }
 
@@ -390,12 +390,12 @@ public class PlayerCharacter : MonoBehaviour
         if (faceLeft)
         {
             spriteRenderer.flipX = !spriteOriginallyFacesLeft;
- //           m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;
+            m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;
         }
         else if (faceRight)
         {
             spriteRenderer.flipX = spriteOriginallyFacesLeft;
- //           m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;
+            m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;
         }
     }
 
@@ -404,12 +404,12 @@ public class PlayerCharacter : MonoBehaviour
         if (faceLeft)
         {
             spriteRenderer.flipX = !spriteOriginallyFacesLeft;
- //           m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;
+            m_CurrentBulletSpawnPoint = facingLeftBulletSpawnPoint;
         }
         else
         {
             spriteRenderer.flipX = spriteOriginallyFacesLeft;
-//            m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;
+            m_CurrentBulletSpawnPoint = facingRightBulletSpawnPoint;
         }
     }
 

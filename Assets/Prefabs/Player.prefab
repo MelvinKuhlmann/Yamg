@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 634662801937465810}
   - component: {fileID: 533351439147831125}
   - component: {fileID: 2331192920163624916}
+  - component: {fileID: 1951122026}
   m_Layer: 13
   m_Name: Player
   m_TagString: Untagged
@@ -69,6 +70,8 @@ Transform:
   - {fileID: 8046786690669050789}
   - {fileID: 1924468226373011679}
   - {fileID: 7251916516866948189}
+  - {fileID: 879143589762145652}
+  - {fileID: 3674808587578974182}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -254,6 +257,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3827800671806840924}
   damageable: {fileID: 533351439147831125}
   meleeDamager: {fileID: 2331192920163624916}
+  facingLeftBulletSpawnPoint: {fileID: 879143589762145652}
+  facingRightBulletSpawnPoint: {fileID: 3674808587578974182}
+  bulletPool: {fileID: 1951122026}
   cameraFollowTarget: {fileID: 8046786690669050789}
   maxSpeed: 10
   groundAcceleration: 100
@@ -269,9 +275,9 @@ MonoBehaviour:
   flickeringDuration: 0.1
   meleeAttackDashSpeed: 8
   dashWhileAirborne: 0
-  shotsPerSecond: 1
-  bulletSpeed: 5
-  holdingGunTimeoutDuration: 10
+  shotsPerSecond: 2
+  bulletSpeed: 30
+  holdingGunTimeoutDuration: 0.1
   rightBulletSpawnPointAnimated: 1
   cameraHorizontalFacingOffset: 2
   cameraHorizontalSpeedOffset: 0.2
@@ -366,6 +372,20 @@ MonoBehaviour:
   OnNonDamageableHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1951122026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827800671806840929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372acaaa886abe249acb82c6289b3131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1417156414908264037, guid: b6f746a7ae07f8046afb6dbcb4d4e097, type: 3}
+  initialPoolCount: 10
 --- !u!1 &3886933661891282173
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,4 +445,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3827800671806840925}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6209384566424131871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 879143589762145652}
+  m_Layer: 13
+  m_Name: FacingLeftBulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &879143589762145652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6209384566424131871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.155, y: 1.543, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3827800671806840925}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7610021384371658284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3674808587578974182}
+  m_Layer: 13
+  m_Name: FacingRightBulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3674808587578974182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7610021384371658284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.155, y: 1.543, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3827800671806840925}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

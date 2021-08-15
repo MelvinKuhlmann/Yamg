@@ -9,9 +9,9 @@ public class PlayerCharacterEditor : Editor
     SerializedProperty m_SpriteRendererProp;
     SerializedProperty m_DamageableProp;
     SerializedProperty m_MeleeDamagerProp;
-    //  SerializedProperty m_FacingLeftBulletSpawnPointProp;
-    //  SerializedProperty m_FacingRightBulletSpawnPointProp;
-//    SerializedProperty m_BulletPoolProp;
+    SerializedProperty m_FacingLeftBulletSpawnPointProp;
+    SerializedProperty m_FacingRightBulletSpawnPointProp;
+    SerializedProperty m_BulletPoolProp;
     SerializedProperty m_CameraFollowTargetProp;
 
     SerializedProperty m_MaxSpeedProp;
@@ -123,9 +123,9 @@ public class PlayerCharacterEditor : Editor
         m_SpriteRendererProp = serializedObject.FindProperty("spriteRenderer");
         m_DamageableProp = serializedObject.FindProperty("damageable");
         m_MeleeDamagerProp = serializedObject.FindProperty("meleeDamager");
-    //      m_FacingLeftBulletSpawnPointProp = serializedObject.FindProperty("facingLeftBulletSpawnPoint");
-    //      m_FacingRightBulletSpawnPointProp = serializedObject.FindProperty ("facingRightBulletSpawnPoint");
-    //      m_BulletPoolProp = serializedObject.FindProperty("bulletPool");
+        m_FacingLeftBulletSpawnPointProp = serializedObject.FindProperty("facingLeftBulletSpawnPoint");
+        m_FacingRightBulletSpawnPointProp = serializedObject.FindProperty ("facingRightBulletSpawnPoint");
+        m_BulletPoolProp = serializedObject.FindProperty("bulletPool");
         m_CameraFollowTargetProp = serializedObject.FindProperty ("cameraFollowTarget");
 
         m_MaxSpeedProp = serializedObject.FindProperty("maxSpeed");
@@ -181,9 +181,9 @@ public class PlayerCharacterEditor : Editor
             EditorGUILayout.PropertyField (m_SpriteRendererProp, m_SpriteRendererContent);
             EditorGUILayout.PropertyField (m_DamageableProp, m_DamageableContent);
             EditorGUILayout.PropertyField (m_MeleeDamagerProp, m_MeleeDamagerContent);
-    //           EditorGUILayout.PropertyField (m_FacingLeftBulletSpawnPointProp, m_FacingLeftBulletSpawnPointContent);
-    //           EditorGUILayout.PropertyField (m_FacingRightBulletSpawnPointProp, m_FacingRightBulletSpawnPointContent);
-    //          EditorGUILayout.PropertyField (m_BulletPoolProp, m_BulletPoolContent);
+            EditorGUILayout.PropertyField (m_FacingLeftBulletSpawnPointProp, m_FacingLeftBulletSpawnPointContent);
+            EditorGUILayout.PropertyField (m_FacingRightBulletSpawnPointProp, m_FacingRightBulletSpawnPointContent);
+            EditorGUILayout.PropertyField (m_BulletPoolProp, m_BulletPoolContent);
             EditorGUILayout.PropertyField (m_CameraFollowTargetProp, m_CameraFollowTargetContent);
         }
 
