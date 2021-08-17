@@ -25,8 +25,8 @@ public class LocomotionWithGunSMB : SceneLinkedSMB<PlayerCharacter>
 
     public override void OnSLStatePreExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AnimatorStateInfo nextState = animator.GetNextAnimatorStateInfo (0);
-        if (!nextState.IsTag ("WithGun"))
-            m_MonoBehaviour.ForceNotHoldingGun ();
+        AnimatorStateInfo nextState = animator.GetNextAnimatorStateInfo(0);
+        if (!nextState.IsTag("WithGun"))
+            m_MonoBehaviour.ForceNotHoldingGun();
     }
 }

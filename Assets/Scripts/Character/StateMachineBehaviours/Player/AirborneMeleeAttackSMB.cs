@@ -12,8 +12,8 @@ public class AirborneMeleeAttackSMB : SceneLinkedSMB<PlayerCharacter>
     public override void OnSLStatePostEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         m_MonoBehaviour.EnableMeleeAttack();
-        if (m_MonoBehaviour.dashWhileAirborne)
-            m_MonoBehaviour.SetHorizontalMovement(m_MonoBehaviour.meleeAttackDashSpeed * m_MonoBehaviour.GetFacing());
+     //   if (m_MonoBehaviour.dashWhileAirborne)
+     //       m_MonoBehaviour.SetHorizontalMovement(m_MonoBehaviour.meleeAttackDashSpeed * m_MonoBehaviour.GetFacing());
     }
 
     public override void OnSLStateNoTransitionUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
