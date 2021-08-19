@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 0
   m_Name: TransitionDestinationA
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90d6bad8e1ac3b4eb0757d5d919b241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTag: 0
-  transitioningGameObject: {fileID: 9119412282781731471}
+  destinationTag: 1
+  transitioningGameObject: {fileID: 0}
   OnReachDestination:
     m_PersistentCalls:
       m_Calls:
@@ -74,12 +74,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 0}
-  setCharacterVelocity: 0
-  characterVelocity: {x: 0, y: 0}
-  setCharacterFacing: 0
-  faceLeft: 0
+  setCharacterVelocity: 1
+  characterVelocity: {x: -5, y: 0}
+  setCharacterFacing: 1
+  faceLeft: 1
   animator: {fileID: 0}
-  setState: 0
-  animatorStateName: 
-  setParameters: 0
-  parameterSetters: []
+  setState: 1
+  animatorStateName: Locomotion
+  setParameters: 1
+  parameterSetters:
+  - parameterName: HorizontalSpeed
+    parameterType: 1
+    boolValue: 0
+    floatValue: -5
+    intValue: 0
