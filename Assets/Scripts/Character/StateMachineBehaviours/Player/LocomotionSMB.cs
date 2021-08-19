@@ -21,5 +21,7 @@ public class LocomotionSMB : SceneLinkedSMB<PlayerCharacter>
             m_MonoBehaviour.SetVerticalMovement(m_MonoBehaviour.jumpSpeed);
         else if(m_MonoBehaviour.CheckForMeleeAttackInput())
             m_MonoBehaviour.MeleeAttack();
+        if (m_MonoBehaviour.CheckForDashInput())
+            m_MonoBehaviour.Dash();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(PlayerCharacter))]
@@ -37,6 +35,9 @@ public class PlayerCharacterEditor : Editor
     SerializedProperty m_HoldingGunTimeoutDurationProp;
     SerializedProperty m_RightBulletSpawnPointAnimatedProp;
 
+
+    SerializedProperty m_DashSpeedProp;
+
     SerializedProperty m_FootstepAudioPlayerProp;
     SerializedProperty m_LandingAudioPlayerProp;
     SerializedProperty m_HurtAudioPlayerProp;
@@ -58,6 +59,7 @@ public class PlayerCharacterEditor : Editor
     bool m_HurtSettingsFoldout;
     bool m_MeleeSettingsFoldout;
     bool m_RangedSettingsFoldout;
+    bool m_DashSettingsFoldout;
     bool m_AudioSettingsFoldout;
     bool m_CameraFollowSettingsFoldout;
     bool m_MiscSettingsFoldout;
@@ -93,6 +95,8 @@ public class PlayerCharacterEditor : Editor
     readonly GUIContent m_HoldingGunTimeoutDurationContent = new GUIContent("Holding Gun Timeout Duration");
     readonly GUIContent m_RightBulletSpawnPointAnimatedContent = new GUIContent("Right Bullet Spawn Point Animated");
 
+    readonly GUIContent m_DashSpeedContent = new GUIContent("Dash Speed");
+
     readonly GUIContent m_FootstepPlayerContent = new GUIContent("Footstep Audio Player");
     readonly GUIContent m_LandingAudioPlayerContent = new GUIContent("Landing Audio Player");
     readonly GUIContent m_HurtAudioPlayerContent = new GUIContent("Hurt Audio Player");
@@ -114,6 +118,7 @@ public class PlayerCharacterEditor : Editor
     readonly GUIContent m_HurtSettingsContent = new GUIContent("Hurt Settings");
     readonly GUIContent m_MeleeSettingsContent = new GUIContent("Melee Settings");
     readonly GUIContent m_RangedSettingsContent = new GUIContent("Ranged Settings");
+    readonly GUIContent m_DashSettingsContent = new GUIContent("Dash Settings");
     readonly GUIContent m_AudioSettingsContent = new GUIContent("Audio Settings");
     readonly GUIContent m_CameraFollowSettingsContent = new GUIContent("Camera Follow Settings");
     readonly GUIContent m_MiscSettingsContent = new GUIContent("Misc Settings");
@@ -150,6 +155,8 @@ public class PlayerCharacterEditor : Editor
         m_BulletSpeedProp = serializedObject.FindProperty("bulletSpeed");
         m_HoldingGunTimeoutDurationProp = serializedObject.FindProperty("holdingGunTimeoutDuration");
         m_RightBulletSpawnPointAnimatedProp = serializedObject.FindProperty ("rightBulletSpawnPointAnimated");
+
+        m_DashSpeedProp = serializedObject.FindProperty("dashSpeed");
 
         m_FootstepAudioPlayerProp = serializedObject.FindProperty("footstepAudioPlayer");
         m_LandingAudioPlayerProp = serializedObject.FindProperty("landingAudioPlayer");
@@ -263,6 +270,19 @@ public class PlayerCharacterEditor : Editor
             EditorGUILayout.PropertyField(m_BulletSpeedProp, m_BulletSpeedContent);
             EditorGUILayout.PropertyField(m_HoldingGunTimeoutDurationProp, m_HoldingGunTimeoutDurationContent);
             EditorGUILayout.PropertyField(m_RightBulletSpawnPointAnimatedProp, m_RightBulletSpawnPointAnimatedContent);
+        }
+
+        EditorGUI.indentLevel--;
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUI.indentLevel++;
+
+        m_DashSettingsFoldout = EditorGUILayout.Foldout(m_DashSettingsFoldout, m_DashSettingsContent);
+
+        if (m_DashSettingsFoldout)
+        {
+            EditorGUILayout.PropertyField(m_DashSpeedProp, m_DashSpeedContent);
         }
 
         EditorGUI.indentLevel--;

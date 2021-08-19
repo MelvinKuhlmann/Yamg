@@ -15,7 +15,7 @@ public class TransitionPoint : MonoBehaviour
     }
 
 
-    [Tooltip("This is the gameobject that will transition.  For example, the player.")]
+    [Tooltip("This is the gameobject that will transition. For example, the player.")]
     public GameObject transitioningGameObject;
     [Tooltip("Whether the transition will be within this scene, to a different zone or a non-gameplay scene.")]
     public TransitionType transitionType;

@@ -13,12 +13,13 @@ public class PlayerInput : InputComponent, IDataPersister
     public bool HaveControl { get { return m_HaveControl; } }
 
     public InputButton Pause = new InputButton(KeyCode.Escape, XboxControllerButtons.Menu);
-    public InputButton Interact = new InputButton(KeyCode.E, XboxControllerButtons.Y);
-    public InputButton MeleeAttack = new InputButton(KeyCode.K, XboxControllerButtons.X);
+    public InputButton Interact = new InputButton(KeyCode.I, XboxControllerButtons.Y);
+    public InputButton MeleeAttack = new InputButton(KeyCode.X, XboxControllerButtons.X);
     public InputButton RangedAttack = new InputButton(KeyCode.O, XboxControllerButtons.B);
     public InputButton Jump = new InputButton(KeyCode.Space, XboxControllerButtons.A);
-    public InputAxis Horizontal = new InputAxis(KeyCode.D, KeyCode.A, XboxControllerAxes.LeftstickHorizontal);
-    public InputAxis Vertical = new InputAxis(KeyCode.W, KeyCode.S, XboxControllerAxes.LeftstickVertical);
+    public InputButton Dash = new InputButton(KeyCode.C, XboxControllerButtons.B);
+    public InputAxis Horizontal = new InputAxis(KeyCode.LeftArrow, KeyCode.RightArrow, XboxControllerAxes.LeftstickHorizontal);
+    public InputAxis Vertical = new InputAxis(KeyCode.UpArrow, KeyCode.DownArrow, XboxControllerAxes.LeftstickVertical);
     [HideInInspector]
     public DataSettings dataSettings;
 
@@ -31,7 +32,7 @@ public class PlayerInput : InputComponent, IDataPersister
         if (s_Instance == null)
             s_Instance = this;
         else
-            throw new UnityException("There cannot be more than one PlayerInput script.  The instances are " + s_Instance.name + " and " + name + ".");
+            throw new UnityException("There cannot be more than one PlayerInput script. The instances are " + s_Instance.name + " and " + name + ".");
     }
 
     void OnEnable()
@@ -39,7 +40,7 @@ public class PlayerInput : InputComponent, IDataPersister
         if (s_Instance == null)
             s_Instance = this;
         else if (s_Instance != this)
-            throw new UnityException("There cannot be more than one PlayerInput script.  The instances are " + s_Instance.name + " and " + name + ".");
+            throw new UnityException("There cannot be more than one PlayerInput script. The instances are " + s_Instance.name + " and " + name + ".");
 
         PersistentDataManager.RegisterPersister(this);
     }
@@ -58,6 +59,7 @@ public class PlayerInput : InputComponent, IDataPersister
         MeleeAttack.Get(fixedUpdateHappened, inputType);
         RangedAttack.Get(fixedUpdateHappened, inputType);
         Jump.Get(fixedUpdateHappened, inputType);
+        Dash.Get(fixedUpdateHappened, inputType);
         Horizontal.Get(inputType);
         Vertical.Get(inputType);
 
@@ -76,6 +78,7 @@ public class PlayerInput : InputComponent, IDataPersister
         GainControl(MeleeAttack);
         GainControl(RangedAttack);
         GainControl(Jump);
+        GainControl(Dash);
         GainControl(Horizontal);
         GainControl(Vertical);
     }
@@ -89,6 +92,7 @@ public class PlayerInput : InputComponent, IDataPersister
         ReleaseControl(MeleeAttack, resetValues);
         ReleaseControl(RangedAttack, resetValues);
         ReleaseControl(Jump, resetValues);
+        ReleaseControl(Dash, resetValues);
         ReleaseControl(Horizontal, resetValues);
         ReleaseControl(Vertical, resetValues);
     }
@@ -113,6 +117,16 @@ public class PlayerInput : InputComponent, IDataPersister
         RangedAttack.Enable();
     }
 
+    public void DisableDash()
+    {
+        Dash.Disable();
+    }
+
+    public void EnableDash()
+    {
+        Dash.Enable();
+    }
+
     public DataSettings GetDataSettings()
     {
         return dataSettings;
@@ -126,12 +140,12 @@ public class PlayerInput : InputComponent, IDataPersister
 
     public Data SaveData()
     {
-        return new Data<bool, bool>(MeleeAttack.Enabled, RangedAttack.Enabled);
+        return new Data<bool, bool, bool>(MeleeAttack.Enabled, RangedAttack.Enabled, Dash.Enabled);
     }
 
     public void LoadData(Data data)
     {
-        Data<bool, bool> playerInputData = (Data<bool, bool>)data;
+        Data<bool, bool, bool> playerInputData = (Data<bool, bool, bool>)data;
 
         if (playerInputData.value0)
             MeleeAttack.Enable();
@@ -142,6 +156,11 @@ public class PlayerInput : InputComponent, IDataPersister
             RangedAttack.Enable();
         else
             RangedAttack.Disable();
+
+        if (playerInputData.value2)
+            Dash.Enable();
+        else
+            Dash.Disable();
     }
 
     void OnGUI()
@@ -157,6 +176,7 @@ public class PlayerInput : InputComponent, IDataPersister
 
             bool meleeAttackEnabled = GUILayout.Toggle(MeleeAttack.Enabled, "Enable Melee Attack");
             bool rangeAttackEnabled = GUILayout.Toggle(RangedAttack.Enabled, "Enable Range Attack");
+            bool dashEnabled = GUILayout.Toggle(Dash.Enabled, "Enable Dash");
 
             if (meleeAttackEnabled != MeleeAttack.Enabled)
             {
@@ -172,6 +192,14 @@ public class PlayerInput : InputComponent, IDataPersister
                     RangedAttack.Enable();
                 else
                     RangedAttack.Disable();
+            }
+
+            if (dashEnabled != Dash.Enabled)
+            {
+                if (dashEnabled)
+                    Dash.Enable();
+                else
+                    Dash.Disable();
             }
             GUILayout.EndVertical();
             GUILayout.EndArea();
