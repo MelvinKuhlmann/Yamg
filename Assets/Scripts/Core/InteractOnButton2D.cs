@@ -24,7 +24,9 @@ public class InteractOnButton2D : InteractOnTrigger2D
         if (m_CanExecuteButtons)
         {
             if (OnButtonPress.GetPersistentEventCount() > 0 && PlayerInput.Instance.Interact.Down)
+            {
                 OnButtonPress.Invoke();
+            }
         }
     }
 }
