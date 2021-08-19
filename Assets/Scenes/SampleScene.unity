@@ -816,7 +816,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1337020986}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 58d96fefc349bd549bac5a688bef4229, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: d60554fb0fc43164a8f8f237f07394a8, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -824,12 +824,17 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -3994815675433884040, guid: 58d96fefc349bd549bac5a688bef4229, type: 2}
     value: {fileID: 1813472147}
+  - key: {fileID: 6251041402725035616, guid: d60554fb0fc43164a8f8f237f07394a8, type: 2}
+    value: {fileID: 1813472147}
   m_ExposedReferences:
     m_References:
+    - ab7a2cd021bd90440a96a2dc589ab070: {fileID: 366295235}
     - 1c7d550d2af4cd04cb196faee0296868: {fileID: 366295235}
     - 02b5f5d36ff4c254a91dd81eaecc385b: {fileID: 366295235}
     - 5099271bc0ec4d544813cb1d12fdd109: {fileID: 366295235}
     - d548b4d69502396489df7bdc85d2e22b: {fileID: 72118935}
+    - 0fb0eb748e975934388e3e1f64ceed52: {fileID: 72118935}
+    - da4dbaba0d1465846a851d1f6f8a1234: {fileID: 72118935}
     - e62db75e5c10dbf47b6cb6fdb4bfb902: {fileID: 72118935}
     - 0288836e17e3de14083c80ad694921a1: {fileID: 72118935}
     - 8ebff28a6307e1743a4d65e021fed1f4: {fileID: 366295235}
@@ -1088,7 +1093,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8134535221258966139, guid: 549bc9675ad5f90439243041bf367c71, type: 3}
   m_PrefabInstance: {fileID: 1292261290}
   m_PrefabAsset: {fileID: 0}
---- !u!320 &1813472145
+--- !u!114 &1813472147 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8134535221258966142, guid: 549bc9675ad5f90439243041bf367c71, type: 3}
+  m_PrefabInstance: {fileID: 1292261290}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813472144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!320 &1813472149
 PlayableDirector:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1107,17 +1123,6 @@ PlayableDirector:
     value: {fileID: 1813472147}
   m_ExposedReferences:
     m_References: []
---- !u!114 &1813472147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8134535221258966142, guid: 549bc9675ad5f90439243041bf367c71, type: 3}
-  m_PrefabInstance: {fileID: 1292261290}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813472144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1905679994
 GameObject:
   m_ObjectHideFlags: 0
