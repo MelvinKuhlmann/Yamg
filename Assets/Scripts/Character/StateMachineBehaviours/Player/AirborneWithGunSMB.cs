@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public class AirborneWithGunSMB : SceneLinkedSMB<PlayerCharacter>
 {
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -10,7 +8,7 @@ public class AirborneWithGunSMB : SceneLinkedSMB<PlayerCharacter>
         m_MonoBehaviour.AirborneHorizontalMovement();
         m_MonoBehaviour.AirborneVerticalMovement();
         m_MonoBehaviour.CheckForGrounded();
-        m_MonoBehaviour.CheckForHoldingGun();
+       // m_MonoBehaviour.CheckForHoldingGun();
         if (m_MonoBehaviour.CheckForMeleeAttackInput())
             m_MonoBehaviour.MeleeAttack();
         if (m_MonoBehaviour.CheckForDashInput())

@@ -51,7 +51,7 @@ public class PlayerCharacter : MonoBehaviour
 */
     public float shotsPerSecond = 1f;
     public float bulletSpeed = 5f;
-    public float holdingGunTimeoutDuration = 10f;
+  //  public float holdingGunTimeoutDuration = 10f;
     public bool rightBulletSpawnPointAnimated = true;
 
     public float cameraHorizontalFacingOffset;
@@ -80,7 +80,7 @@ public class PlayerCharacter : MonoBehaviour
     protected float m_NextShotTime;
     protected bool m_IsFiring;
     protected float m_ShotTimer;
-    protected float m_HoldingGunTimeRemaining;
+//    protected float m_HoldingGunTimeRemaining;
     protected TileBase m_CurrentSurface;
     protected float m_CamFollowHorizontalSpeed;
     protected float m_CamFollowVerticalSpeed;
@@ -105,7 +105,7 @@ public class PlayerCharacter : MonoBehaviour
     protected readonly int m_HashForcedRespawnPara = Animator.StringToHash("ForcedRespawn");
     protected readonly int m_HashMeleeAttackPara = Animator.StringToHash("MeleeAttack");
     protected readonly int m_HashDashPara = Animator.StringToHash("Dash");
-    protected readonly int m_HashHoldingGunPara = Animator.StringToHash("HoldingGun");
+ //   protected readonly int m_HashHoldingGunPara = Animator.StringToHash("HoldingGun");
 
     protected const float k_MinHurtJumpAngle = 0.001f;
     protected const float k_MaxHurtJumpAngle = 89.999f;
@@ -619,7 +619,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         bool holdingGun = false;
 
-        if (PlayerInput.Instance.RangedAttack.Held)
+      /*  if (PlayerInput.Instance.RangedAttack.Held)
         {
             holdingGun = true;
             m_Animator.SetBool(m_HashHoldingGunPara, true);
@@ -633,20 +633,22 @@ public class PlayerCharacter : MonoBehaviour
             {
                 m_Animator.SetBool(m_HashHoldingGunPara, false);
             }
-        }
+        }*/
 
         return holdingGun;
     }
 
     public void CheckAndFireGun()
     {
-        if (PlayerInput.Instance.RangedAttack.Held && m_Animator.GetBool(m_HashHoldingGunPara))
-        {
+     //   if (PlayerInput.Instance.RangedAttack.Held && m_Animator.GetBool(m_HashHoldingGunPara))
+        if (PlayerInput.Instance.RangedAttack.Held)
+            {
             if (m_ShootingCoroutine == null)
                 m_ShootingCoroutine = StartCoroutine(Shoot());
         }
 
-        if ((PlayerInput.Instance.RangedAttack.Up || !m_Animator.GetBool(m_HashHoldingGunPara)) && m_ShootingCoroutine != null)
+        //   if ((PlayerInput.Instance.RangedAttack.Up || !m_Animator.GetBool(m_HashHoldingGunPara)) && m_ShootingCoroutine != null)
+        if (PlayerInput.Instance.RangedAttack.Up && m_ShootingCoroutine != null)
         {
             StopCoroutine(m_ShootingCoroutine);
             m_ShootingCoroutine = null;
@@ -655,7 +657,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void ForceNotHoldingGun()
     {
-        m_Animator.SetBool(m_HashHoldingGunPara, false);
+      //  m_Animator.SetBool(m_HashHoldingGunPara, false);
     }
 
     public void EnableInvulnerability()

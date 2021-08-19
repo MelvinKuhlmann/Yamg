@@ -9,7 +9,7 @@ public class AirborneSMB : SceneLinkedSMB<PlayerCharacter>
         m_MonoBehaviour.AirborneHorizontalMovement();
         m_MonoBehaviour.AirborneVerticalMovement();
         m_MonoBehaviour.CheckForGrounded();
-        m_MonoBehaviour.CheckForHoldingGun();
+      //  m_MonoBehaviour.CheckForHoldingGun();
         if (m_MonoBehaviour.CheckForMeleeAttackInput())
             m_MonoBehaviour.MeleeAttack();
         if (m_MonoBehaviour.CheckForDashInput())

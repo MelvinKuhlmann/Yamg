@@ -32,7 +32,7 @@ public class PlayerCharacterEditor : Editor
     
     SerializedProperty m_ShotsPerSecondProp;
     SerializedProperty m_BulletSpeedProp;
-    SerializedProperty m_HoldingGunTimeoutDurationProp;
+   // SerializedProperty m_HoldingGunTimeoutDurationProp;
     SerializedProperty m_RightBulletSpawnPointAnimatedProp;
 
 
@@ -92,7 +92,7 @@ public class PlayerCharacterEditor : Editor
 
     readonly GUIContent m_ShotsPerSecondContent = new GUIContent("Shots Per Second");
     readonly GUIContent m_BulletSpeedContent = new GUIContent("Bullet Speed");
-    readonly GUIContent m_HoldingGunTimeoutDurationContent = new GUIContent("Holding Gun Timeout Duration");
+  //  readonly GUIContent m_HoldingGunTimeoutDurationContent = new GUIContent("Holding Gun Timeout Duration");
     readonly GUIContent m_RightBulletSpawnPointAnimatedContent = new GUIContent("Right Bullet Spawn Point Animated");
 
     readonly GUIContent m_DashSpeedContent = new GUIContent("Dash Speed");
@@ -153,7 +153,7 @@ public class PlayerCharacterEditor : Editor
 
         m_ShotsPerSecondProp = serializedObject.FindProperty("shotsPerSecond");
         m_BulletSpeedProp = serializedObject.FindProperty("bulletSpeed");
-        m_HoldingGunTimeoutDurationProp = serializedObject.FindProperty("holdingGunTimeoutDuration");
+    //    m_HoldingGunTimeoutDurationProp = serializedObject.FindProperty("holdingGunTimeoutDuration");
         m_RightBulletSpawnPointAnimatedProp = serializedObject.FindProperty ("rightBulletSpawnPointAnimated");
 
         m_DashSpeedProp = serializedObject.FindProperty("dashSpeed");
@@ -268,7 +268,7 @@ public class PlayerCharacterEditor : Editor
         {
             EditorGUILayout.PropertyField(m_ShotsPerSecondProp, m_ShotsPerSecondContent);
             EditorGUILayout.PropertyField(m_BulletSpeedProp, m_BulletSpeedContent);
-            EditorGUILayout.PropertyField(m_HoldingGunTimeoutDurationProp, m_HoldingGunTimeoutDurationContent);
+         //   EditorGUILayout.PropertyField(m_HoldingGunTimeoutDurationProp, m_HoldingGunTimeoutDurationContent);
             EditorGUILayout.PropertyField(m_RightBulletSpawnPointAnimatedProp, m_RightBulletSpawnPointAnimatedContent);
         }
 
