@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //duplicate the given transform position, rotation and scale when this object get enable
 public class LocalTransformDuplicator : MonoBehaviour
