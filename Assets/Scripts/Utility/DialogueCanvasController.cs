@@ -14,6 +14,7 @@ public class DialogueCanvasController : MonoBehaviour
     IEnumerator SetAnimatorParameterWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        textMeshProUGUI.text = "";
         animator.SetBool(m_HashActivePara, false);
     }
 

@@ -97,6 +97,11 @@ public class PlayerInput : InputComponent, IDataPersister
         ReleaseControl(Vertical, resetValues);
     }
 
+    public void GainControlInteract()
+    {
+        GainControl(Interact);
+    }
+
     public void DisableMeleeAttacking()
     {
         MeleeAttack.Disable();

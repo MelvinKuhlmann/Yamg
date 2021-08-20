@@ -231,6 +231,10 @@ MonoBehaviour:
     key: 32
     controllerButton: 1
     m_Enabled: 1
+  Dash:
+    key: 99
+    controllerButton: 2
+    m_Enabled: 1
   Horizontal:
     positive: 275
     negative: 276
@@ -274,10 +278,10 @@ MonoBehaviour:
   hurtJumpSpeed: 5
   flickeringDuration: 0.1
   meleeAttackDashSpeed: 8
+  dashSpeed: 30
   dashWhileAirborne: 0
   shotsPerSecond: 2
   bulletSpeed: 30
-  holdingGunTimeoutDuration: 0.1
   rightBulletSpawnPointAnimated: 1
   cameraHorizontalFacingOffset: 2
   cameraHorizontalSpeedOffset: 0.2
