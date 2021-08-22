@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class KeyUI : MonoBehaviour
+public class MoneyUI : MonoBehaviour
 {
-    public static KeyUI Instance { get; protected set; }
+    public static MoneyUI Instance { get; protected set; }
 
     public GameObject keyIconPrefab;
     public string[] keyNames;
@@ -46,9 +46,10 @@ public class KeyUI : MonoBehaviour
 
     public void ChangeKeyUI(InventoryController controller)
     {
-        for (int i = 0; i < keyNames.Length; i++)
-        {
-            m_KeyIconAnimators[i].SetBool(m_HashActivePara, controller.HasItem(keyNames[i]));
-        }
+        //  for (int i = 0; i < keyNames.Length; i++)
+        //  {
+        //      m_KeyIconAnimators[i].SetBool(m_HashActivePara, controller.HasItem(keyNames[i]));
+        //  }
+        Debug.Log("Money added");
     }
 }

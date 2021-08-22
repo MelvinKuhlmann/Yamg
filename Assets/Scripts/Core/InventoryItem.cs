@@ -7,6 +7,7 @@ using UnityEngine;
 public class InventoryItem : MonoBehaviour, IDataPersister
 {
     public string inventoryKey = "";
+    public int amount = 1;
     public LayerMask layers;
     public bool disableOnEnter = false;
 
@@ -41,7 +42,7 @@ public class InventoryItem : MonoBehaviour, IDataPersister
         if (layers.Contains(other.gameObject))
         {
             var ic = other.GetComponent<InventoryController>();
-            ic.AddItem(inventoryKey);
+            ic.AddItem(inventoryKey, amount);
             if (disableOnEnter)
             {
                 gameObject.SetActive(false);

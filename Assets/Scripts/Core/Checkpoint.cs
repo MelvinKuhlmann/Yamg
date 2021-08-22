@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Checkpoint : MonoBehaviour
@@ -17,7 +15,7 @@ public class Checkpoint : MonoBehaviour
         PlayerCharacter c = collision.GetComponent<PlayerCharacter>();
         if(c != null)
         {
-            c.SetChekpoint(this);
+            c.SetCheckpoint(this);
         }
     }
 }

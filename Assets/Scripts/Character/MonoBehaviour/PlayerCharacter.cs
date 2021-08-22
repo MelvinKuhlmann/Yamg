@@ -810,7 +810,7 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    public void SetChekpoint(Checkpoint checkpoint)
+    public void SetCheckpoint(Checkpoint checkpoint)
     {
         m_LastCheckpoint = checkpoint;
     }
@@ -818,6 +818,6 @@ public class PlayerCharacter : MonoBehaviour
     //This is called by the inventory controller on key grab, so it can update the Key UI.
     public void KeyInventoryEvent()
     {
-        if (KeyUI.Instance != null) KeyUI.Instance.ChangeKeyUI(m_InventoryController);
+        if (MoneyUI.Instance != null) MoneyUI.Instance.ChangeKeyUI(m_InventoryController);
     }
 }

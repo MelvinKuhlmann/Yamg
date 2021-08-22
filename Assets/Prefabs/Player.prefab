@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 533351439147831125}
   - component: {fileID: 2331192920163624916}
   - component: {fileID: 1951122026}
+  - component: {fileID: 6063163047741798914}
   m_Layer: 13
   m_Name: Player
   m_TagString: Untagged
@@ -390,6 +391,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1417156414908264037, guid: b6f746a7ae07f8046afb6dbcb4d4e097, type: 3}
   initialPoolCount: 10
+--- !u!114 &6063163047741798914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827800671806840929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9dfe00ad5fa4db7857a85c2f5009f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryEvents:
+  - key: Money
+    OnAdd:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 634662801937465810}
+          m_TargetAssemblyTypeName: PlayerCharacter, Assembly-CSharp
+          m_MethodName: KeyInventoryEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnRemove:
+      m_PersistentCalls:
+        m_Calls: []
+  dataSettings:
+    dataTag: inventory
+    persistenceType: 3
 --- !u!1 &3886933661891282173
 GameObject:
   m_ObjectHideFlags: 0
