@@ -266,15 +266,15 @@ MonoBehaviour:
   facingRightBulletSpawnPoint: {fileID: 3674808587578974182}
   bulletPool: {fileID: 1951122026}
   cameraFollowTarget: {fileID: 8046786690669050789}
-  maxSpeed: 10
+  maxSpeed: 12
   groundAcceleration: 100
   groundDeceleration: 100
   pushingSpeedProportion: 0.5
   airborneAccelProportion: 1
   airborneDecelProportion: 0.5
-  gravity: 45
-  jumpSpeed: 19
-  jumpAbortSpeedReduction: 110
+  gravity: 60
+  jumpSpeed: 22
+  jumpAbortSpeedReduction: 450
   hurtJumpAngle: 45
   hurtJumpSpeed: 5
   flickeringDuration: 0.1
@@ -420,6 +420,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    OnSet:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSubtract:
+      m_PersistentCalls:
+        m_Calls: []
     OnRemove:
       m_PersistentCalls:
         m_Calls: []
