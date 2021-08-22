@@ -261,6 +261,7 @@ public class PlayerCharacter : MonoBehaviour
         bool moveVertically = false;
         if (!Mathf.Approximately(PlayerInput.Instance.Vertical.Value, 0f))
         {
+            // Handling the camera to move slighty up or down to let the player see what is above or beneath the character
             m_VerticalCameraOffsetTimer += Time.deltaTime;
 
             if (m_VerticalCameraOffsetTimer >= verticalCameraOffsetDelay)
