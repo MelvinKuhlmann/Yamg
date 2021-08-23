@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public abstract class ObjectPool<TPool, TObject, TInfo> : ObjectPool<TPool, TObject>
     where TPool : ObjectPool<TPool, TObject, TInfo>
     where TObject : PoolObject<TPool, TObject, TInfo>, new()

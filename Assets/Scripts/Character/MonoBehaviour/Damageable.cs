@@ -20,6 +20,7 @@ public class Damageable : MonoBehaviour, IDataPersister
     public bool invulnerableAfterDamage = true;
     public float invulnerabilityDuration = 3f;
     public bool disableOnDeath = false;
+    public bool resetHealthOnSceneReload = true;
     [Tooltip("An offset from the obejct position used to set from where the distance to the damager is computed")]
     public Vector2 centreOffset = new Vector2(0f, 1f);
     public HealthEvent OnHealthSet;
@@ -105,7 +106,7 @@ public class Damageable : MonoBehaviour, IDataPersister
         if (m_CurrentHealth <= 0)
         {
             OnDie.Invoke(damager, this);
-            m_ResetHealthOnSceneReload = true;
+            m_ResetHealthOnSceneReload = resetHealthOnSceneReload;
             EnableInvulnerability();
             if (disableOnDeath) gameObject.SetActive(false);
         }
@@ -130,7 +131,7 @@ public class Damageable : MonoBehaviour, IDataPersister
         if (m_CurrentHealth <= 0)
         {
             OnDie.Invoke(null, this);
-            m_ResetHealthOnSceneReload = true;
+            m_ResetHealthOnSceneReload = resetHealthOnSceneReload;
             EnableInvulnerability();
             if (disableOnDeath) gameObject.SetActive(false);
         }
