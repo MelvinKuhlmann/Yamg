@@ -1133,11 +1133,6 @@ PlayableDirector:
     - 6e0ae98c7a315c34cb1668dbb67149c2: {fileID: 366295235}
     - 8b88934a29ad5d94f8b9f232cf8bc099: {fileID: 366295235}
     - 592e495b3f0ba99438609aef56186c09: {fileID: 72118935}
---- !u!1 &1386998884 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1386998884, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
-  m_PrefabInstance: {fileID: 2820520254187854810}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1427024753
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,22 +5459,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4025705298625046658, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
-      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025705298625046658, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
-      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025705298625046658, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
-      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1386998884}
-    - target: {fileID: 4025705298625046658, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
-      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025705298625046658, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
       propertyPath: OnButtonPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8443904622311561345}
@@ -5491,10 +5470,6 @@ PrefabInstance:
       propertyPath: OnButtonPress.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1951122030}
-    - target: {fileID: 4025705298625046658, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
-      propertyPath: OnEnter.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.Animator, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4025705298625046658, guid: 7eceb103b0b16174f85ad28adcbed263, type: 3}
       propertyPath: OnButtonPressAfterPreConditions.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
