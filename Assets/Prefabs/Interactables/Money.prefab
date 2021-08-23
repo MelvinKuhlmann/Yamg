@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 639039653732981863}
   - component: {fileID: 639039653732981862}
   - component: {fileID: 639039653732981857}
-  m_Layer: 11
+  m_Layer: 30
   m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 8748928162774827681}
   - component: {fileID: 8748928162774827694}
   - component: {fileID: 8748928162774827695}
-  m_Layer: 11
+  m_Layer: 30
   m_Name: Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
