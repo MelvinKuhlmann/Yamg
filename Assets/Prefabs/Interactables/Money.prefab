@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &8193240566703456347
 CircleCollider2D:
@@ -110,7 +110,7 @@ MonoBehaviour:
   collider: {fileID: 639039653732981863}
   clip: {fileID: 0}
   dataSettings:
-    dataTag: dcce64d6-06b9-4266-a93d-b89e88cae1bb
+    dataTag: 
     persistenceType: 0
 --- !u!114 &639039653732981857
 MonoBehaviour:
@@ -247,7 +247,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.4375, y: 0.4375}
+  m_Size: {x: 0.21875, y: 0.21875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

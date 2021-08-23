@@ -364,6 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 533641687706131527}
   - component: {fileID: 5924985002952609561}
+  - component: {fileID: 4500633560360421971}
   m_Layer: 0
   m_Name: MoneyRock
   m_TagString: Untagged
@@ -400,8 +401,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 639039653732981856, guid: 107ef23026c03a9468e1526fd0f9a190, type: 3}
-  initialPoolCount: 10
+  initialPoolCount: 15
   rangeMin: -5
   rangeMax: 5
   forceMin: 5
   forceMax: 10
+--- !u!114 &4500633560360421971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8938333382332953801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0268d06d6f1ee4d8589b3811be5e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataSettings:
+    dataTag: c9cd8789-0310-4665-8288-6d1c3dc0243d
+    persistenceType: 3
+  incompletedState: {fileID: 6344181892094552878}
+  completedState: {fileID: 4774741431041343611}
