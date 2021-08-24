@@ -39,7 +39,7 @@ public class InventoryItem : MonoBehaviour, IDataPersister
         if (layers.Contains(other.gameObject))
         {
             var ic = other.GetComponent<InventoryController>();
-            ic.AddItem(item.id, quantity);
+            ic.AddItem(item, quantity);
             if (disableOnEnter)
             {
                 gameObject.SetActive(false);

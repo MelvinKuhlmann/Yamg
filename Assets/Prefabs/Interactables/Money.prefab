@@ -101,9 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc93d5840381f48f98861bd30ee34b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryKey: Money
   item: {fileID: 11400000, guid: 92afa6eebf624bc43a4402804774efc4, type: 2}
-  amount: 1
+  quantity: 1
   layers:
     serializedVersion: 2
     m_Bits: 8192

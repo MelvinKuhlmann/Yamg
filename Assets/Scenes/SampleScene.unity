@@ -5680,10 +5680,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoneyCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5414634792754230531, guid: a2464687eda1e9443b4f1702f6ece4c0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2464687eda1e9443b4f1702f6ece4c0, type: 3}
 --- !u!1001 &4170902315477914373
