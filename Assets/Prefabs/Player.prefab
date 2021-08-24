@@ -307,6 +307,7 @@ MonoBehaviour:
   invulnerableAfterDamage: 1
   invulnerabilityDuration: 3
   disableOnDeath: 0
+  resetHealthOnSceneReload: 1
   centreOffset: {x: 0, y: 1}
   OnHealthSet:
     m_PersistentCalls:
@@ -404,13 +405,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryEvents:
-  - key: Money
+  - item: {fileID: 11400000, guid: 92afa6eebf624bc43a4402804774efc4, type: 2}
     OnAdd:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 634662801937465810}
           m_TargetAssemblyTypeName: PlayerCharacter, Assembly-CSharp
-          m_MethodName: KeyInventoryEvent
+          m_MethodName: MoneyInventoryEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

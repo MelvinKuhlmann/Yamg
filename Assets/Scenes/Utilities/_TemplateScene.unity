@@ -747,6 +747,10 @@ PrefabInstance:
       propertyPath: transitionDestinationTag
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5920945505446492586, guid: 207c674bf5bd74440b101af1709e1cbc, type: 3}
+      propertyPath: resetInputValuesOnTransition
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 207c674bf5bd74440b101af1709e1cbc, type: 3}
 --- !u!4 &1837798727 stripped

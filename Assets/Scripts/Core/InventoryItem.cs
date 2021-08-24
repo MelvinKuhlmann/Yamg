@@ -3,8 +3,8 @@
 [RequireComponent(typeof(CircleCollider2D))]
 public class InventoryItem : MonoBehaviour, IDataPersister
 {
-    public string inventoryKey = "";
-    public int amount = 1;
+    public Item item;
+    public int quantity = 1;
     public LayerMask layers;
     public bool disableOnEnter = false;
 
@@ -39,7 +39,7 @@ public class InventoryItem : MonoBehaviour, IDataPersister
         if (layers.Contains(other.gameObject))
         {
             var ic = other.GetComponent<InventoryController>();
-            ic.AddItem(inventoryKey, amount);
+            ic.AddItem(item.id, quantity);
             if (disableOnEnter)
             {
                 gameObject.SetActive(false);

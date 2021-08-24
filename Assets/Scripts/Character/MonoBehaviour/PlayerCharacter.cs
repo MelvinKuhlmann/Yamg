@@ -814,9 +814,9 @@ public class PlayerCharacter : MonoBehaviour
         m_LastCheckpoint = checkpoint;
     }
 
-    //This is called by the inventory controller on key grab, so it can update the Key UI.
-    public void KeyInventoryEvent()
+    //This is called by the inventory controller on money grab, so it can update the Money UI.
+    public void MoneyInventoryEvent()
     {
-        if (MoneyUI.Instance != null) MoneyUI.Instance.ChangeKeyUI(m_InventoryController);
+        if (MoneyUI.Instance != null) MoneyUI.Instance.UpdateMoneyUI(m_InventoryController);
     }
 }

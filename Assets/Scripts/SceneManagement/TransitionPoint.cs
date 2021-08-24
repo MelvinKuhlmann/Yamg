@@ -8,12 +8,10 @@ public class TransitionPoint : MonoBehaviour
         DifferentZone, DifferentNonGameplayScene, SameScene,
     }
 
-
     public enum TransitionWhen
     {
         ExternalCall, InteractPressed, OnTriggerEnter,
     }
-
 
     [Tooltip("This is the gameobject that will transition. For example, the player.")]
     public GameObject transitioningGameObject;
@@ -29,12 +27,6 @@ public class TransitionPoint : MonoBehaviour
     public TransitionWhen transitionWhen;
     [Tooltip("The player will lose control when the transition happens but should the axis and button values reset to the default when control is lost.")]
     public bool resetInputValuesOnTransition = true;
-    [Tooltip("Is this transition only possible with specific items in the inventory?")]
-    public bool requiresInventoryCheck;
-    [Tooltip("The inventory to be checked.")]
-    public InventoryController inventoryController;
-    [Tooltip("The required items.")]
-    public InventoryController.InventoryChecker inventoryCheck;
 
     bool m_TransitioningGameObjectPresent;
 
@@ -85,12 +77,6 @@ public class TransitionPoint : MonoBehaviour
 
     protected void TransitionInternal()
     {
-        if (requiresInventoryCheck)
-        {
-            if (!inventoryCheck.CheckInventory(inventoryController))
-                return;
-        }
-
         if (transitionType == TransitionType.SameScene)
         {
             GameObjectTeleporter.Teleport(transitioningGameObject, destinationTransform.transform);

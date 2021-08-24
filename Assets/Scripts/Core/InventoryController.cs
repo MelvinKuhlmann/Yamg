@@ -7,7 +7,7 @@ public class InventoryController : MonoBehaviour, IDataPersister
     [System.Serializable]
     public class InventoryEvent
     {
-        public string key;
+        public Item item;
         public UnityEvent<int> OnAdd, OnSet, OnSubtract;
         public UnityEvent OnRemove;
     }
@@ -15,14 +15,14 @@ public class InventoryController : MonoBehaviour, IDataPersister
     [System.Serializable]
     public class InventoryChecker
     {
-        public Dictionary<string, int> inventoryItems;
+        public Dictionary<int, int> inventoryItems;
         public UnityEvent OnHasItem, OnDoesNotHaveItem;
 
         public bool CheckInventory(InventoryController inventory)
         {
             if (inventory != null)
             {
-                foreach (KeyValuePair<string, int> kvp in inventoryItems)
+                foreach (KeyValuePair<int, int> kvp in inventoryItems)
                 {
                     if (!inventory.HasItem(kvp.Key))
                     {
@@ -42,7 +42,7 @@ public class InventoryController : MonoBehaviour, IDataPersister
 
     public DataSettings dataSettings;
 
-    Dictionary<string, int> m_InventoryItems = new Dictionary<string, int>();
+    Dictionary<int, int> m_InventoryItems = new Dictionary<int, int>();
 
     //Debug function useful in editor during play mode to print in console all objects in that InventoyController
     [ContextMenu("Dump")]
@@ -52,7 +52,7 @@ public class InventoryController : MonoBehaviour, IDataPersister
         {
             Debug.Log("Inventory is empty");
         }
-        foreach (KeyValuePair<string, int> kvp in m_InventoryItems)
+        foreach (KeyValuePair<int, int> kvp in m_InventoryItems)
         {
             Debug.Log(kvp.Key + " : " + kvp.Value);
         }
@@ -68,7 +68,7 @@ public class InventoryController : MonoBehaviour, IDataPersister
         PersistentDataManager.UnregisterPersister(this);
     }
 
-    public void AddItem(string key, int amount)
+    public void AddItem(int key, int amount)
     {
         if (!m_InventoryItems.ContainsKey(key))
         {
@@ -82,7 +82,7 @@ public class InventoryController : MonoBehaviour, IDataPersister
         if (ev != null) ev.OnAdd.Invoke(amount);
     }
 
-    public void RemoveItem(string key)
+    public void RemoveItem(int key)
     {
         if (m_InventoryItems.ContainsKey(key))
         {
@@ -95,7 +95,7 @@ public class InventoryController : MonoBehaviour, IDataPersister
         }
     }
 
-    public void SubtractItem(string key, int amount)
+    public void SubtractItem(int key, int amount)
     {
         if (m_InventoryItems.TryGetValue(key, out int val))
         {
@@ -109,7 +109,7 @@ public class InventoryController : MonoBehaviour, IDataPersister
         }
     }
 
-    public bool HasItem(string key)
+    public bool HasItem(int key)
     {
         return m_InventoryItems.ContainsKey(key);
     }
@@ -119,11 +119,11 @@ public class InventoryController : MonoBehaviour, IDataPersister
         m_InventoryItems.Clear();
     }
 
-    InventoryEvent GetInventoryEvent(string key)
+    InventoryEvent GetInventoryEvent(int key)
     {
         foreach (var iv in inventoryEvents)
         {
-            if (iv.key == key) return iv;
+            if (iv.item.id == key) return iv;
         }
         return null;
     }
@@ -141,13 +141,13 @@ public class InventoryController : MonoBehaviour, IDataPersister
 
     public Data SaveData()
     {
-        return new Data<Dictionary<string, int>>(m_InventoryItems);
+        return new Data<Dictionary<int, int>>(m_InventoryItems);
     }
 
     public void LoadData(Data data)
     {
-        Data<Dictionary<string, int>> inventoryData = (Data<Dictionary<string, int>>)data;
-        foreach (KeyValuePair<string, int> kvp in inventoryData.value)
+        Data<Dictionary<int, int>> inventoryData = (Data<Dictionary<int, int>>)data;
+        foreach (KeyValuePair<int, int> kvp in inventoryData.value)
         {
             AddItem(kvp.Key, kvp.Value);
             var ev = GetInventoryEvent(kvp.Key);

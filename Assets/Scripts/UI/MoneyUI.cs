@@ -44,7 +44,7 @@ public class MoneyUI : MonoBehaviour
 
     }
 
-    public void ChangeKeyUI(InventoryController controller)
+    public void UpdateMoneyUI(InventoryController controller)
     {
         //  for (int i = 0; i < keyNames.Length; i++)
         //  {
