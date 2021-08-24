@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System;
 
 public class MoneyUI : MonoBehaviour
 {
@@ -25,10 +26,7 @@ public class MoneyUI : MonoBehaviour
 
     public void UpdateMoneyUI(InventoryController controller)
     {
-        Debug.Log("Money added");
-        if(item != null)
-        {
-            quantityLabel.SetText(controller.GetItemAmount(item).ToString());
-        }
+        if (item == null) throw new NotImplementedException("UI can not be updated, Item has not been set in the prefab");
+        quantityLabel.SetText(controller.GetItemAmount(item).ToString());
     }
 }

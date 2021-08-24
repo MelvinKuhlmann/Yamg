@@ -85,13 +85,10 @@ public class InventoryController : MonoBehaviour, IDataPersister
     public void RemoveItem(Item item)
     {
         if (m_InventoryItems.ContainsKey(item))
-        {
-            var ev = GetInventoryEvent(item);
-            if (ev != null) 
-            { 
-                ev.OnRemove.Invoke(); 
-            }
+        { 
             m_InventoryItems.Remove(item);
+            var ev = GetInventoryEvent(item);
+            if (ev != null) ev.OnRemove.Invoke();
         }
     }
 

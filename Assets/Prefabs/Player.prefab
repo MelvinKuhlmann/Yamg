@@ -342,6 +342,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 6063163047741798914}
+        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
+        m_MethodName: RemoveItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 92afa6eebf624bc43a4402804774efc4, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGainHealth:
     m_PersistentCalls:
       m_Calls: []
@@ -418,7 +430,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: add
             m_BoolArgument: 0
           m_CallState: 2
     OnSet:
@@ -426,10 +438,34 @@ MonoBehaviour:
         m_Calls: []
     OnSubtract:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 634662801937465810}
+          m_TargetAssemblyTypeName: PlayerCharacter, Assembly-CSharp
+          m_MethodName: MoneyInventoryEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: subtract
+            m_BoolArgument: 0
+          m_CallState: 2
     OnRemove:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 634662801937465810}
+          m_TargetAssemblyTypeName: PlayerCharacter, Assembly-CSharp
+          m_MethodName: MoneyInventoryEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: removed
+            m_BoolArgument: 0
+          m_CallState: 2
   dataSettings:
     dataTag: inventory
     persistenceType: 3

@@ -161,4 +161,11 @@ public class Damageable : MonoBehaviour, IDataPersister
         m_CurrentHealth = healthData.value1 ? startingHealth : healthData.value0;
         OnHealthSet.Invoke(this);
     }
+
+    //Debug function useful in editor during play mode to print in console all objects in that InventoyController
+    [ContextMenu("Dump")]
+    void Dump()
+    {
+        Debug.Log(startingHealth + "/" + CurrentHealth);
+    }
 }
