@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputType: 0
+  isWallJumpEnabled: 1
   Pause:
     key: 27
     controllerButton: 8

@@ -9,8 +9,9 @@ public class PlayerInput : InputComponent, IDataPersister
 
     protected static PlayerInput s_Instance;
 
-
     public bool HaveControl { get { return m_HaveControl; } }
+
+    public bool isWallJumpEnabled;
 
     public InputButton Pause = new InputButton(KeyCode.Escape, XboxControllerButtons.Menu);
     public InputButton Interact = new InputButton(KeyCode.I, XboxControllerButtons.Y);
@@ -132,6 +133,16 @@ public class PlayerInput : InputComponent, IDataPersister
         Dash.Enable();
     }
 
+    public void DisableWallJump()
+    {
+        isWallJumpEnabled = false;
+    }
+
+    public void EnableWallJump()
+    {
+        isWallJumpEnabled = true;
+    }
+
     public DataSettings GetDataSettings()
     {
         return dataSettings;
@@ -145,12 +156,12 @@ public class PlayerInput : InputComponent, IDataPersister
 
     public Data SaveData()
     {
-        return new Data<bool, bool, bool>(MeleeAttack.Enabled, RangedAttack.Enabled, Dash.Enabled);
+        return new Data<bool, bool, bool, bool>(MeleeAttack.Enabled, RangedAttack.Enabled, Dash.Enabled, isWallJumpEnabled);
     }
 
     public void LoadData(Data data)
     {
-        Data<bool, bool, bool> playerInputData = (Data<bool, bool, bool>)data;
+        Data<bool, bool, bool, bool> playerInputData = (Data<bool, bool, bool, bool>)data;
 
         if (playerInputData.value0)
             MeleeAttack.Enable();
@@ -166,6 +177,11 @@ public class PlayerInput : InputComponent, IDataPersister
             Dash.Enable();
         else
             Dash.Disable();
+
+        if (playerInputData.value3)
+            isWallJumpEnabled = true;
+        else
+            isWallJumpEnabled = false;
     }
 
     void OnGUI()
@@ -182,6 +198,7 @@ public class PlayerInput : InputComponent, IDataPersister
             bool meleeAttackEnabled = GUILayout.Toggle(MeleeAttack.Enabled, "Enable Melee Attack");
             bool rangeAttackEnabled = GUILayout.Toggle(RangedAttack.Enabled, "Enable Range Attack");
             bool dashEnabled = GUILayout.Toggle(Dash.Enabled, "Enable Dash");
+            bool wallJumpEnabled = GUILayout.Toggle(isWallJumpEnabled, "Enable WallJump");
 
             if (meleeAttackEnabled != MeleeAttack.Enabled)
             {
@@ -205,6 +222,14 @@ public class PlayerInput : InputComponent, IDataPersister
                     Dash.Enable();
                 else
                     Dash.Disable();
+            }
+
+            if (wallJumpEnabled != isWallJumpEnabled)
+            {
+                if (wallJumpEnabled)
+                    isWallJumpEnabled = true;
+                else
+                    isWallJumpEnabled = false;
             }
             GUILayout.EndVertical();
             GUILayout.EndArea();

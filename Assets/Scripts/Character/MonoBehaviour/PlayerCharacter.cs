@@ -83,7 +83,6 @@ public class PlayerCharacter : MonoBehaviour
     protected float m_NextShotTime;
     protected bool m_IsFiring;
     protected float m_ShotTimer;
-//    protected float m_HoldingGunTimeRemaining;
     protected TileBase m_CurrentSurface;
     protected float m_CamFollowHorizontalSpeed;
     protected float m_CamFollowVerticalSpeed;
@@ -103,14 +102,12 @@ public class PlayerCharacter : MonoBehaviour
     protected readonly int m_HashWallJumpPara = Animator.StringToHash("WallJump");
     protected readonly int m_HashCrouchingPara = Animator.StringToHash("Crouching");
     protected readonly int m_HashPushingPara = Animator.StringToHash("Pushing");
-    protected readonly int m_HashTimeoutPara = Animator.StringToHash("Timeout");
     protected readonly int m_HashRespawnPara = Animator.StringToHash("Respawn");
     protected readonly int m_HashDeadPara = Animator.StringToHash("Dead");
     protected readonly int m_HashHurtPara = Animator.StringToHash("Hurt");
     protected readonly int m_HashForcedRespawnPara = Animator.StringToHash("ForcedRespawn");
     protected readonly int m_HashMeleeAttackPara = Animator.StringToHash("MeleeAttack");
     protected readonly int m_HashDashPara = Animator.StringToHash("Dash");
-    //   protected readonly int m_HashHoldingGunPara = Animator.StringToHash("HoldingGun");
 
     protected const float k_MinHurtJumpAngle = 0.001f;
     protected const float k_MaxHurtJumpAngle = 89.999f;

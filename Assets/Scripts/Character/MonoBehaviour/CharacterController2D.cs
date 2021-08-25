@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
 
     Rigidbody2D m_Rigidbody2D;
     CapsuleCollider2D m_Capsule;
+    PlayerInput m_PlayerInput;
     Vector2 m_PreviousPosition;
     Vector2 m_CurrentPosition;
     Vector2 m_NextMovement;
@@ -41,6 +42,7 @@ public class CharacterController2D : MonoBehaviour
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_Capsule = GetComponent<CapsuleCollider2D>();
+        m_PlayerInput = GetComponent<PlayerInput>();
 
         m_CurrentPosition = m_Rigidbody2D.position;
         m_PreviousPosition = m_Rigidbody2D.position;
@@ -63,7 +65,10 @@ public class CharacterController2D : MonoBehaviour
 
         CheckCapsuleEndCollisions();
         CheckCapsuleEndCollisions(false);
-        CheckCapsuleFrontCollisions();
+        if (m_PlayerInput != null && m_PlayerInput.isWallJumpEnabled)
+        {
+            CheckCapsuleFrontCollisions();
+        }
     }
 
     /// <summary>
