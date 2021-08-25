@@ -26,7 +26,10 @@ public class PlayerCharacterEditor : Editor
     SerializedProperty m_HurtJumpAngleProp;
     SerializedProperty m_HurtJumpSpeedProp;
     SerializedProperty m_FlickeringDurationProp;
-    
+
+    SerializedProperty m_HealingDurationProp;
+    SerializedProperty m_HealingAmountProp;
+
     SerializedProperty m_MeleeAttackDashSpeedProp;
     SerializedProperty m_DashWhileAirborneProp;
     
@@ -60,6 +63,7 @@ public class PlayerCharacterEditor : Editor
     bool m_MovementSettingsFoldout;
     bool m_AirborneSettingsFoldout;
     bool m_HurtSettingsFoldout;
+    bool m_HealingSettingsFoldout;
     bool m_MeleeSettingsFoldout;
     bool m_RangedSettingsFoldout;
     bool m_DashSettingsFoldout;
@@ -90,6 +94,9 @@ public class PlayerCharacterEditor : Editor
     readonly GUIContent m_HurtJumpAngleContent = new GUIContent("Hurt Jump Angle");
     readonly GUIContent m_HurtJumpSpeedContent = new GUIContent("Hurt Jump Speed");
     readonly GUIContent m_FlickeringDurationContent = new GUIContent("Flicking Duration", "When the player is hurt she becomes invulnerable for a short time and the SpriteRenderer flickers on and off to indicate this.  This field is the duration in seconds the SpriteRenderer stays either on or off whilst flickering.  To adjust the duration of invulnerability see the Damageable component.");
+
+    readonly GUIContent m_HealingDurationContent = new GUIContent("Sec. until heal is finished");
+    readonly GUIContent m_HealingAmountContent = new GUIContent("Amount of self heal");
 
     readonly GUIContent m_MeleeAttackDashSpeedContent = new GUIContent("Melee Attack Dash Speed");
     readonly GUIContent m_DashWhileAirborneContent = new GUIContent("Dash While Airborne");
@@ -124,6 +131,7 @@ public class PlayerCharacterEditor : Editor
     readonly GUIContent m_MovementSettingsContent = new GUIContent("Movement Settings");
     readonly GUIContent m_AirborneSettingsContent = new GUIContent("Airborne Settings");
     readonly GUIContent m_HurtSettingsContent = new GUIContent("Hurt Settings");
+    readonly GUIContent m_HealSettingsContent = new GUIContent("Healing Settings");
     readonly GUIContent m_MeleeSettingsContent = new GUIContent("Melee Settings");
     readonly GUIContent m_RangedSettingsContent = new GUIContent("Ranged Settings");
     readonly GUIContent m_DashSettingsContent = new GUIContent("Dash Settings");
@@ -156,6 +164,9 @@ public class PlayerCharacterEditor : Editor
         m_HurtJumpAngleProp = serializedObject.FindProperty("hurtJumpAngle");
         m_HurtJumpSpeedProp = serializedObject.FindProperty("hurtJumpSpeed");
         m_FlickeringDurationProp = serializedObject.FindProperty("flickeringDuration");
+
+        m_HealingDurationProp = serializedObject.FindProperty("healingDuration");
+        m_HealingAmountProp = serializedObject.FindProperty("healingAmount");
 
         m_MeleeAttackDashSpeedProp = serializedObject.FindProperty("meleeAttackDashSpeed");
         m_DashWhileAirborneProp = serializedObject.FindProperty("dashWhileAirborne");
@@ -253,6 +264,20 @@ public class PlayerCharacterEditor : Editor
             EditorGUILayout.PropertyField (m_HurtJumpAngleProp, m_HurtJumpAngleContent);
             EditorGUILayout.PropertyField (m_HurtJumpSpeedProp, m_HurtJumpSpeedContent);
             EditorGUILayout.PropertyField (m_FlickeringDurationProp, m_FlickeringDurationContent);
+        }
+
+        EditorGUI.indentLevel--;
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUI.indentLevel++;
+
+        m_HealingSettingsFoldout = EditorGUILayout.Foldout(m_HealingSettingsFoldout, m_HealSettingsContent);
+
+        if (m_HealingSettingsFoldout)
+        {
+            EditorGUILayout.PropertyField(m_HealingDurationProp, m_HealingDurationContent);
+            EditorGUILayout.PropertyField(m_HealingAmountProp, m_HealingAmountContent);
         }
 
         EditorGUI.indentLevel--;

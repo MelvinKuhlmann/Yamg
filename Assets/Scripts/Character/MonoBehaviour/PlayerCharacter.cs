@@ -42,6 +42,9 @@ public class PlayerCharacter : MonoBehaviour
     public float hurtJumpSpeed = 5f;
     public float flickeringDuration = 0.1f;
 
+    public float healingDuration = 5f;
+    public int healingAmount = 1;
+
     public float meleeAttackDashSpeed = 5f;
     public float dashSpeed = 30f;
     public bool dashWhileAirborne = false;
@@ -108,6 +111,7 @@ public class PlayerCharacter : MonoBehaviour
     protected readonly int m_HashForcedRespawnPara = Animator.StringToHash("ForcedRespawn");
     protected readonly int m_HashMeleeAttackPara = Animator.StringToHash("MeleeAttack");
     protected readonly int m_HashDashPara = Animator.StringToHash("Dash");
+    protected readonly int m_HashHealingPara = Animator.StringToHash("Healing");
 
     protected const float k_MinHurtJumpAngle = 0.001f;
     protected const float k_MaxHurtJumpAngle = 89.999f;
@@ -433,6 +437,14 @@ public class PlayerCharacter : MonoBehaviour
     public void CheckForCrouching()
     {
         m_Animator.SetBool(m_HashCrouchingPara, PlayerInput.Instance.Vertical.Value < 0f);
+    }
+
+    public void CheckForHealing()
+    {
+        // TODO add energy check
+        bool canHealing = damageable.CurrentHealth < damageable.startingHealth;
+        m_Animator.SetBool(m_HashHealingPara, PlayerInput.Instance.Heal.Held && canHealing);
+     
     }
 
     public bool CheckForGrounded()
@@ -771,6 +783,11 @@ public class PlayerCharacter : MonoBehaviour
     public void Dash()
     {
         m_Animator.SetTrigger(m_HashDashPara);
+    }
+
+    public void Heal()
+    {
+        damageable.GainHealth(Mathf.Min(healingAmount, damageable.startingHealth - damageable.CurrentHealth));
     }
 
     public void WallJump()

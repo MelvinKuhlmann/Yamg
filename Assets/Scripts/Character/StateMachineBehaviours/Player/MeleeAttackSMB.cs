@@ -2,7 +2,7 @@
 
 public class MeleeAttackSMB : SceneLinkedSMB<PlayerCharacter>
 {
-    int m_HashAirborneMeleeAttackState = Animator.StringToHash ("AirborneMeleeAttack");
+    int m_HashAirborneMeleeAttackState = Animator.StringToHash("AirborneMeleeAttack");
     
     public override void OnSLStatePostEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

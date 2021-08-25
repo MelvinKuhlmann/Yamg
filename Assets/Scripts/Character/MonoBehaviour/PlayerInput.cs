@@ -15,6 +15,7 @@ public class PlayerInput : InputComponent, IDataPersister
 
     public InputButton Pause = new InputButton(KeyCode.Escape, XboxControllerButtons.Menu);
     public InputButton Interact = new InputButton(KeyCode.I, XboxControllerButtons.Y);
+    public InputButton Heal = new InputButton(KeyCode.A, XboxControllerButtons.X);
     public InputButton MeleeAttack = new InputButton(KeyCode.X, XboxControllerButtons.X);
     public InputButton RangedAttack = new InputButton(KeyCode.O, XboxControllerButtons.B);
     public InputButton Jump = new InputButton(KeyCode.Space, XboxControllerButtons.A);
@@ -57,6 +58,7 @@ public class PlayerInput : InputComponent, IDataPersister
     {
         Pause.Get(fixedUpdateHappened, inputType);
         Interact.Get(fixedUpdateHappened, inputType);
+        Heal.Get(fixedUpdateHappened, inputType);
         MeleeAttack.Get(fixedUpdateHappened, inputType);
         RangedAttack.Get(fixedUpdateHappened, inputType);
         Jump.Get(fixedUpdateHappened, inputType);
@@ -76,6 +78,7 @@ public class PlayerInput : InputComponent, IDataPersister
 
         GainControl(Pause);
         GainControl(Interact);
+        GainControl(Heal);
         GainControl(MeleeAttack);
         GainControl(RangedAttack);
         GainControl(Jump);
@@ -90,6 +93,7 @@ public class PlayerInput : InputComponent, IDataPersister
 
         ReleaseControl(Pause, resetValues);
         ReleaseControl(Interact, resetValues);
+        ReleaseControl(Heal, resetValues);
         ReleaseControl(MeleeAttack, resetValues);
         ReleaseControl(RangedAttack, resetValues);
         ReleaseControl(Jump, resetValues);
@@ -188,7 +192,7 @@ public class PlayerInput : InputComponent, IDataPersister
     {
         if (m_DebugMenuIsOpen)
         {
-            const float height = 100;
+            const float height = 120;
 
             GUILayout.BeginArea(new Rect(30, Screen.height - height, 200, height));
 
