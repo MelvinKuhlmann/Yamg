@@ -14,12 +14,13 @@ public class PlayerInput : InputComponent, IDataPersister
     public bool isWallJumpEnabled;
 
     public InputButton Pause = new InputButton(KeyCode.Escape, XboxControllerButtons.Menu);
-    public InputButton Interact = new InputButton(KeyCode.I, XboxControllerButtons.Y);
-    public InputButton Heal = new InputButton(KeyCode.A, XboxControllerButtons.X);
+    public InputButton Interact = new InputButton(KeyCode.Return, XboxControllerButtons.Y);
+   // public InputButton Inventory = new InputButton(KeyCode.Return, XboxControllerButtons.View);
+    public InputButton Heal = new InputButton(KeyCode.A, XboxControllerButtons.B);
     public InputButton MeleeAttack = new InputButton(KeyCode.X, XboxControllerButtons.X);
     public InputButton RangedAttack = new InputButton(KeyCode.O, XboxControllerButtons.B);
     public InputButton Jump = new InputButton(KeyCode.Space, XboxControllerButtons.A);
-    public InputButton Dash = new InputButton(KeyCode.C, XboxControllerButtons.B);
+    public InputButton Dash = new InputButton(KeyCode.C, XboxControllerButtons.RightBumper);
     public InputAxis Horizontal = new InputAxis(KeyCode.LeftArrow, KeyCode.RightArrow, XboxControllerAxes.LeftstickHorizontal);
     public InputAxis Vertical = new InputAxis(KeyCode.UpArrow, KeyCode.DownArrow, XboxControllerAxes.LeftstickVertical);
     [HideInInspector]
