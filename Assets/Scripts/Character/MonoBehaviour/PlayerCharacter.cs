@@ -29,6 +29,8 @@ public class PlayerCharacter : MonoBehaviour
     [Range(0f, 1f)] public float pushingSpeedProportion;
 
     public float wallSlideGravity = 15f;
+    public float wallJumpHorizontalSpeed = 10f;
+    public float wallJumpHeight = 10f;
 
     [Range(0f, 1f)] public float airborneAccelProportion;
     [Range(0f, 1f)] public float airborneDecelProportion;
@@ -98,6 +100,7 @@ public class PlayerCharacter : MonoBehaviour
     protected readonly int m_HashVerticalSpeedPara = Animator.StringToHash("VerticalSpeed");
     protected readonly int m_HashGroundedPara = Animator.StringToHash("Grounded");
     protected readonly int m_HashWallSlidingPara = Animator.StringToHash("WallSlide");
+    protected readonly int m_HashWallJumpPara = Animator.StringToHash("WallJump");
     protected readonly int m_HashCrouchingPara = Animator.StringToHash("Crouching");
     protected readonly int m_HashPushingPara = Animator.StringToHash("Pushing");
     protected readonly int m_HashTimeoutPara = Animator.StringToHash("Timeout");
@@ -107,7 +110,7 @@ public class PlayerCharacter : MonoBehaviour
     protected readonly int m_HashForcedRespawnPara = Animator.StringToHash("ForcedRespawn");
     protected readonly int m_HashMeleeAttackPara = Animator.StringToHash("MeleeAttack");
     protected readonly int m_HashDashPara = Animator.StringToHash("Dash");
- //   protected readonly int m_HashHoldingGunPara = Animator.StringToHash("HoldingGun");
+    //   protected readonly int m_HashHoldingGunPara = Animator.StringToHash("HoldingGun");
 
     protected const float k_MinHurtJumpAngle = 0.001f;
     protected const float k_MaxHurtJumpAngle = 89.999f;
@@ -771,6 +774,11 @@ public class PlayerCharacter : MonoBehaviour
     public void Dash()
     {
         m_Animator.SetTrigger(m_HashDashPara);
+    }
+
+    public void WallJump()
+    {
+        m_Animator.SetTrigger(m_HashWallJumpPara);
     }
 
     public void EnableMeleeAttack()

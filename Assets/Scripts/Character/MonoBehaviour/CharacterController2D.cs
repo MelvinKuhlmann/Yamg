@@ -8,6 +8,14 @@ public class CharacterController2D : MonoBehaviour
     public LayerMask groundedLayerMask;
     [Tooltip("The distance down to check for ground.")]
     public float groundedRaycastDistance = 0.1f;
+    [Tooltip("The Layers which represent gameobjects that the Character Controller can be walljump on.")]
+    public LayerMask wallJumpLayerMask;
+    [Tooltip("The distance around to check for walls.")]
+    public float wallJumpDistance = 0.3f;
+    public Transform rightWallJumpTopCheckPoint;
+    public Transform rightWallJumpBottomCheckPoint;
+    public Transform leftWallJumpTopCheckPoint;
+    public Transform leftWallJumpBottomCheckPoint;
 
     Rigidbody2D m_Rigidbody2D;
     CapsuleCollider2D m_Capsule;
@@ -223,59 +231,16 @@ public class CharacterController2D : MonoBehaviour
 
     public void CheckCapsuleFrontCollisions()
     {
-        Vector2 raycastDirection;
-        Vector2 raycastStart;
-        float raycastDistance;
-
-        if (m_Capsule == null)
+        IsWallSliding = false;
+        if (Velocity.x > 0)
         {
-            raycastStart = m_Rigidbody2D.position + Vector2.right;
-            raycastDistance = 1f + groundedRaycastDistance;
-
-           
-            raycastDirection = Vector2.left;
-
-            //  m_RaycastPositions[0] = raycastStart + Vector2.up * 0.2f;
-            //  m_RaycastPositions[1] = raycastStart;
-            // m_RaycastPositions[2] = raycastStart + Vector2.down * 0.2f;
-            m_RaycastPositions[0] = raycastStart;
-
+            IsWallSliding = Physics2D.OverlapCircle(rightWallJumpTopCheckPoint.position, wallJumpDistance, wallJumpLayerMask) &&
+                Physics2D.OverlapCircle(rightWallJumpBottomCheckPoint.position, wallJumpDistance, wallJumpLayerMask);
         }
-        else
+        if (Velocity.x < 0)
         {
-            raycastStart = m_Rigidbody2D.position + m_Capsule.offset;
-            raycastDistance = m_Capsule.size.y * 0.5f + groundedRaycastDistance * 2f;
-
-           
-            raycastDirection = Vector2.left;
-            Vector2 raycastStartBottomCentre = raycastStart + Vector2.right * (m_Capsule.size.y * 0.5f - m_Capsule.size.x * 0.5f);
-
-            // m_RaycastPositions[0] = raycastStartBottomCentre + Vector2.up * m_Capsule.size.y * 0.1f;
-            //m_RaycastPositions[1] = raycastStartBottomCentre;
-            // m_RaycastPositions[2] = raycastStartBottomCentre + Vector2.down * m_Capsule.size.y * 0.1f;
-            m_RaycastPositions[0] = raycastStartBottomCentre;
-
-        }
-
-        for (int i = 0; i < m_RaycastPositions.Length; i++)
-        {
-            int count = Physics2D.Raycast(m_RaycastPositions[i], raycastDirection, m_ContactFilter, m_HitBuffer, raycastDistance);
-            IsWallSliding = false;
-
-            for (int j = 0; j < m_HitBuffer.Length; j++)
-            {
-                if (m_HitBuffer[j].collider != null)
-                {
-                     
-                    IsWallSliding = true;
-                        
-                }
-            }
-        }
-
-        for (int i = 0; i < m_HitBuffer.Length; i++)
-        {
-            m_HitBuffer[i] = new RaycastHit2D();
+            IsWallSliding = Physics2D.OverlapCircle(leftWallJumpTopCheckPoint.position, wallJumpDistance, wallJumpLayerMask) &&
+                Physics2D.OverlapCircle(leftWallJumpBottomCheckPoint.position, wallJumpDistance, wallJumpLayerMask);
         }
     }
 }

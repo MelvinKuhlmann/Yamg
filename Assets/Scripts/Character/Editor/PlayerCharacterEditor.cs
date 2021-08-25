@@ -38,7 +38,9 @@ public class PlayerCharacterEditor : Editor
     SerializedProperty m_DashSpeedProp;
 
     SerializedProperty m_WallSlideGravityProp;
-    
+    SerializedProperty m_WallJumpHorizontalSpeedProp;
+    SerializedProperty m_WallJumpHeightProp;
+
     SerializedProperty m_FootstepAudioPlayerProp;
     SerializedProperty m_LandingAudioPlayerProp;
     SerializedProperty m_HurtAudioPlayerProp;
@@ -100,6 +102,8 @@ public class PlayerCharacterEditor : Editor
     readonly GUIContent m_DashSpeedContent = new GUIContent("Dash Speed");
 
     readonly GUIContent m_WallSlideGravityContent = new GUIContent("Gravity while wallsliding");
+    readonly GUIContent m_WallJumpHorizontalSpeedContent = new GUIContent("Wall Jump Horizontal Speed");
+    readonly GUIContent m_WallJumpHeightContent = new GUIContent("Wall Jump Speed");
 
     readonly GUIContent m_FootstepPlayerContent = new GUIContent("Footstep Audio Player");
     readonly GUIContent m_LandingAudioPlayerContent = new GUIContent("Landing Audio Player");
@@ -164,6 +168,8 @@ public class PlayerCharacterEditor : Editor
         m_DashSpeedProp = serializedObject.FindProperty("dashSpeed");
 
         m_WallSlideGravityProp = serializedObject.FindProperty("wallSlideGravity");
+        m_WallJumpHorizontalSpeedProp = serializedObject.FindProperty("wallJumpHorizontalSpeed");
+        m_WallJumpHeightProp = serializedObject.FindProperty("wallJumpHeight");
 
         m_FootstepAudioPlayerProp = serializedObject.FindProperty("footstepAudioPlayer");
         m_LandingAudioPlayerProp = serializedObject.FindProperty("landingAudioPlayer");
@@ -303,6 +309,8 @@ public class PlayerCharacterEditor : Editor
         if (m_WallSlideSettingsFoldout)
         {
             EditorGUILayout.PropertyField(m_WallSlideGravityProp, m_WallSlideGravityContent);
+            EditorGUILayout.PropertyField(m_WallJumpHorizontalSpeedProp, m_WallJumpHorizontalSpeedContent);
+            EditorGUILayout.PropertyField(m_WallJumpHeightProp, m_WallJumpHeightContent);     
         }
 
         EditorGUI.indentLevel--;

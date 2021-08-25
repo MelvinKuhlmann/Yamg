@@ -25,6 +25,11 @@ public class WallSlideSMB : SceneLinkedSMB<PlayerCharacter>
          m_MonoBehaviour.CheckForCrouching();*/
         m_MonoBehaviour.CheckForWallSlide();
         m_MonoBehaviour.CheckForGrounded();
+
+        if (m_MonoBehaviour.CheckForJumpInput())
+            m_MonoBehaviour.WallJump();
+
+
         /*    if (m_MonoBehaviour.CheckForJumpInput())
                 m_MonoBehaviour.SetVerticalMovement(m_MonoBehaviour.jumpSpeed);*/
         // m_MonoBehaviour.CheckForPushing();

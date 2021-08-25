@@ -12,7 +12,6 @@ public class HurtSMB : SceneLinkedSMB<PlayerCharacter>
 
     public override void OnSLStateNoTransitionUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        m_MonoBehaviour.CheckForWallSlide();
         if (m_MonoBehaviour.IsFalling())
             m_MonoBehaviour.CheckForGrounded();
         m_MonoBehaviour.AirborneVerticalMovement();

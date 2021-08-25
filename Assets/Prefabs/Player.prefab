@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &765838893638482827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4680824996808135262}
+  m_Layer: 13
+  m_Name: RightWallJumpBottomCheckPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4680824996808135262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765838893638482827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3827800671806840925}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1168759115097989211
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,6 +59,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3827800671806840925}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1913128813855007052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2638493897828429739}
+  m_Layer: 13
+  m_Name: LeftWallJumpTopCheckPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2638493897828429739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913128813855007052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3827800671806840925}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3822821099664462625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3677024199762951005}
+  m_Layer: 13
+  m_Name: LeftWallJumpBottomCheckPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3677024199762951005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822821099664462625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3827800671806840925}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3827800671806840929
 GameObject:
@@ -73,6 +163,10 @@ Transform:
   - {fileID: 7251916516866948189}
   - {fileID: 879143589762145652}
   - {fileID: 3674808587578974182}
+  - {fileID: 4321192377640667782}
+  - {fileID: 4680824996808135262}
+  - {fileID: 2638493897828429739}
+  - {fileID: 3677024199762951005}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -199,6 +293,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147549184
   groundedRaycastDistance: 0.1
+  wallJumpLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  wallJumpDistance: 0.1
+  rightWallJumpTopCheckPoint: {fileID: 4321192377640667782}
+  rightWallJumpBottomCheckPoint: {fileID: 4680824996808135262}
+  leftWallJumpTopCheckPoint: {fileID: 2638493897828429739}
+  leftWallJumpBottomCheckPoint: {fileID: 3677024199762951005}
 --- !u!114 &3869713081834144198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,12 +368,13 @@ MonoBehaviour:
   facingRightBulletSpawnPoint: {fileID: 3674808587578974182}
   bulletPool: {fileID: 1951122026}
   cameraFollowTarget: {fileID: 8046786690669050789}
-  wallCheckPosition: {fileID: 0}
   maxSpeed: 12
   groundAcceleration: 100
   groundDeceleration: 100
   pushingSpeedProportion: 0.5
   wallSlideGravity: 15
+  wallJumpHorizontalSpeed: 12
+  wallJumpHeight: 22
   airborneAccelProportion: 1
   airborneDecelProportion: 0.5
   gravity: 60
@@ -542,6 +645,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3827800671806840925}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5368138441326475490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4321192377640667782}
+  m_Layer: 13
+  m_Name: RightWallJumpTopCheckPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4321192377640667782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368138441326475490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3827800671806840925}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6209384566424131871
 GameObject:
