@@ -14,7 +14,7 @@ public class MeleeAttackSMB : SceneLinkedSMB<PlayerCharacter>
     public override void OnSLStateNoTransitionUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (!m_MonoBehaviour.CheckForGrounded())
-            animator.Play (m_HashAirborneMeleeAttackState, layerIndex, stateInfo.normalizedTime);
+            animator.Play(m_HashAirborneMeleeAttackState, layerIndex, stateInfo.normalizedTime);
         
         m_MonoBehaviour.GroundedHorizontalMovement(false);
     }

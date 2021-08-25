@@ -28,6 +28,8 @@ public class PlayerCharacter : MonoBehaviour
     public float groundDeceleration = 100f;
     [Range(0f, 1f)] public float pushingSpeedProportion;
 
+    public float wallSlideGravity = 15f;
+
     [Range(0f, 1f)] public float airborneAccelProportion;
     [Range(0f, 1f)] public float airborneDecelProportion;
     public float gravity = 50f;
@@ -95,6 +97,7 @@ public class PlayerCharacter : MonoBehaviour
     protected readonly int m_HashHorizontalSpeedPara = Animator.StringToHash("HorizontalSpeed");
     protected readonly int m_HashVerticalSpeedPara = Animator.StringToHash("VerticalSpeed");
     protected readonly int m_HashGroundedPara = Animator.StringToHash("Grounded");
+    protected readonly int m_HashWallSlidingPara = Animator.StringToHash("WallSlide");
     protected readonly int m_HashCrouchingPara = Animator.StringToHash("Crouching");
     protected readonly int m_HashPushingPara = Animator.StringToHash("Pushing");
     protected readonly int m_HashTimeoutPara = Animator.StringToHash("Timeout");
@@ -454,6 +457,14 @@ public class PlayerCharacter : MonoBehaviour
         return grounded;
     }
 
+    public bool CheckForWallSlide()
+    {
+        bool wallSliding = m_CharacterController2D.IsWallSliding;
+        m_Animator.SetBool(m_HashWallSlidingPara, wallSliding);
+
+        return wallSliding;
+    }
+
     public void FindCurrentSurface()
     {
         Collider2D groundCollider = m_CharacterController2D.GroundColliders[0];
@@ -559,6 +570,11 @@ public class PlayerCharacter : MonoBehaviour
             m_MoveVector.y = 0f;
         }
         m_MoveVector.y -= gravity * Time.deltaTime;
+    }
+
+    public void WallSlideVerticalMovement()
+    {
+        m_MoveVector.y -= wallSlideGravity * Time.deltaTime;
     }
 
     public bool CheckForJumpInput()

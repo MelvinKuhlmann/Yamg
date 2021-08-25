@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
@@ -23,6 +22,7 @@ public class CharacterController2D : MonoBehaviour
 
     public bool IsGrounded { get; protected set; }
     public bool IsCeilinged { get; protected set; }
+    public bool IsWallSliding { get; protected set; }
     public Vector2 Velocity { get; protected set; }
     public Rigidbody2D Rigidbody2D { get { return m_Rigidbody2D; } }
     public Collider2D[] GroundColliders { get { return m_GroundColliders; } }
@@ -55,6 +55,7 @@ public class CharacterController2D : MonoBehaviour
 
         CheckCapsuleEndCollisions();
         CheckCapsuleEndCollisions(false);
+        CheckCapsuleFrontCollisions();
     }
 
     /// <summary>
@@ -210,6 +211,64 @@ public class CharacterController2D : MonoBehaviour
                         float middleHitHeight = m_FoundHits[1].point.y;
                         IsGrounded &= middleHitHeight < capsuleBottomHeight + groundedRaycastDistance;
                     }
+                }
+            }
+        }
+
+        for (int i = 0; i < m_HitBuffer.Length; i++)
+        {
+            m_HitBuffer[i] = new RaycastHit2D();
+        }
+    }
+
+    public void CheckCapsuleFrontCollisions()
+    {
+        Vector2 raycastDirection;
+        Vector2 raycastStart;
+        float raycastDistance;
+
+        if (m_Capsule == null)
+        {
+            raycastStart = m_Rigidbody2D.position + Vector2.right;
+            raycastDistance = 1f + groundedRaycastDistance;
+
+           
+            raycastDirection = Vector2.left;
+
+            //  m_RaycastPositions[0] = raycastStart + Vector2.up * 0.2f;
+            //  m_RaycastPositions[1] = raycastStart;
+            // m_RaycastPositions[2] = raycastStart + Vector2.down * 0.2f;
+            m_RaycastPositions[0] = raycastStart;
+
+        }
+        else
+        {
+            raycastStart = m_Rigidbody2D.position + m_Capsule.offset;
+            raycastDistance = m_Capsule.size.y * 0.5f + groundedRaycastDistance * 2f;
+
+           
+            raycastDirection = Vector2.left;
+            Vector2 raycastStartBottomCentre = raycastStart + Vector2.right * (m_Capsule.size.y * 0.5f - m_Capsule.size.x * 0.5f);
+
+            // m_RaycastPositions[0] = raycastStartBottomCentre + Vector2.up * m_Capsule.size.y * 0.1f;
+            //m_RaycastPositions[1] = raycastStartBottomCentre;
+            // m_RaycastPositions[2] = raycastStartBottomCentre + Vector2.down * m_Capsule.size.y * 0.1f;
+            m_RaycastPositions[0] = raycastStartBottomCentre;
+
+        }
+
+        for (int i = 0; i < m_RaycastPositions.Length; i++)
+        {
+            int count = Physics2D.Raycast(m_RaycastPositions[i], raycastDirection, m_ContactFilter, m_HitBuffer, raycastDistance);
+            IsWallSliding = false;
+
+            for (int j = 0; j < m_HitBuffer.Length; j++)
+            {
+                if (m_HitBuffer[j].collider != null)
+                {
+                     
+                    IsWallSliding = true;
+                        
                 }
             }
         }

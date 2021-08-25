@@ -35,9 +35,10 @@ public class PlayerCharacterEditor : Editor
    // SerializedProperty m_HoldingGunTimeoutDurationProp;
     SerializedProperty m_RightBulletSpawnPointAnimatedProp;
 
-
     SerializedProperty m_DashSpeedProp;
 
+    SerializedProperty m_WallSlideGravityProp;
+    
     SerializedProperty m_FootstepAudioPlayerProp;
     SerializedProperty m_LandingAudioPlayerProp;
     SerializedProperty m_HurtAudioPlayerProp;
@@ -60,6 +61,7 @@ public class PlayerCharacterEditor : Editor
     bool m_MeleeSettingsFoldout;
     bool m_RangedSettingsFoldout;
     bool m_DashSettingsFoldout;
+    bool m_WallSlideSettingsFoldout;
     bool m_AudioSettingsFoldout;
     bool m_CameraFollowSettingsFoldout;
     bool m_MiscSettingsFoldout;
@@ -71,7 +73,7 @@ public class PlayerCharacterEditor : Editor
     readonly GUIContent m_FacingRightBulletSpawnPointContent = new GUIContent("Facing Right Bullet Spawn Point");
     readonly GUIContent m_BulletPoolContent = new GUIContent("Bullet Pool");
     readonly GUIContent m_CameraFollowTargetContent = new GUIContent("Camera Follow Target");
-
+    
     readonly GUIContent m_MaxSpeedContent = new GUIContent("Max Speed");
     readonly GUIContent m_GroundAccelerationContent = new GUIContent("Ground Acceleration");
     readonly GUIContent m_GroundDecelerationContent = new GUIContent("Ground Deceleration");
@@ -97,6 +99,8 @@ public class PlayerCharacterEditor : Editor
 
     readonly GUIContent m_DashSpeedContent = new GUIContent("Dash Speed");
 
+    readonly GUIContent m_WallSlideGravityContent = new GUIContent("Gravity while wallsliding");
+
     readonly GUIContent m_FootstepPlayerContent = new GUIContent("Footstep Audio Player");
     readonly GUIContent m_LandingAudioPlayerContent = new GUIContent("Landing Audio Player");
     readonly GUIContent m_HurtAudioPlayerContent = new GUIContent("Hurt Audio Player");
@@ -119,6 +123,7 @@ public class PlayerCharacterEditor : Editor
     readonly GUIContent m_MeleeSettingsContent = new GUIContent("Melee Settings");
     readonly GUIContent m_RangedSettingsContent = new GUIContent("Ranged Settings");
     readonly GUIContent m_DashSettingsContent = new GUIContent("Dash Settings");
+    readonly GUIContent m_WallSlideSettingsContent = new GUIContent("Wall Slide Settings");
     readonly GUIContent m_AudioSettingsContent = new GUIContent("Audio Settings");
     readonly GUIContent m_CameraFollowSettingsContent = new GUIContent("Camera Follow Settings");
     readonly GUIContent m_MiscSettingsContent = new GUIContent("Misc Settings");
@@ -129,14 +134,14 @@ public class PlayerCharacterEditor : Editor
         m_DamageableProp = serializedObject.FindProperty("damageable");
         m_MeleeDamagerProp = serializedObject.FindProperty("meleeDamager");
         m_FacingLeftBulletSpawnPointProp = serializedObject.FindProperty("facingLeftBulletSpawnPoint");
-        m_FacingRightBulletSpawnPointProp = serializedObject.FindProperty ("facingRightBulletSpawnPoint");
+        m_FacingRightBulletSpawnPointProp = serializedObject.FindProperty("facingRightBulletSpawnPoint");
         m_BulletPoolProp = serializedObject.FindProperty("bulletPool");
-        m_CameraFollowTargetProp = serializedObject.FindProperty ("cameraFollowTarget");
+        m_CameraFollowTargetProp = serializedObject.FindProperty("cameraFollowTarget");
 
         m_MaxSpeedProp = serializedObject.FindProperty("maxSpeed");
         m_GroundAccelerationProp = serializedObject.FindProperty("groundAcceleration");
         m_GroundDecelerationProp = serializedObject.FindProperty("groundDeceleration");
-        m_PushingSpeedProportionProp = serializedObject.FindProperty ("pushingSpeedProportion");
+        m_PushingSpeedProportionProp = serializedObject.FindProperty("pushingSpeedProportion");
 
         m_AirborneAccelProportionProp = serializedObject.FindProperty("airborneAccelProportion");
         m_AirborneDecelProportionProp = serializedObject.FindProperty("airborneDecelProportion");
@@ -146,10 +151,10 @@ public class PlayerCharacterEditor : Editor
 
         m_HurtJumpAngleProp = serializedObject.FindProperty("hurtJumpAngle");
         m_HurtJumpSpeedProp = serializedObject.FindProperty("hurtJumpSpeed");
-        m_FlickeringDurationProp = serializedObject.FindProperty ("flickeringDuration");
+        m_FlickeringDurationProp = serializedObject.FindProperty("flickeringDuration");
 
         m_MeleeAttackDashSpeedProp = serializedObject.FindProperty("meleeAttackDashSpeed");
-        m_DashWhileAirborneProp = serializedObject.FindProperty ("dashWhileAirborne");
+        m_DashWhileAirborneProp = serializedObject.FindProperty("dashWhileAirborne");
 
         m_ShotsPerSecondProp = serializedObject.FindProperty("shotsPerSecond");
         m_BulletSpeedProp = serializedObject.FindProperty("bulletSpeed");
@@ -157,6 +162,8 @@ public class PlayerCharacterEditor : Editor
         m_RightBulletSpawnPointAnimatedProp = serializedObject.FindProperty ("rightBulletSpawnPointAnimated");
 
         m_DashSpeedProp = serializedObject.FindProperty("dashSpeed");
+
+        m_WallSlideGravityProp = serializedObject.FindProperty("wallSlideGravity");
 
         m_FootstepAudioPlayerProp = serializedObject.FindProperty("footstepAudioPlayer");
         m_LandingAudioPlayerProp = serializedObject.FindProperty("landingAudioPlayer");
@@ -171,7 +178,7 @@ public class PlayerCharacterEditor : Editor
         m_MaxVerticalDeltaDampTimeProp = serializedObject.FindProperty("maxVerticalDeltaDampTime");
         m_VerticalCameraOffsetDelayProp = serializedObject.FindProperty("verticalCameraOffsetDelay");
 
-        m_SpriteOriginallyFacesLeftProp = serializedObject.FindProperty ("spriteOriginallyFacesLeft");
+        m_SpriteOriginallyFacesLeftProp = serializedObject.FindProperty("spriteOriginallyFacesLeft");
     }
 
     public override void OnInspectorGUI ()
@@ -185,13 +192,13 @@ public class PlayerCharacterEditor : Editor
 
         if (m_ReferencesFoldout)
         {
-            EditorGUILayout.PropertyField (m_SpriteRendererProp, m_SpriteRendererContent);
-            EditorGUILayout.PropertyField (m_DamageableProp, m_DamageableContent);
-            EditorGUILayout.PropertyField (m_MeleeDamagerProp, m_MeleeDamagerContent);
-            EditorGUILayout.PropertyField (m_FacingLeftBulletSpawnPointProp, m_FacingLeftBulletSpawnPointContent);
-            EditorGUILayout.PropertyField (m_FacingRightBulletSpawnPointProp, m_FacingRightBulletSpawnPointContent);
-            EditorGUILayout.PropertyField (m_BulletPoolProp, m_BulletPoolContent);
-            EditorGUILayout.PropertyField (m_CameraFollowTargetProp, m_CameraFollowTargetContent);
+            EditorGUILayout.PropertyField(m_SpriteRendererProp, m_SpriteRendererContent);
+            EditorGUILayout.PropertyField(m_DamageableProp, m_DamageableContent);
+            EditorGUILayout.PropertyField(m_MeleeDamagerProp, m_MeleeDamagerContent);
+            EditorGUILayout.PropertyField(m_FacingLeftBulletSpawnPointProp, m_FacingLeftBulletSpawnPointContent);
+            EditorGUILayout.PropertyField(m_FacingRightBulletSpawnPointProp, m_FacingRightBulletSpawnPointContent);
+            EditorGUILayout.PropertyField(m_BulletPoolProp, m_BulletPoolContent);
+            EditorGUILayout.PropertyField(m_CameraFollowTargetProp, m_CameraFollowTargetContent);
         }
 
         EditorGUI.indentLevel--;
@@ -207,7 +214,7 @@ public class PlayerCharacterEditor : Editor
             EditorGUILayout.PropertyField(m_MaxSpeedProp, m_MaxSpeedContent);
             EditorGUILayout.PropertyField(m_GroundAccelerationProp, m_GroundAccelerationContent);
             EditorGUILayout.PropertyField(m_GroundDecelerationProp, m_GroundDecelerationContent);
-            EditorGUILayout.PropertyField (m_PushingSpeedProportionProp, m_PushingSpeedProportionContent);
+            EditorGUILayout.PropertyField(m_PushingSpeedProportionProp, m_PushingSpeedProportionContent);
         }
 
         EditorGUI.indentLevel--;
@@ -283,6 +290,19 @@ public class PlayerCharacterEditor : Editor
         if (m_DashSettingsFoldout)
         {
             EditorGUILayout.PropertyField(m_DashSpeedProp, m_DashSpeedContent);
+        }
+
+        EditorGUI.indentLevel--;
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUI.indentLevel++;
+
+        m_WallSlideSettingsFoldout = EditorGUILayout.Foldout(m_WallSlideSettingsFoldout, m_WallSlideSettingsContent);
+
+        if (m_WallSlideSettingsFoldout)
+        {
+            EditorGUILayout.PropertyField(m_WallSlideGravityProp, m_WallSlideGravityContent);
         }
 
         EditorGUI.indentLevel--;

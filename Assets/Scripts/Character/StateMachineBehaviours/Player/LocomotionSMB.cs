@@ -14,8 +14,8 @@ public class LocomotionSMB : SceneLinkedSMB<PlayerCharacter>
         m_MonoBehaviour.GroundedVerticalMovement();
         m_MonoBehaviour.CheckForCrouching();
         m_MonoBehaviour.CheckForGrounded();
+        m_MonoBehaviour.CheckForWallSlide();
         m_MonoBehaviour.CheckForPushing();
-      //  m_MonoBehaviour.CheckForHoldingGun();
         m_MonoBehaviour.CheckAndFireGun();
         if (m_MonoBehaviour.CheckForJumpInput())
             m_MonoBehaviour.SetVerticalMovement(m_MonoBehaviour.jumpSpeed);

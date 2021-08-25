@@ -266,10 +266,12 @@ MonoBehaviour:
   facingRightBulletSpawnPoint: {fileID: 3674808587578974182}
   bulletPool: {fileID: 1951122026}
   cameraFollowTarget: {fileID: 8046786690669050789}
+  wallCheckPosition: {fileID: 0}
   maxSpeed: 12
   groundAcceleration: 100
   groundDeceleration: 100
   pushingSpeedProportion: 0.5
+  wallSlideGravity: 15
   airborneAccelProportion: 1
   airborneDecelProportion: 0.5
   gravity: 60
