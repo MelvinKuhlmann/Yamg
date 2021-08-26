@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrawlidAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b3fadf1a05e936040b85d9d64799d44e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 6166083442382310189, guid: 105b0406290a5894cb571a4c75eb2996, type: 3}
+  - {fileID: 6908580354326145185, guid: 105b0406290a5894cb571a4c75eb2996, type: 3}
+  - {fileID: 2482564850707903727, guid: 105b0406290a5894cb571a4c75eb2996, type: 3}
+  - {fileID: 8444203140906487315, guid: 105b0406290a5894cb571a4c75eb2996, type: 3}
+  - {fileID: -3235319775351801026, guid: 8e724ed6612e8084d8611a3aca4414b4, type: 3}
+  - {fileID: -5380192958456866825, guid: 8e724ed6612e8084d8611a3aca4414b4, type: 3}
+  - {fileID: 8735483951731627830, guid: 0b0ea2d7c10823e47a0a5667ec2431e5, type: 3}
+  - {fileID: -2348083093683369314, guid: 0b0ea2d7c10823e47a0a5667ec2431e5, type: 3}
+  - {fileID: -3094964302580510502, guid: 0b0ea2d7c10823e47a0a5667ec2431e5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - CrawlidWalk_1
+  - CrawlidWalk_0
+  - CrawlidWalk_3
+  - CrawlidWalk_2
+  - CrawlidHit_1
+  - CrawlidHit_0
+  - CrawlidDeath_2
+  - CrawlidDeath_0
+  - CrawlidDeath_1
+  m_Tag: CrawlidAtlas
+  m_IsVariant: 0
