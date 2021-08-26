@@ -103,7 +103,7 @@ public class PlayerCharacter : MonoBehaviour
     protected readonly int m_HashGroundedPara = Animator.StringToHash("Grounded");
     protected readonly int m_HashWallSlidingPara = Animator.StringToHash("WallSlide");
     protected readonly int m_HashWallJumpPara = Animator.StringToHash("WallJump");
-    protected readonly int m_HashCrouchingPara = Animator.StringToHash("Crouching");
+  //  protected readonly int m_HashCrouchingPara = Animator.StringToHash("Crouching");
     protected readonly int m_HashPushingPara = Animator.StringToHash("Pushing");
     protected readonly int m_HashRespawnPara = Animator.StringToHash("Respawn");
     protected readonly int m_HashDeadPara = Animator.StringToHash("Dead");
@@ -434,10 +434,10 @@ public class PlayerCharacter : MonoBehaviour
         m_MoveVector.x = Mathf.MoveTowards(m_MoveVector.x, desiredSpeed, acceleration * Time.deltaTime);
     }
 
-    public void CheckForCrouching()
+   /* public void CheckForCrouching()
     {
         m_Animator.SetBool(m_HashCrouchingPara, PlayerInput.Instance.Vertical.Value < 0f);
-    }
+    }*/
 
     public void CheckForHealing()
     {

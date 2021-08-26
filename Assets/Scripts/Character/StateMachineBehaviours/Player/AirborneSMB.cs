@@ -15,6 +15,6 @@ public class AirborneSMB : SceneLinkedSMB<PlayerCharacter>
         if (m_MonoBehaviour.CheckForDashInput())
             m_MonoBehaviour.Dash();
         m_MonoBehaviour.CheckAndFireGun();
-        m_MonoBehaviour.CheckForCrouching();
+      //  m_MonoBehaviour.CheckForCrouching();
     }
 }
