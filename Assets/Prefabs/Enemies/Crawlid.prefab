@@ -139,7 +139,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 6908580354326145185, guid: 105b0406290a5894cb571a4c75eb2996, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   meleeAttackAudio: {fileID: 0}
   dieAudio: {fileID: 0}
   footStepAudio: {fileID: 0}
-  flickeringDuration: 0.02
+  flickeringDuration: 0
 --- !u!114 &3033263144778391731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   invulnerableAfterDamage: 1
   invulnerabilityDuration: 2
   disableOnDeath: 0
-  resetHealthOnSceneReload: 0
+  resetHealthOnSceneReload: 1
   centreOffset: {x: 0, y: 1}
   OnHealthSet:
     m_PersistentCalls:
@@ -327,8 +327,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   dataSettings:
-    dataTag: bba934b1-82ff-4b17-893c-f2106159ca1a
-    persistenceType: 3
+    dataTag: 
+    persistenceType: 0
 --- !u!1 &8968182385081225789
 GameObject:
   m_ObjectHideFlags: 0

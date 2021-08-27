@@ -6,9 +6,4 @@ public class ChomperDeathSMB : SceneLinkedSMB<EnemyBehaviour>
     {
         m_MonoBehaviour.DisableDamage();
     }
-
-    public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        m_MonoBehaviour.gameObject.SetActive(false);
-    }
 }

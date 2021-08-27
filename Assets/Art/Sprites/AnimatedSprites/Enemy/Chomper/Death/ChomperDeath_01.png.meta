@@ -1,16 +1,7 @@
 fileFormatVersion: 2
-guid: 0b0ea2d7c10823e47a0a5667ec2431e5
+guid: 3845ae4cab9cf394b8cbc6b93718a6cb
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -2348083093683369314
-    second: CrawlidDeath_0
-  - first:
-      213: -3094964302580510502
-    second: CrawlidDeath_1
-  - first:
-      213: 8735483951731627830
-    second: CrawlidDeath_2
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,12 +41,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.4813259}
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +63,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -84,7 +75,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -96,7 +87,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -108,7 +99,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -120,70 +111,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: CrawlidDeath_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 183
-        width: 142
-        height: 92
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1478595}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9a07e1fddee96fd0800000000000000
-      internalID: -2348083093683369314
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrawlidDeath_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 93
-        width: 142
-        height: 92
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05582262}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad09c285d5a7c05d0800000000000000
-      internalID: -3094964302580510502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrawlidDeath_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1.3333359
-        width: 142
-        height: 91.666664
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1558624}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 637d61c1f5caa3970800000000000000
-      internalID: 8735483951731627830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

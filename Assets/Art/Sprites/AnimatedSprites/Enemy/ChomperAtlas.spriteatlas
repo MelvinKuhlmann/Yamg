@@ -97,6 +97,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f14aa10c3b4eb5b47860e729e2144c28, type: 3}
   - {fileID: 21300000, guid: 8398530cb9366974ca3cb94c16af54f7, type: 3}
   - {fileID: 21300000, guid: 6e07004c8f0965d4ab66a275e02b77a0, type: 3}
+  - {fileID: 21300000, guid: 3845ae4cab9cf394b8cbc6b93718a6cb, type: 3}
   - {fileID: 21300000, guid: b6737a6c649b5664baa6b0e1f942a9e9, type: 3}
   - {fileID: 21300000, guid: a0740f7c6b0a21346b139ff42dc3cb17, type: 3}
   - {fileID: 21300000, guid: 54bda8bcfb03f4345aafea5fe8271478, type: 3}
@@ -161,6 +162,7 @@ SpriteAtlas:
   - ChomperIdle_00005
   - ChomperDEATH_Paint_07
   - ChomperIdle_00055
+  - ChomperDeath_01
   - ChomperRun_00007
   - ChomperIdle_00051
   - ChomperIdle_00019

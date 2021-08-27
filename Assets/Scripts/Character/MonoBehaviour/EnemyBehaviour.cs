@@ -54,10 +54,6 @@ public class EnemyBehaviour : MonoBehaviour
     public RandomAudioPlayer dieAudio;
     public RandomAudioPlayer footStepAudio;
 
-    [Header("Misc")]
-    [Tooltip("Time in seconds during which the enemy flicker after being hit")]
-    public float flickeringDuration;
-
     protected SpriteRenderer m_SpriteRenderer;
     protected CharacterController2D m_CharacterController2D;
     protected Collider2D m_Collider;
@@ -78,7 +74,6 @@ public class EnemyBehaviour : MonoBehaviour
     protected RaycastHit2D[] m_RaycastHitCache = new RaycastHit2D[8];
     protected ContactFilter2D m_Filter;
 
-    protected Coroutine m_FlickeringCoroutine = null;
     protected Color m_OriginalColor;
 
     protected BulletPool m_BulletPool;
@@ -455,7 +450,6 @@ public class EnemyBehaviour : MonoBehaviour
   //      dieAudio.PlayRandomSound();
 
         m_Dead = true;
-        m_Collider.enabled = false;
 
         CameraShaker.Shake(0.15f, 0.3f);
     }
@@ -473,43 +467,7 @@ public class EnemyBehaviour : MonoBehaviour
         throwVector.x = Mathf.Sign(damagerToThis.x) * -2.0f;
         m_MoveVector = throwVector;
 
-        if (m_FlickeringCoroutine != null)
-        {
-            StopCoroutine(m_FlickeringCoroutine);
-            m_SpriteRenderer.color = m_OriginalColor;
-        }
-
-        m_FlickeringCoroutine = StartCoroutine(Flicker(damageable));
         CameraShaker.Shake(0.15f, 0.3f);
-    }
-
-
-
-    protected IEnumerator Flicker(Damageable damageable)
-    {
-        float timer = 0f;
-        float sinceLastChange = 0.0f;
-
-        Color transparent = m_OriginalColor;
-        transparent.a = 0.2f;
-        int state = 1;
-
-        m_SpriteRenderer.color = transparent;
-
-        while (timer < damageable.invulnerabilityDuration)
-        {
-            yield return null;
-            timer += Time.deltaTime;
-            sinceLastChange += Time.deltaTime;
-            if (sinceLastChange > flickeringDuration)
-            {
-                sinceLastChange -= flickeringDuration;
-                state = 1 - state;
-                m_SpriteRenderer.color = state == 1 ? transparent : m_OriginalColor;
-            }
-        }
-
-        m_SpriteRenderer.color = m_OriginalColor;
     }
 
     public void DisableDamage()
