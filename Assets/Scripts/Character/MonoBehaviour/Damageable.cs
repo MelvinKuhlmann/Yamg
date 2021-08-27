@@ -124,6 +124,16 @@ public class Damageable : MonoBehaviour, IDataPersister
         OnGainHealth.Invoke(amount, this);
     }
 
+    public void IncreaseHealth(int amount)
+    {
+        startingHealth += amount;
+        int healthToHeal = startingHealth - CurrentHealth;
+        m_CurrentHealth = startingHealth;
+
+        OnHealthSet.Invoke(this);
+        OnGainHealth.Invoke(healthToHeal, this);
+    }
+
     public void SetHealth(int amount)
     {
         m_CurrentHealth = amount;
@@ -152,13 +162,14 @@ public class Damageable : MonoBehaviour, IDataPersister
 
     public Data SaveData()
     {
-        return new Data<int, bool>(CurrentHealth, m_ResetHealthOnSceneReload);
+        return new Data<int, int, bool>(startingHealth, CurrentHealth, m_ResetHealthOnSceneReload);
     }
 
     public void LoadData(Data data)
     {
-        Data<int, bool> healthData = (Data<int, bool>)data;
-        m_CurrentHealth = healthData.value1 ? startingHealth : healthData.value0;
+        Data<int, int, bool> healthData = (Data<int, int, bool>)data;
+        startingHealth = healthData.value0;
+        m_CurrentHealth = healthData.value2 ? startingHealth : healthData.value1;
         OnHealthSet.Invoke(this);
     }
 

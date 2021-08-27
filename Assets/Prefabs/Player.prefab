@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 5
   invulnerableAfterDamage: 1
-  invulnerabilityDuration: 3
+  invulnerabilityDuration: 2
   disableOnDeath: 0
   resetHealthOnSceneReload: 0
   centreOffset: {x: 0, y: 1}
