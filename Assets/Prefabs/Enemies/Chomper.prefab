@@ -61,6 +61,9 @@ MonoBehaviour:
   OnNonDamageableHit:
     m_PersistentCalls:
       m_Calls: []
+  dataSettings:
+    dataTag: 
+    persistenceType: 0
 --- !u!1 &6960653160666988832
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +275,6 @@ MonoBehaviour:
   meleeAttackAudio: {fileID: 0}
   dieAudio: {fileID: 0}
   footStepAudio: {fileID: 0}
-  flickeringDuration: 0
 --- !u!114 &1793750293230082224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345771551ebbdf34a8bdc2dd99c4740c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 2
+  startingHealth: 3
   invulnerableAfterDamage: 1
   invulnerabilityDuration: 2
   disableOnDeath: 0
@@ -421,3 +423,6 @@ MonoBehaviour:
   OnNonDamageableHit:
     m_PersistentCalls:
       m_Calls: []
+  dataSettings:
+    dataTag: 
+    persistenceType: 0

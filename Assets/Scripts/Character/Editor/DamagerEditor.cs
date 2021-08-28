@@ -3,8 +3,11 @@ using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
 [CustomEditor(typeof(Damager))]
-public class DamagerEditor : Editor
+public class DamagerEditor : DataPersisterEditor
 {
+    private bool m_IsPrefab = false;
+    private bool m_IsNotInstance = false;
+
     static BoxBoundsHandle s_BoxBoundsHandle = new BoxBoundsHandle();
     static Color s_EnabledColor = Color.green + Color.grey;
 
@@ -20,8 +23,13 @@ public class DamagerEditor : Editor
     SerializedProperty m_OnDamageableHitProp;
     SerializedProperty m_OnNonDamageableHitProp;
 
-    void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
+        m_IsPrefab = AssetDatabase.Contains(target);
+        m_IsNotInstance = PrefabUtility.GetCorrespondingObjectFromSource(target) == null;
+
         m_DamageProp = serializedObject.FindProperty("damage");
         m_OffsetProp = serializedObject.FindProperty("offset");
         m_SizeProp = serializedObject.FindProperty("size");
@@ -37,22 +45,27 @@ public class DamagerEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
+        if (m_IsPrefab || m_IsNotInstance)
+            base.OnInspectorGUI();
+        else
+        {
+            serializedObject.Update();
 
-        EditorGUILayout.PropertyField(m_DamageProp);
-        EditorGUILayout.PropertyField(m_OffsetProp);
-        EditorGUILayout.PropertyField(m_SizeProp);
-        EditorGUILayout.PropertyField(m_OffsetBasedOnSpriteFacingProp);
-        if (m_OffsetBasedOnSpriteFacingProp.boolValue)
-            EditorGUILayout.PropertyField(m_SpriteRendererProp);
-        EditorGUILayout.PropertyField(m_CanHitTriggersProp);
-        EditorGUILayout.PropertyField(m_ForceRespawnProp);
-        EditorGUILayout.PropertyField(m_IgnoreInvincibilityProp);
-        EditorGUILayout.PropertyField(m_HittableLayersProp);
-        EditorGUILayout.PropertyField(m_OnDamageableHitProp);
-        EditorGUILayout.PropertyField(m_OnNonDamageableHitProp);
+            EditorGUILayout.PropertyField(m_DamageProp);
+            EditorGUILayout.PropertyField(m_OffsetProp);
+            EditorGUILayout.PropertyField(m_SizeProp);
+            EditorGUILayout.PropertyField(m_OffsetBasedOnSpriteFacingProp);
+            if (m_OffsetBasedOnSpriteFacingProp.boolValue)
+                EditorGUILayout.PropertyField(m_SpriteRendererProp);
+            EditorGUILayout.PropertyField(m_CanHitTriggersProp);
+            EditorGUILayout.PropertyField(m_ForceRespawnProp);
+            EditorGUILayout.PropertyField(m_IgnoreInvincibilityProp);
+            EditorGUILayout.PropertyField(m_HittableLayersProp);
+            EditorGUILayout.PropertyField(m_OnDamageableHitProp);
+            EditorGUILayout.PropertyField(m_OnNonDamageableHitProp);
 
-        serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 
     void OnSceneGUI()

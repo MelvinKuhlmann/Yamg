@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Damager : MonoBehaviour
+public class Damager : MonoBehaviour, IDataPersister
 {
     [Serializable]
     public class DamagableEvent : UnityEvent<Damager, Damageable>
@@ -33,6 +33,8 @@ public class Damager : MonoBehaviour
     public LayerMask hittableLayers;
     public DamagableEvent OnDamageableHit;
     public NonDamagableEvent OnNonDamageableHit;
+    [HideInInspector]
+    public DataSettings dataSettings;
 
     protected bool m_SpriteOriginallyFlipped;
     protected bool m_CanDamage = true;
@@ -53,6 +55,16 @@ public class Damager : MonoBehaviour
         m_DamagerTransform = transform;
     }
 
+    void OnEnable()
+    {
+        PersistentDataManager.RegisterPersister(this);
+    }
+
+    void OnDisable()
+    {
+        PersistentDataManager.UnregisterPersister(this);
+    }
+
     public void EnableDamage()
     {
         m_CanDamage = true;
@@ -61,6 +73,11 @@ public class Damager : MonoBehaviour
     public void DisableDamage()
     {
         m_CanDamage = false;
+    }
+
+    public void IncreaseDamage(int amount)
+    {
+        damage += amount;
     }
 
     void FixedUpdate()
@@ -98,5 +115,27 @@ public class Damager : MonoBehaviour
                 OnNonDamageableHit.Invoke(this);
             }
         }
+    }
+
+    public DataSettings GetDataSettings()
+    {
+        return dataSettings;
+    }
+
+    public void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType)
+    {
+        dataSettings.dataTag = dataTag;
+        dataSettings.persistenceType = persistenceType;
+    }
+
+    public Data SaveData()
+    {
+        return new Data<int>(damage);
+    }
+
+    public void LoadData(Data data)
+    {
+        Data<int> damagerData = (Data<int>)data;
+        damage = damagerData.value;
     }
 }

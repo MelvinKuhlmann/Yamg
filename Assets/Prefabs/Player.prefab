@@ -514,6 +514,9 @@ MonoBehaviour:
   OnNonDamageableHit:
     m_PersistentCalls:
       m_Calls: []
+  dataSettings:
+    dataTag: PlayerMeleeDamager
+    persistenceType: 3
 --- !u!114 &1951122026
 MonoBehaviour:
   m_ObjectHideFlags: 0
