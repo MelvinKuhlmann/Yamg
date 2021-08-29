@@ -68,6 +68,11 @@ public class InventoryController : MonoBehaviour, IDataPersister
         PersistentDataManager.UnregisterPersister(this);
     }
 
+    public void AddItem(Item item)
+    {
+        AddItem(item, 1);
+    }
+
     public void AddItem(Item item, int amount)
     {
         if (!m_InventoryItems.ContainsKey(item))

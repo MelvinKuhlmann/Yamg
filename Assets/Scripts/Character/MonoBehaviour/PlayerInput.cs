@@ -23,6 +23,10 @@ public class PlayerInput : InputComponent, IDataPersister
     public InputButton Dash = new InputButton(KeyCode.C, XboxControllerButtons.RightBumper);
     public InputAxis Horizontal = new InputAxis(KeyCode.LeftArrow, KeyCode.RightArrow, XboxControllerAxes.LeftstickHorizontal);
     public InputAxis Vertical = new InputAxis(KeyCode.UpArrow, KeyCode.DownArrow, XboxControllerAxes.LeftstickVertical);
+    public InputAxis NavigationVertical = new InputAxis(KeyCode.UpArrow, KeyCode.DownArrow, XboxControllerAxes.LeftstickVertical);
+    public InputButton Buy = new InputButton(KeyCode.LeftAlt, XboxControllerButtons.A);
+    public InputButton Cancel = new InputButton(KeyCode.Escape, XboxControllerButtons.B);
+
     [HideInInspector]
     public DataSettings dataSettings;
 
@@ -66,6 +70,9 @@ public class PlayerInput : InputComponent, IDataPersister
         Dash.Get(fixedUpdateHappened, inputType);
         Horizontal.Get(inputType);
         Vertical.Get(inputType);
+        NavigationVertical.Get(inputType);
+        Buy.Get(fixedUpdateHappened, inputType);
+        Cancel.Get(fixedUpdateHappened, inputType);
 
         if (Input.GetKeyDown(KeyCode.F12))
         {
@@ -86,6 +93,8 @@ public class PlayerInput : InputComponent, IDataPersister
         GainControl(Dash);
         GainControl(Horizontal);
         GainControl(Vertical);
+
+        ReleaseMenuNavigationControl(true);
     }
 
     public override void ReleaseControl(bool resetValues = true)
@@ -103,9 +112,26 @@ public class PlayerInput : InputComponent, IDataPersister
         ReleaseControl(Vertical, resetValues);
     }
 
+    public void ReleaseMenuNavigationControl(bool resetValues = true)
+    {
+        m_HaveControl = false;
+
+        ReleaseControl(NavigationVertical, resetValues);
+        ReleaseControl(Buy, resetValues);
+        ReleaseControl(Cancel, resetValues);
+    }
+
     public void GainControlInteract()
     {
         GainControl(Interact);
+    }
+
+    public void GainControlMenuNavigation()
+    {
+        GainControl(NavigationVertical);
+        GainControl(Interact);
+        GainControl(Buy);
+        GainControl(Cancel);
     }
 
     public void DisableMeleeAttacking()
