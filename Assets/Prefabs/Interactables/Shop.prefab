@@ -348,28 +348,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4463d3fd2619bd74cbdf95424286ef6e, type: 2}
   - {fileID: 11400000, guid: 9d2591eb9c7cb1548bc0a9dd993bdad9, type: 2}
   - {fileID: 11400000, guid: c2a10e657bb997946946a63f8c0f54d1, type: 2}
-  menuItemPrefab: {fileID: 939067737042082325, guid: 8a9a361727ebb3b4ca6c0932d7e1df5e, type: 3}
+  shopItemPrefab: {fileID: 939067737042082325, guid: 8a9a361727ebb3b4ca6c0932d7e1df5e, type: 3}
+  moneyItem: {fileID: 11400000, guid: 92afa6eebf624bc43a4402804774efc4, type: 2}
+  inventoryController: {fileID: 0}
   OnItemSelected:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5564820229128272382}
         m_TargetAssemblyTypeName: ShopUI, Assembly-CSharp
         m_MethodName: ShowItemDetails
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnItemBuy:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
-        m_MethodName: AddItem
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

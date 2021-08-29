@@ -9,8 +9,10 @@ public class ShopInventoryController : MonoBehaviour
     [SerializeField] bool keyDown;
     [SerializeField] RectTransform rectTransform;
     [SerializeField] List<Item> items = new List<Item>();
-    [SerializeField] GameObject menuItemPrefab;
-    [SerializeField] UnityEvent<Item> OnItemSelected, OnItemBuy;
+    [SerializeField] GameObject shopItemPrefab;
+    [SerializeField] Item moneyItem;
+    [SerializeField] InventoryController inventoryController;
+    [SerializeField] UnityEvent<Item> OnItemSelected;
 
     [HideInInspector]
     public int index;
@@ -20,6 +22,7 @@ public class ShopInventoryController : MonoBehaviour
     int maxIndex;
     float itemHeight = 64f; // static height of inventory items, it's set in the prefab
     int VerticalMovement;
+    Dictionary<Item, int> inventory = new Dictionary<Item, int>();
 
     void Start()
     {
@@ -29,8 +32,7 @@ public class ShopInventoryController : MonoBehaviour
 
     public void OnEnable()
     {
-        Dictionary<Item, int> inventory = new Dictionary<Item, int>();
-
+        inventory.Clear();
         foreach (Item item in items)
         {
             if (inventory.ContainsKey(item))
@@ -48,14 +50,19 @@ public class ShopInventoryController : MonoBehaviour
         int childIndex = 0;
         foreach (KeyValuePair<Item, int> entry in inventory)
         {
-            if (menuItemPrefab != null)
+            if (shopItemPrefab != null)
             {
-                GameObject gameObject = Instantiate(menuItemPrefab, Vector3.zero, Quaternion.identity, transform) as GameObject;
+                GameObject gameObject = Instantiate(shopItemPrefab, Vector3.zero, Quaternion.identity, transform) as GameObject;
                 gameObject.GetComponent<ShopItem>().controller = this;
                 gameObject.GetComponent<ShopItem>().thisIndex = childIndex;
                 gameObject.GetComponent<ShopItem>().animator = gameObject.GetComponent<Animator>();
                 gameObject.transform.GetChild(1).GetComponent<Image>().sprite = entry.Key.sprite;
+                gameObject.transform.GetChild(2).GetComponent<Image>().sprite = moneyItem.sprite;
                 gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = entry.Key.buyValue.ToString();
+                if (inventoryController.GetItemAmount(moneyItem) < entry.Key.buyValue)
+                {
+                    gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "N" + entry.Key.buyValue; // TODO add some visual effect that player has not enough resources
+                }
                 childIndex++;
             }
         }
@@ -123,39 +130,19 @@ public class ShopInventoryController : MonoBehaviour
             keyDown = false;
         }
 
-        if (PlayerInput.Instance.Buy.Down)
+        if (PlayerInput.Instance.Buy.Down && (inventoryController.GetItemAmount(moneyItem) >= items[index].buyValue)) //TODO make some more robust check
         {
-            OnItemBuy.Invoke(items[index]);
+            inventoryController.SubtractItem(moneyItem, items[index].buyValue);
+            inventoryController.AddItem(items[index], 1);
+
+           /* if (inventory.TryGetValue(items[index], out int val))
+            {
+                if (val < 1)
+                {
+                    return;
+                }
+                inventory[items[index]] -= 1;
+            }*/
         }
-    }
-
-    public void onPressUp()
-    {
-        isPressUp = true;
-    }
-
-    public void onReleaseUp()
-    {
-        isPressUp = false;
-    }
-
-    public void onPressDown()
-    {
-        isPressDown = true;
-    }
-
-    public void onReleaseDown()
-    {
-        isPressDown = false;
-    }
-
-    public void onPressConfirm()
-    {
-        isPressConfirm = true;
-    }
-
-    public void onReleaseConfirm()
-    {
-        isPressConfirm = false;
     }
 }
