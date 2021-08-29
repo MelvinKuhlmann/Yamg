@@ -61,6 +61,9 @@ MonoBehaviour:
   OnNonDamageableHit:
     m_PersistentCalls:
       m_Calls: []
+  dataSettings:
+    dataTag: efea8dc4-492b-4e5c-9ba6-c6824e9a3a2c
+    persistenceType: 3
 --- !u!1 &6735532928321065007
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +80,7 @@ GameObject:
   - component: {fileID: 1552196274274254263}
   - component: {fileID: 6327199748289797945}
   - component: {fileID: 3033263144778391731}
+  - component: {fileID: 1641762290609085562}
   m_Layer: 9
   m_Name: Crawlid
   m_TagString: Untagged
@@ -271,7 +275,6 @@ MonoBehaviour:
   meleeAttackAudio: {fileID: 0}
   dieAudio: {fileID: 0}
   footStepAudio: {fileID: 0}
-  flickeringDuration: 0
 --- !u!114 &3033263144778391731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,12 +326,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1641762290609085562}
+        m_TargetAssemblyTypeName: MoneyPool, Assembly-CSharp
+        m_MethodName: SpawnAmount
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGainHealth:
     m_PersistentCalls:
       m_Calls: []
   dataSettings:
     dataTag: 
     persistenceType: 0
+--- !u!114 &1641762290609085562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735532928321065007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14922059625f27439ef2e70150182b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 639039653732981856, guid: 107ef23026c03a9468e1526fd0f9a190, type: 3}
+  initialPoolCount: 2
+  rangeMin: -5
+  rangeMax: 5
+  forceMin: 5
+  forceMax: 10
 --- !u!1 &8968182385081225789
 GameObject:
   m_ObjectHideFlags: 0

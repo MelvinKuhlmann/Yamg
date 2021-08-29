@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 9015354429785608494}
   - component: {fileID: 9222168962872779625}
   - component: {fileID: 1793750293230082224}
+  - component: {fileID: 4010480919026688901}
   m_Layer: 9
   m_Name: Chomper
   m_TagString: Untagged
@@ -326,12 +327,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4010480919026688901}
+        m_TargetAssemblyTypeName: MoneyPool, Assembly-CSharp
+        m_MethodName: SpawnAmount
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGainHealth:
     m_PersistentCalls:
       m_Calls: []
   dataSettings:
     dataTag: 
     persistenceType: 0
+--- !u!114 &4010480919026688901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6960653160666988832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14922059625f27439ef2e70150182b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 639039653732981856, guid: 107ef23026c03a9468e1526fd0f9a190, type: 3}
+  initialPoolCount: 3
+  rangeMin: -5
+  rangeMax: 5
+  forceMin: 5
+  forceMax: 10
 --- !u!1 &7960057279493605009
 GameObject:
   m_ObjectHideFlags: 0

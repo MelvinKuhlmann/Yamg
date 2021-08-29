@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MoneyPool : ObjectPool<MoneyPool, MoneyObject, Vector2>
 {
-    public float rangeMin = -10f;
-    public float rangeMax = 10f;
-    public float forceMin = 8f;
+    public float rangeMin = -5f;
+    public float rangeMax = 5f;
+    public float forceMin = 5f;
     public float forceMax = 10f;
 
     static protected Dictionary<GameObject, MoneyPool> s_PoolInstances = new Dictionary<GameObject, MoneyPool>();
