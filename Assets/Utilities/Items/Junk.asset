@@ -15,6 +15,6 @@ MonoBehaviour:
   id: -2
   itemName: Junk
   description: Troep
-  buyValue: 100
+  buyValue: 3
   sellValue: 2
   sprite: {fileID: -755620296721411651, guid: 4f9babc4e315c4841b3a34d17d949b0b, type: 3}

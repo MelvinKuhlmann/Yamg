@@ -1,38 +1,35 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ShopItem : MonoBehaviour
 {
     public ShopInventoryController controller;
     public GameObject selectedIcon;
-    public Animator animator;
     public int thisIndex;
-    [SerializeField] GameObject menuPanelToOpen;
+    public Image icon, moneyIcon;
+    public TMP_Text valueLabel;
+    public Material materialItemLocked;
+    public Material materialItemUnlocked;
+    [HideInInspector]
+    public Item item;
 
     void Update()
     {
-        if (controller.index == thisIndex)
-        {
-            selectedIcon.SetActive(true);
-            // animator.SetBool("selected", true);
-            if (controller.isPressConfirm)
-            {
-                //  animator.SetBool("pressed", true);
-                if (menuPanelToOpen != null)
-                {
+        selectedIcon.SetActive(controller.index == thisIndex);
+    }
 
-                    controller.gameObject.SetActive(false);
-                    menuPanelToOpen.SetActive(true);
-                }
-            }
-            /*  else if (animator.GetBool("pressed"))
-              {
-                  animator.SetBool("pressed", false);
-              }*/
-        }
-        else
+    public void UpdateState()
+    {
+        icon.sprite = item.sprite;
+        icon.material = materialItemUnlocked;
+        moneyIcon.sprite = controller.moneyItem.sprite;
+        moneyIcon.material = materialItemUnlocked;
+        valueLabel.text = item.buyValue.ToString();
+        if (controller.inventoryController.GetItemAmount(controller.moneyItem) < item.buyValue)
         {
-            selectedIcon.SetActive(false);
-            //  animator.SetBool("selected", false);
+            icon.material = materialItemLocked;
+            moneyIcon.material = materialItemLocked;
         }
     }
 }

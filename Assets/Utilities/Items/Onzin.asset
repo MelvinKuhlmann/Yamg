@@ -17,4 +17,4 @@ MonoBehaviour:
   description: Gewoon een onzin item
   buyValue: 5
   sellValue: 5
-  sprite: {fileID: 21300000, guid: 62e4d070156482a4995f75774447f83d, type: 3}
+  sprite: {fileID: -2599909639219421642, guid: 4f9babc4e315c4841b3a34d17d949b0b, type: 3}

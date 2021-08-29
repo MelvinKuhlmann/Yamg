@@ -686,11 +686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 533641687706131527, guid: 691eb634063a8b54a85fc32842d34159, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.96
+      value: 14.97
       objectReference: {fileID: 0}
     - target: {fileID: 533641687706131527, guid: 691eb634063a8b54a85fc32842d34159, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.03
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 533641687706131527, guid: 691eb634063a8b54a85fc32842d34159, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6503,41 +6503,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1951122030}
     - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: moneyItem
-      value: 
-      objectReference: {fileID: 11400000, guid: 92afa6eebf624bc43a4402804774efc4, type: 2}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: shopItemPrefab
-      value: 
-      objectReference: {fileID: 939067737042082325, guid: 8a9a361727ebb3b4ca6c0932d7e1df5e, type: 3}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
       propertyPath: inventoryController
       value: 
       objectReference: {fileID: 1951122026}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: OnItemBuy.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: OnItemBuy.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: OnItemBuy.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1951122026}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: OnItemBuy.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1951122025}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: OnItemBuy.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564820228931861870, guid: 37496ad955142094bbb65c5913529a35, type: 3}
-      propertyPath: OnItemBuy.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: InventoryController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 5564820229497180433, guid: 37496ad955142094bbb65c5913529a35, type: 3}
       propertyPath: m_Name
       value: Shop

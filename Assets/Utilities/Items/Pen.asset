@@ -15,6 +15,6 @@ MonoBehaviour:
   id: -3
   itemName: Pen
   description: Just a pencil
-  buyValue: 500
+  buyValue: 2
   sellValue: 199
   sprite: {fileID: 21300000, guid: 7afb1afb34b8d3c489f5ee2baa11f88f, type: 3}
