@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Utilities/_TemplateScene.unity
     guid: acbf70dea831240478ab8a8572f31d7a
+  - enabled: 1
+    path: Assets/Scenes/blabla.unity
+    guid: 0b1590fd1ce043d49876ec43d1b6aeeb
   m_configObjects: {}
