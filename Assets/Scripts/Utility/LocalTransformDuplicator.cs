@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-//duplicate the given transform position, rotation and scale when this object get enable
-public class LocalTransformDuplicator : MonoBehaviour
+namespace YAMG
 {
-    public Transform targetTrasnform;
-
-    private void OnEnable()
+    //duplicate the given transform position, rotation and scale when this object get enable
+    public class LocalTransformDuplicator : MonoBehaviour
     {
-        transform.localScale = targetTrasnform.localScale;
-        transform.localRotation = targetTrasnform.localRotation;
-        transform.localPosition = targetTrasnform.localPosition;
+        public Transform targetTrasnform;
+
+        private void OnEnable()
+        {
+            transform.localScale = targetTrasnform.localScale;
+            transform.localRotation = targetTrasnform.localRotation;
+            transform.localPosition = targetTrasnform.localPosition;
+        }
     }
 }

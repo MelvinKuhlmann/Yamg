@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
 
-public class SceneNameAttribute : PropertyAttribute
-{ }
+namespace YAMG
+{
+    public class SceneNameAttribute : PropertyAttribute
+    { }
+}

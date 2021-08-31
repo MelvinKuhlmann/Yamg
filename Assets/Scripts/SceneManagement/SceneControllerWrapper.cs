@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Gamekit2D
+namespace YAMG
 {
     public class SceneControllerWrapper : MonoBehaviour
     {

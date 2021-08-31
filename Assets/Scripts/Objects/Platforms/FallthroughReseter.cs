@@ -1,27 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-public class FallthroughReseter : MonoBehaviour
+namespace YAMG
 {
-    public void StartFall(PlatformEffector2D effector)
+    public class FallthroughReseter : MonoBehaviour
     {
-        StartCoroutine(FallCoroutine(effector));
-    }
+        public void StartFall(PlatformEffector2D effector)
+        {
+            StartCoroutine(FallCoroutine(effector));
+        }
 
-    IEnumerator FallCoroutine(PlatformEffector2D effector)
-    {
-        int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
+        IEnumerator FallCoroutine(PlatformEffector2D effector)
+        {
+            int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
 
-        effector.colliderMask &= ~playerLayerMask;
-        gameObject.layer = LayerMask.NameToLayer("Default");
+            effector.colliderMask &= ~playerLayerMask;
+            gameObject.layer = LayerMask.NameToLayer("Default");
 
-        yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f);
 
-        effector.colliderMask |= playerLayerMask;
-        gameObject.layer = LayerMask.NameToLayer("Platform");
+            effector.colliderMask |= playerLayerMask;
+            gameObject.layer = LayerMask.NameToLayer("Platform");
 
-        Destroy(this);
+            Destroy(this);
+        }
     }
 }

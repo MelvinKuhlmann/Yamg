@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RespawnSMB : SceneLinkedSMB<PlayerCharacter>
+namespace YAMG
 {
-    public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class RespawnSMB : SceneLinkedSMB<PlayerCharacter>
     {
-        base.OnSLStateEnter(animator, stateInfo, layerIndex);
+        public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            base.OnSLStateEnter(animator, stateInfo, layerIndex);
 
-        m_MonoBehaviour.SetMoveVector(Vector2.zero);
+            m_MonoBehaviour.SetMoveVector(Vector2.zero);
+        }
     }
 }

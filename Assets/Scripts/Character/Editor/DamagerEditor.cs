@@ -2,97 +2,106 @@
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-[CustomEditor(typeof(Damager))]
-public class DamagerEditor : DataPersisterEditor
+namespace YAMG
 {
-    private bool m_IsPrefab = false;
-    private bool m_IsNotInstance = false;
-
-    static BoxBoundsHandle s_BoxBoundsHandle = new BoxBoundsHandle();
-    static Color s_EnabledColor = Color.green + Color.grey;
-
-    SerializedProperty m_DamageProp;
-    SerializedProperty m_OffsetProp;
-    SerializedProperty m_SizeProp;
-    SerializedProperty m_OffsetBasedOnSpriteFacingProp;
-    SerializedProperty m_SpriteRendererProp;
-    SerializedProperty m_CanHitTriggersProp;
-    SerializedProperty m_ForceRespawnProp;
-    SerializedProperty m_IgnoreInvincibilityProp;
-    SerializedProperty m_HittableLayersProp;
-    SerializedProperty m_OnDamageableHitProp;
-    SerializedProperty m_OnNonDamageableHitProp;
-
-    protected override void OnEnable()
+    [CustomEditor(typeof(Damager))]
+    public class DamagerEditor : DataPersisterEditor
     {
-        base.OnEnable();
+        private bool m_IsPrefab = false;
+        private bool m_IsNotInstance = false;
 
-        m_IsPrefab = AssetDatabase.Contains(target);
-        m_IsNotInstance = PrefabUtility.GetCorrespondingObjectFromSource(target) == null;
+        static BoxBoundsHandle s_BoxBoundsHandle = new BoxBoundsHandle();
+        static Color s_EnabledColor = Color.green + Color.grey;
 
-        m_DamageProp = serializedObject.FindProperty("damage");
-        m_OffsetProp = serializedObject.FindProperty("offset");
-        m_SizeProp = serializedObject.FindProperty("size");
-        m_OffsetBasedOnSpriteFacingProp = serializedObject.FindProperty("offsetBasedOnSpriteFacing");
-        m_SpriteRendererProp = serializedObject.FindProperty("spriteRenderer");
-        m_CanHitTriggersProp = serializedObject.FindProperty("canHitTriggers");
-        m_ForceRespawnProp = serializedObject.FindProperty("forceRespawn");
-        m_IgnoreInvincibilityProp = serializedObject.FindProperty("ignoreInvincibility");
-        m_HittableLayersProp = serializedObject.FindProperty("hittableLayers");
-        m_OnDamageableHitProp = serializedObject.FindProperty("OnDamageableHit");
-        m_OnNonDamageableHitProp = serializedObject.FindProperty("OnNonDamageableHit");
-    }
+        SerializedProperty m_DamageProp;
+        SerializedProperty m_OffsetProp;
+        SerializedProperty m_SizeProp;
+        SerializedProperty m_OffsetBasedOnSpriteFacingProp;
+        SerializedProperty m_SpriteRendererProp;
+        SerializedProperty m_CanHitTriggersProp;
+        SerializedProperty m_ForceRespawnProp;
+        SerializedProperty m_IgnoreInvincibilityProp;
+        SerializedProperty m_HittableLayersProp;
+        SerializedProperty m_OnDamageableHitProp;
+        SerializedProperty m_OnNonDamageableHitProp;
 
-    public override void OnInspectorGUI()
-    {
-        if (m_IsPrefab || m_IsNotInstance)
-            base.OnInspectorGUI();
-        else
+        protected override void OnEnable()
         {
-            serializedObject.Update();
+            base.OnEnable();
 
-            EditorGUILayout.PropertyField(m_DamageProp);
-            EditorGUILayout.PropertyField(m_OffsetProp);
-            EditorGUILayout.PropertyField(m_SizeProp);
-            EditorGUILayout.PropertyField(m_OffsetBasedOnSpriteFacingProp);
-            if (m_OffsetBasedOnSpriteFacingProp.boolValue)
-                EditorGUILayout.PropertyField(m_SpriteRendererProp);
-            EditorGUILayout.PropertyField(m_CanHitTriggersProp);
-            EditorGUILayout.PropertyField(m_ForceRespawnProp);
-            EditorGUILayout.PropertyField(m_IgnoreInvincibilityProp);
-            EditorGUILayout.PropertyField(m_HittableLayersProp);
-            EditorGUILayout.PropertyField(m_OnDamageableHitProp);
-            EditorGUILayout.PropertyField(m_OnNonDamageableHitProp);
+            m_IsPrefab = AssetDatabase.Contains(target);
+            m_IsNotInstance = PrefabUtility.GetCorrespondingObjectFromSource(target) == null;
 
-            serializedObject.ApplyModifiedProperties();
+            m_DamageProp = serializedObject.FindProperty("damage");
+            m_OffsetProp = serializedObject.FindProperty("offset");
+            m_SizeProp = serializedObject.FindProperty("size");
+            m_OffsetBasedOnSpriteFacingProp = serializedObject.FindProperty("offsetBasedOnSpriteFacing");
+            m_SpriteRendererProp = serializedObject.FindProperty("spriteRenderer");
+            m_CanHitTriggersProp = serializedObject.FindProperty("canHitTriggers");
+            m_ForceRespawnProp = serializedObject.FindProperty("forceRespawn");
+            m_IgnoreInvincibilityProp = serializedObject.FindProperty("ignoreInvincibility");
+            m_HittableLayersProp = serializedObject.FindProperty("hittableLayers");
+            m_OnDamageableHitProp = serializedObject.FindProperty("OnDamageableHit");
+            m_OnNonDamageableHitProp = serializedObject.FindProperty("OnNonDamageableHit");
         }
-    }
 
-    void OnSceneGUI()
-    {
-        Damager damager = (Damager)target;
-
-        if (!damager.enabled)
-            return;
-
-        Matrix4x4 handleMatrix = damager.transform.localToWorldMatrix;
-        handleMatrix.SetRow(0, Vector4.Scale(handleMatrix.GetRow(0), new Vector4(1f, 1f, 0f, 1f)));
-        handleMatrix.SetRow(1, Vector4.Scale(handleMatrix.GetRow(1), new Vector4(1f, 1f, 0f, 1f)));
-        handleMatrix.SetRow(2, new Vector4(0f, 0f, 1f, damager.transform.position.z));
-        using (new Handles.DrawingScope(handleMatrix))
+        public override void OnInspectorGUI()
         {
-            s_BoxBoundsHandle.center = damager.offset;
-            s_BoxBoundsHandle.size = damager.size;
-
-            s_BoxBoundsHandle.SetColor(s_EnabledColor);
-            EditorGUI.BeginChangeCheck();
-            s_BoxBoundsHandle.DrawHandle();
-            if (EditorGUI.EndChangeCheck())
+            if (m_IsPrefab || m_IsNotInstance)
+                base.OnInspectorGUI();
+            else
             {
-                Undo.RecordObject(damager, "Modify Damager");
+              //  serializedObject.Update();
 
-                damager.size = s_BoxBoundsHandle.size;
-                damager.offset = s_BoxBoundsHandle.center;
+                EditorGUILayout.PropertyField(m_DamageProp);
+                EditorGUILayout.PropertyField(m_OffsetProp);
+                EditorGUILayout.PropertyField(m_SizeProp);
+                EditorGUILayout.PropertyField(m_OffsetBasedOnSpriteFacingProp);
+                if (m_OffsetBasedOnSpriteFacingProp.boolValue)
+                    EditorGUILayout.PropertyField(m_SpriteRendererProp);
+                EditorGUILayout.PropertyField(m_CanHitTriggersProp);
+                EditorGUILayout.PropertyField(m_ForceRespawnProp);
+                EditorGUILayout.PropertyField(m_IgnoreInvincibilityProp);
+                EditorGUILayout.PropertyField(m_HittableLayersProp);
+                EditorGUILayout.PropertyField(m_OnDamageableHitProp);
+                EditorGUILayout.PropertyField(m_OnNonDamageableHitProp);
+
+                EditorGUILayout.HelpBox("Modify the prefab and not this instance", MessageType.Warning);
+                if (GUILayout.Button("Select Prefab"))
+                {
+                    Selection.activeObject = PrefabUtility.GetCorrespondingObjectFromSource(target);
+                }
+
+                serializedObject.ApplyModifiedProperties();
+            }
+        }
+
+        void OnSceneGUI()
+        {
+            Damager damager = (Damager)target;
+
+            if (!damager.enabled)
+                return;
+
+            Matrix4x4 handleMatrix = damager.transform.localToWorldMatrix;
+            handleMatrix.SetRow(0, Vector4.Scale(handleMatrix.GetRow(0), new Vector4(1f, 1f, 0f, 1f)));
+            handleMatrix.SetRow(1, Vector4.Scale(handleMatrix.GetRow(1), new Vector4(1f, 1f, 0f, 1f)));
+            handleMatrix.SetRow(2, new Vector4(0f, 0f, 1f, damager.transform.position.z));
+            using (new Handles.DrawingScope(handleMatrix))
+            {
+                s_BoxBoundsHandle.center = damager.offset;
+                s_BoxBoundsHandle.size = damager.size;
+
+                s_BoxBoundsHandle.SetColor(s_EnabledColor);
+                EditorGUI.BeginChangeCheck();
+                s_BoxBoundsHandle.DrawHandle();
+                if (EditorGUI.EndChangeCheck())
+                {
+                    Undo.RecordObject(damager, "Modify Damager");
+
+                    damager.size = s_BoxBoundsHandle.size;
+                    damager.offset = s_BoxBoundsHandle.center;
+                }
             }
         }
     }

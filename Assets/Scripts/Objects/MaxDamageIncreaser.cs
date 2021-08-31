@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class MaxDamageIncreaser : MonoBehaviour
+namespace YAMG
 {
-    public int damageAmount = 1;
-    public UnityEvent OnIncreasingDamage;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public class MaxDamageIncreaser : MonoBehaviour
     {
-        if (other.gameObject == PlayerCharacter.PlayerInstance.gameObject)
+        public int damageAmount = 1;
+        public UnityEvent OnIncreasingDamage;
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            PlayerCharacter.PlayerInstance.meleeDamager.IncreaseDamage(damageAmount);
-            OnIncreasingDamage.Invoke();
+            if (other.gameObject == PlayerCharacter.PlayerInstance.gameObject)
+            {
+                PlayerCharacter.PlayerInstance.meleeDamager.IncreaseDamage(damageAmount);
+                OnIncreasingDamage.Invoke();
+            }
         }
     }
 }

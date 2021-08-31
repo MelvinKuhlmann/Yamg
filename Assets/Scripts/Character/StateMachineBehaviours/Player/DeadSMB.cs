@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class DeadSMB : SceneLinkedSMB<PlayerCharacter>
+namespace YAMG
 {
-    public override void OnSLStatePostEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class DeadSMB : SceneLinkedSMB<PlayerCharacter>
     {
-        m_MonoBehaviour.SetMoveVector(m_MonoBehaviour.GetHurtDirection() * m_MonoBehaviour.hurtJumpSpeed);
-    }
+        public override void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            m_MonoBehaviour.SetMoveVector(m_MonoBehaviour.GetHurtDirection() * m_MonoBehaviour.hurtJumpSpeed);
+        }
 
-    public override void OnSLStateNoTransitionUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        m_MonoBehaviour.CheckForGrounded();
-        m_MonoBehaviour.AirborneVerticalMovement();
-    }
+        public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            m_MonoBehaviour.CheckForGrounded();
+            m_MonoBehaviour.AirborneVerticalMovement();
+        }
 
-    public override void OnSLStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        m_MonoBehaviour.SetMoveVector(Vector2.zero);
+        public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            m_MonoBehaviour.SetMoveVector(Vector2.zero);
+        }
     }
 }

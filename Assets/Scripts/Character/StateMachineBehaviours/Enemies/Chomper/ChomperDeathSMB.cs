@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public class ChomperDeathSMB : SceneLinkedSMB<EnemyBehaviour>
+namespace YAMG
 {
-    public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class ChomperDeathSMB : SceneLinkedSMB<EnemyBehaviour>
     {
-        m_MonoBehaviour.DisableDamage();
+        public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            m_MonoBehaviour.DisableDamage();
+        }
     }
 }

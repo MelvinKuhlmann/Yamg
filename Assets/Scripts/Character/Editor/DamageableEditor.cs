@@ -1,5 +1,7 @@
 ﻿using UnityEditor;
-
-[CustomEditor(typeof(Damageable))]
-public class DamageableEditor : DataPersisterEditor
-{ }
+namespace YAMG
+{
+    [CustomEditor(typeof(Damageable))]
+    public class DamageableEditor : DataPersisterEditor
+    { }
+}

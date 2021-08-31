@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class SetMaterialRenderQueue : MonoBehaviour
+namespace YAMG
 {
-
-    public Material material;
-    public int queueOverrideValue;
-
-    void Start()
+    public class SetMaterialRenderQueue : MonoBehaviour
     {
-        material.renderQueue = queueOverrideValue;
-    }
 
+        public Material material;
+        public int queueOverrideValue;
+
+        void Start()
+        {
+            material.renderQueue = queueOverrideValue;
+        }
+
+    }
 }

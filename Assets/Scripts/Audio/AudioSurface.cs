@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class AudioSurface : MonoBehaviour
+namespace YAMG
 {
-    public TileBase tile;
+    public class AudioSurface : MonoBehaviour
+    {
+        public TileBase tile;
+    }
 }

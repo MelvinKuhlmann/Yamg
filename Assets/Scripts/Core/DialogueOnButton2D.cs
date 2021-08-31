@@ -2,48 +2,51 @@
 using UnityEngine.Events;
 using System.Collections;
 
-public class DialogueOnButton2D : InteractOnTrigger2D
+namespace YAMG
 {
-    public UnityEvent OnButtonPress;
-    public UnityEvent OnButtonPressAfterPreConditions;
-
-    bool m_CanExecuteButtons;
-    bool m_preConditionsMet = false;
-
-    protected override void ExecuteOnEnter(Collider2D other)
+    public class DialogueOnButton2D : InteractOnTrigger2D
     {
-        m_CanExecuteButtons = true;
-        OnEnter.Invoke();
-    }
+        public UnityEvent OnButtonPress;
+        public UnityEvent OnButtonPressAfterPreConditions;
 
-    protected override void ExecuteOnExit(Collider2D other)
-    {
-        m_CanExecuteButtons = false;
-        m_preConditionsMet = false;
-        OnExit.Invoke();
-    }
+        bool m_CanExecuteButtons;
+        bool m_preConditionsMet = false;
 
-    void Update()
-    {
-        if (m_CanExecuteButtons)
+        protected override void ExecuteOnEnter(Collider2D other)
         {
-            if (OnButtonPress.GetPersistentEventCount() > 0 && PlayerInput.Instance.Interact.Down && !m_preConditionsMet)
+            m_CanExecuteButtons = true;
+            OnEnter.Invoke();
+        }
+
+        protected override void ExecuteOnExit(Collider2D other)
+        {
+            m_CanExecuteButtons = false;
+            m_preConditionsMet = false;
+            OnExit.Invoke();
+        }
+
+        void Update()
+        {
+            if (m_CanExecuteButtons)
             {
-                OnButtonPress.Invoke();
-                m_preConditionsMet = true;
-            }
-            else if (OnButtonPressAfterPreConditions.GetPersistentEventCount() > 0 && PlayerInput.Instance.Interact.Down && m_preConditionsMet)
-            {
-                OnButtonPressAfterPreConditions.Invoke();
-                // This avoids being retriggered again in the same frame update
-                StartCoroutine(WaitForRetrigger());
+                if (OnButtonPress.GetPersistentEventCount() > 0 && PlayerInput.Instance.Interact.Down && !m_preConditionsMet)
+                {
+                    OnButtonPress.Invoke();
+                    m_preConditionsMet = true;
+                }
+                else if (OnButtonPressAfterPreConditions.GetPersistentEventCount() > 0 && PlayerInput.Instance.Interact.Down && m_preConditionsMet)
+                {
+                    OnButtonPressAfterPreConditions.Invoke();
+                    // This avoids being retriggered again in the same frame update
+                    StartCoroutine(WaitForRetrigger());
+                }
             }
         }
-    }
 
-    private IEnumerator WaitForRetrigger()
-    {
-        yield return new WaitForSeconds(0.1f);
-        m_preConditionsMet = false;
+        private IEnumerator WaitForRetrigger()
+        {
+            yield return new WaitForSeconds(0.1f);
+            m_preConditionsMet = false;
+        }
     }
 }

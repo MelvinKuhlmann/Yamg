@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-
-public static class LayerMaskExtensions
+namespace YAMG
 {
-    public static bool Contains(this LayerMask layers, GameObject gameObject)
+    public static class LayerMaskExtensions
     {
-        return 0 != (layers.value & 1 << gameObject.layer);
+        public static bool Contains(this LayerMask layers, GameObject gameObject)
+        {
+            return 0 != (layers.value & 1 << gameObject.layer);
+        }
     }
 }

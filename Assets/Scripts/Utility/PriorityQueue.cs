@@ -1,110 +1,112 @@
 using System;
 using System.Collections.Generic;
 
-
-/// <summary>
-/// A fast priority queue or heap implementation.
-/// </summary>
-public class PriorityQueue<T> where T : IComparable<T>
+namespace YAMG
 {
     /// <summary>
-    /// The internal list used by the queue. Use with care.
+    /// A fast priority queue or heap implementation.
     /// </summary>
-    public readonly List<T> items;
-
-    public bool Contains(T item)
+    public class PriorityQueue<T> where T : IComparable<T>
     {
-        return items.Contains(item);
-    }
+        /// <summary>
+        /// The internal list used by the queue. Use with care.
+        /// </summary>
+        public readonly List<T> items;
 
-    public PriorityQueue()
-    {
-        items = new List<T>();
-    }
-
-    public bool Empty
-    {
-        get { return items.Count == 0; }
-    }
-
-    public T First
-    {
-        get
+        public bool Contains(T item)
         {
-            if (items.Count > 1)
+            return items.Contains(item);
+        }
+
+        public PriorityQueue()
+        {
+            items = new List<T>();
+        }
+
+        public bool Empty
+        {
+            get { return items.Count == 0; }
+        }
+
+        public T First
+        {
+            get
             {
-                return items[0];
+                if (items.Count > 1)
+                {
+                    return items[0];
+                }
+                return items[items.Count - 1];
             }
-            return items[items.Count - 1];
         }
-    }
 
-    public void Push(T item)
-    {
-        lock (this)
+        public void Push(T item)
         {
-            items.Add(item);
-            SiftDown(0, items.Count - 1);
-        }
-    }
-
-    public T Pop()
-    {
-        lock (this)
-        {
-            T item;
-            var last = items[items.Count - 1];
-            items.RemoveAt(items.Count - 1);
-            if (items.Count > 0)
+            lock (this)
             {
-                item = items[0];
-                items[0] = last;
-                SiftUp(0);
+                items.Add(item);
+                SiftDown(0, items.Count - 1);
             }
-            else
+        }
+
+        public T Pop()
+        {
+            lock (this)
             {
-                item = last;
+                T item;
+                var last = items[items.Count - 1];
+                items.RemoveAt(items.Count - 1);
+                if (items.Count > 0)
+                {
+                    item = items[0];
+                    items[0] = last;
+                    SiftUp(0);
+                }
+                else
+                {
+                    item = last;
+                }
+                return item;
             }
-            return item;
         }
-    }
 
-    int Compare(T A, T B)
-    {
-        return A.CompareTo(B);
-    }
-
-    void SiftDown(int startpos, int pos)
-    {
-        var newitem = items[pos];
-        while (pos > startpos)
+        int Compare(T A, T B)
         {
-            var parentpos = (pos - 1) >> 1;
-            var parent = items[parentpos];
-            if (Compare(parent, newitem) <= 0)
-                break;
-            items[pos] = parent;
-            pos = parentpos;
+            return A.CompareTo(B);
         }
-        items[pos] = newitem;
-    }
 
-    void SiftUp(int pos)
-    {
-        var endpos = items.Count;
-        var startpos = pos;
-        var newitem = items[pos];
-        var childpos = 2 * pos + 1;
-        while (childpos < endpos)
+        void SiftDown(int startpos, int pos)
         {
-            var rightpos = childpos + 1;
-            if (rightpos < endpos && Compare(items[rightpos], items[childpos]) <= 0)
-                childpos = rightpos;
-            items[pos] = items[childpos];
-            pos = childpos;
-            childpos = 2 * pos + 1;
+            var newitem = items[pos];
+            while (pos > startpos)
+            {
+                var parentpos = (pos - 1) >> 1;
+                var parent = items[parentpos];
+                if (Compare(parent, newitem) <= 0)
+                    break;
+                items[pos] = parent;
+                pos = parentpos;
+            }
+            items[pos] = newitem;
         }
-        items[pos] = newitem;
-        SiftDown(startpos, pos);
+
+        void SiftUp(int pos)
+        {
+            var endpos = items.Count;
+            var startpos = pos;
+            var newitem = items[pos];
+            var childpos = 2 * pos + 1;
+            while (childpos < endpos)
+            {
+                var rightpos = childpos + 1;
+                if (rightpos < endpos && Compare(items[rightpos], items[childpos]) <= 0)
+                    childpos = rightpos;
+                items[pos] = items[childpos];
+                pos = childpos;
+                childpos = 2 * pos + 1;
+            }
+            items[pos] = newitem;
+            SiftDown(startpos, pos);
+        }
     }
 }

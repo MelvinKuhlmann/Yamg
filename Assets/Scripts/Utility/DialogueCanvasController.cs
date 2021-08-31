@@ -2,50 +2,53 @@
 using TMPro;
 using UnityEngine;
 
-public class DialogueCanvasController : MonoBehaviour
+namespace YAMG
 {
-    public Animator animator;
-    public TextMeshProUGUI textMeshProUGUI;
-
-    protected Coroutine m_DeactivationCoroutine;
-
-    protected readonly int m_HashActivePara = Animator.StringToHash("Active");
-
-    IEnumerator SetAnimatorParameterWithDelay(float delay)
+    public class DialogueCanvasController : MonoBehaviour
     {
-        yield return new WaitForSeconds(delay);
-        textMeshProUGUI.text = "";
-        animator.SetBool(m_HashActivePara, false);
-    }
+        public Animator animator;
+        public TextMeshProUGUI textMeshProUGUI;
 
-    public void ActivateCanvasWithText(string text)
-    {
-        if (m_DeactivationCoroutine != null)
+        protected Coroutine m_DeactivationCoroutine;
+
+        protected readonly int m_HashActivePara = Animator.StringToHash("Active");
+
+        IEnumerator SetAnimatorParameterWithDelay(float delay)
         {
-            StopCoroutine(m_DeactivationCoroutine);
-            m_DeactivationCoroutine = null;
+            yield return new WaitForSeconds(delay);
+            textMeshProUGUI.text = "";
+            animator.SetBool(m_HashActivePara, false);
         }
 
-        gameObject.SetActive(true);
-        animator.SetBool(m_HashActivePara, true);
-        textMeshProUGUI.text = text;
-    }
-
-    public void ActivateCanvasWithTranslatedText(string phraseKey)
-    {
-        if (m_DeactivationCoroutine != null)
+        public void ActivateCanvasWithText(string text)
         {
-            StopCoroutine(m_DeactivationCoroutine);
-            m_DeactivationCoroutine = null;
+            if (m_DeactivationCoroutine != null)
+            {
+                StopCoroutine(m_DeactivationCoroutine);
+                m_DeactivationCoroutine = null;
+            }
+
+            gameObject.SetActive(true);
+            animator.SetBool(m_HashActivePara, true);
+            textMeshProUGUI.text = text;
         }
 
-        gameObject.SetActive(true);
-        animator.SetBool(m_HashActivePara, true);
-        textMeshProUGUI.text = Translator.Instance[phraseKey];
-    }
+        public void ActivateCanvasWithTranslatedText(string phraseKey)
+        {
+            if (m_DeactivationCoroutine != null)
+            {
+                StopCoroutine(m_DeactivationCoroutine);
+                m_DeactivationCoroutine = null;
+            }
 
-    public void DeactivateCanvasWithDelay(float delay)
-    {
-        m_DeactivationCoroutine = StartCoroutine(SetAnimatorParameterWithDelay(delay));
+            gameObject.SetActive(true);
+            animator.SetBool(m_HashActivePara, true);
+            textMeshProUGUI.text = Translator.Instance[phraseKey];
+        }
+
+        public void DeactivateCanvasWithDelay(float delay)
+        {
+            m_DeactivationCoroutine = StartCoroutine(SetAnimatorParameterWithDelay(delay));
+        }
     }
 }

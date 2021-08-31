@@ -1,47 +1,50 @@
 ﻿using UnityEngine;
 
-public class MoneyChest : MonoBehaviour, IDataPersister
+namespace YAMG
 {
-    public GameObject incompletedState;
-    public GameObject completedState;
-    public DataSettings dataSettings;
-
-    void OnEnable()
+    public class MoneyChest : MonoBehaviour, IDataPersister
     {
-        PersistentDataManager.RegisterPersister(this);
-    }
+        public GameObject incompletedState;
+        public GameObject completedState;
+        public DataSettings dataSettings;
 
-    void OnDisable()
-    {
-        PersistentDataManager.UnregisterPersister(this);
-    }
+        void OnEnable()
+        {
+            PersistentDataManager.RegisterPersister(this);
+        }
 
-    public void Save()
-    {
-        PersistentDataManager.SetDirty(this);
-    }
+        void OnDisable()
+        {
+            PersistentDataManager.UnregisterPersister(this);
+        }
 
-    public DataSettings GetDataSettings()
-    {
-        return dataSettings;
-    }
+        public void Save()
+        {
+            PersistentDataManager.SetDirty(this);
+        }
 
-    public void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType)
-    {
-        dataSettings.dataTag = dataTag;
-        dataSettings.persistenceType = persistenceType;
-    }
+        public DataSettings GetDataSettings()
+        {
+            return dataSettings;
+        }
 
-    public Data SaveData()
-    {
-        bool isCompleted = !incompletedState.activeInHierarchy && completedState.activeInHierarchy;
-        return new Data<bool>(isCompleted);
-    }
+        public void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType)
+        {
+            dataSettings.dataTag = dataTag;
+            dataSettings.persistenceType = persistenceType;
+        }
 
-    public void LoadData(Data data)
-    {
-        Data<bool> isCompleted = (Data<bool>)data;
-        incompletedState.SetActive(!isCompleted.value);
-        completedState.SetActive(isCompleted.value);
+        public Data SaveData()
+        {
+            bool isCompleted = !incompletedState.activeInHierarchy && completedState.activeInHierarchy;
+            return new Data<bool>(isCompleted);
+        }
+
+        public void LoadData(Data data)
+        {
+            Data<bool> isCompleted = (Data<bool>)data;
+            incompletedState.SetActive(!isCompleted.value);
+            completedState.SetActive(isCompleted.value);
+        }
     }
 }

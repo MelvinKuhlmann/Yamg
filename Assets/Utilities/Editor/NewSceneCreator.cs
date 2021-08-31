@@ -3,115 +3,118 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewSceneCreator : EditorWindow
+namespace YAMG
 {
-    protected string m_NewSceneName;
-
-    protected readonly GUIContent m_NameContent = new GUIContent("New Scene Name");
-
-    [MenuItem("Kit Tools/Create New Scene...", priority = 100)]
-    static void Init()
+    public class NewSceneCreator : EditorWindow
     {
-        NewSceneCreator window = GetWindow<NewSceneCreator>();
-        window.Show();
-        window.m_NewSceneName = "NewScene";
-    }
+        protected string m_NewSceneName;
 
-    void OnGUI()
-    {
-        m_NewSceneName = EditorGUILayout.TextField(m_NameContent, m_NewSceneName);
+        protected readonly GUIContent m_NameContent = new GUIContent("New Scene Name");
 
-        if (GUILayout.Button("Create"))
-            CheckAndCreateScene();
-    }
-
-    protected void CheckAndCreateScene()
-    {
-        if (EditorApplication.isPlaying)
+        [MenuItem("Kit Tools/Create New Scene...", priority = 100)]
+        static void Init()
         {
-            Debug.LogWarning("Cannot create scenes while in play mode. Exit play mode first.");
-            return;
+            NewSceneCreator window = GetWindow<NewSceneCreator>();
+            window.Show();
+            window.m_NewSceneName = "NewScene";
         }
 
-        if (string.IsNullOrEmpty(m_NewSceneName))
+        void OnGUI()
         {
-            Debug.LogWarning("Please enter a scene name before creating a scene.");
-            return;
+            m_NewSceneName = EditorGUILayout.TextField(m_NameContent, m_NewSceneName);
+
+            if (GUILayout.Button("Create"))
+                CheckAndCreateScene();
         }
 
-        Scene currentActiveScene = SceneManager.GetActiveScene();
-
-        if (currentActiveScene.isDirty)
+        protected void CheckAndCreateScene()
         {
-            string title = currentActiveScene.name + " Has Been Modified";
-            string message = "Do you want to save the changes you made to " + currentActiveScene.path + "?\nChanges will be lost if you don't save them.";
-            int option = EditorUtility.DisplayDialogComplex(title, message, "Save", "Don't Save", "Cancel");
-
-            if (option == 0)
+            if (EditorApplication.isPlaying)
             {
-                EditorSceneManager.SaveScene(currentActiveScene);
-            }
-            else if (option == 2)
-            {
+                Debug.LogWarning("Cannot create scenes while in play mode. Exit play mode first.");
                 return;
             }
+
+            if (string.IsNullOrEmpty(m_NewSceneName))
+            {
+                Debug.LogWarning("Please enter a scene name before creating a scene.");
+                return;
+            }
+
+            Scene currentActiveScene = SceneManager.GetActiveScene();
+
+            if (currentActiveScene.isDirty)
+            {
+                string title = currentActiveScene.name + " Has Been Modified";
+                string message = "Do you want to save the changes you made to " + currentActiveScene.path + "?\nChanges will be lost if you don't save them.";
+                int option = EditorUtility.DisplayDialogComplex(title, message, "Save", "Don't Save", "Cancel");
+
+                if (option == 0)
+                {
+                    EditorSceneManager.SaveScene(currentActiveScene);
+                }
+                else if (option == 2)
+                {
+                    return;
+                }
+            }
+
+            CreateScene();
         }
 
-        CreateScene();
-    }
-
-    protected void CreateScene()
-    {
-        string[] result = AssetDatabase.FindAssets("_TemplateScene");
-
-        if (result.Length > 0)
+        protected void CreateScene()
         {
-            string newScenePath = "Assets/Scenes/" + m_NewSceneName + ".unity";
-            AssetDatabase.CopyAsset(AssetDatabase.GUIDToAssetPath(result[0]), newScenePath);
-            AssetDatabase.Refresh();
-            Scene newScene = EditorSceneManager.OpenScene(newScenePath, OpenSceneMode.Single);
-            AddSceneToBuildSettings(newScene);
-            Close();
+            string[] result = AssetDatabase.FindAssets("_TemplateScene");
+
+            if (result.Length > 0)
+            {
+                string newScenePath = "Assets/Scenes/" + m_NewSceneName + ".unity";
+                AssetDatabase.CopyAsset(AssetDatabase.GUIDToAssetPath(result[0]), newScenePath);
+                AssetDatabase.Refresh();
+                Scene newScene = EditorSceneManager.OpenScene(newScenePath, OpenSceneMode.Single);
+                AddSceneToBuildSettings(newScene);
+                Close();
+            }
+            else
+            {
+                //Debug.LogError("The template scene <b>_TemplateScene</b> couldn't be found ");
+                EditorUtility.DisplayDialog("Error",
+                    "The scene _TemplateScene was not found in Gamekit2D/Scenes folder. This scene is required by the New Scene Creator.",
+                    "OK");
+            }
         }
-        else
+
+        protected void AddSceneToBuildSettings(Scene scene)
         {
-            //Debug.LogError("The template scene <b>_TemplateScene</b> couldn't be found ");
-            EditorUtility.DisplayDialog("Error",
-                "The scene _TemplateScene was not found in Gamekit2D/Scenes folder. This scene is required by the New Scene Creator.",
-                "OK");
+            EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
+
+            EditorBuildSettingsScene[] newBuildScenes = new EditorBuildSettingsScene[buildScenes.Length + 1];
+            for (int i = 0; i < buildScenes.Length; i++)
+            {
+                newBuildScenes[i] = buildScenes[i];
+            }
+            newBuildScenes[buildScenes.Length] = new EditorBuildSettingsScene(scene.path, true);
+            EditorBuildSettings.scenes = newBuildScenes;
         }
-    }
 
-    protected void AddSceneToBuildSettings(Scene scene)
-    {
-        EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
-
-        EditorBuildSettingsScene[] newBuildScenes = new EditorBuildSettingsScene[buildScenes.Length + 1];
-        for (int i = 0; i < buildScenes.Length; i++)
+        protected GameObject InstantiatePrefab(string folderPath, string prefabName)
         {
-            newBuildScenes[i] = buildScenes[i];
+            GameObject instance = null;
+            string[] prefabFolderPath = { folderPath };
+            string[] guids = AssetDatabase.FindAssets(prefabName, prefabFolderPath);
+
+            if (guids.Length == 0)
+                Debug.LogError("The " + prefabName + " prefab could not be found in " + folderPath + " and could therefore not be instantiated.  Please create one manually.");
+            else if (guids.Length > 1)
+                Debug.LogError("Multiple " + prefabName + " prefabs were found in " + folderPath + " and one could therefore not be instantiated.  Please create one manually.");
+            else
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[0]);
+                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                instance = Instantiate(prefab);
+            }
+
+            return instance;
         }
-        newBuildScenes[buildScenes.Length] = new EditorBuildSettingsScene(scene.path, true);
-        EditorBuildSettings.scenes = newBuildScenes;
-    }
-
-    protected GameObject InstantiatePrefab(string folderPath, string prefabName)
-    {
-        GameObject instance = null;
-        string[] prefabFolderPath = { folderPath };
-        string[] guids = AssetDatabase.FindAssets(prefabName, prefabFolderPath);
-
-        if (guids.Length == 0)
-            Debug.LogError("The " + prefabName + " prefab could not be found in " + folderPath + " and could therefore not be instantiated.  Please create one manually.");
-        else if (guids.Length > 1)
-            Debug.LogError("Multiple " + prefabName + " prefabs were found in " + folderPath + " and one could therefore not be instantiated.  Please create one manually.");
-        else
-        {
-            string path = AssetDatabase.GUIDToAssetPath(guids[0]);
-            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            instance = Instantiate(prefab);
-        }
-
-        return instance;
     }
 }

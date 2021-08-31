@@ -62,8 +62,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   dataSettings:
-    dataTag: efea8dc4-492b-4e5c-9ba6-c6824e9a3a2c
-    persistenceType: 3
+    dataTag: 
+    persistenceType: 0
 --- !u!1 &6735532928321065007
 GameObject:
   m_ObjectHideFlags: 0

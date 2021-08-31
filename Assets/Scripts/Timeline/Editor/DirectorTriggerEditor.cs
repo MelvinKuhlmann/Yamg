@@ -1,5 +1,9 @@
 ﻿using UnityEditor;
 
-[CustomEditor(typeof(DirectorTrigger))]
-public class DirectorTriggerEditor : DataPersisterEditor
-{ }
+namespace YAMG
+{
+
+    [CustomEditor(typeof(DirectorTrigger))]
+    public class DirectorTriggerEditor : DataPersisterEditor
+    { }
+}

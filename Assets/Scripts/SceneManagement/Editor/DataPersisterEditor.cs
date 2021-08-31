@@ -1,28 +1,31 @@
 ﻿using UnityEditor;
 
-public abstract class DataPersisterEditor : Editor
+namespace YAMG
 {
-    IDataPersister m_DataPersister;
-
-    protected virtual void OnEnable()
+    public abstract class DataPersisterEditor : Editor
     {
-        m_DataPersister = (IDataPersister)target;
-    }
+        IDataPersister m_DataPersister;
 
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+        protected virtual void OnEnable()
+        {
+            m_DataPersister = (IDataPersister)target;
+        }
 
-        DataPersisterGUI(m_DataPersister);
-    }
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
 
-    public static void DataPersisterGUI(IDataPersister dataPersister)
-    {
-        DataSettings dataSettings = dataPersister.GetDataSettings();
+            DataPersisterGUI(m_DataPersister);
+        }
 
-        DataSettings.PersistenceType persistenceType = (DataSettings.PersistenceType)EditorGUILayout.EnumPopup("Persistence Type", dataSettings.persistenceType);
-        string dataTag = EditorGUILayout.TextField("Data Tag", dataSettings.dataTag);
+        public static void DataPersisterGUI(IDataPersister dataPersister)
+        {
+            DataSettings dataSettings = dataPersister.GetDataSettings();
 
-        dataPersister.SetDataSettings(dataTag, persistenceType);
+            DataSettings.PersistenceType persistenceType = (DataSettings.PersistenceType)EditorGUILayout.EnumPopup("Persistence Type", dataSettings.persistenceType);
+            string dataTag = EditorGUILayout.TextField("Data Tag", dataSettings.dataTag);
+
+            dataPersister.SetDataSettings(dataTag, persistenceType);
+        }
     }
 }

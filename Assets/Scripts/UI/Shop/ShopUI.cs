@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class ShopUI : MonoBehaviour
+namespace YAMG
 {
-    public TMP_Text itemName;
-    public TMP_Text itemDescription;
-
-    public void ShowItemDetails(Item item)
+    public class ShopUI : MonoBehaviour
     {
-        itemName.text = item.itemName;
-        itemDescription.text = item.description;
+        public TMP_Text itemName;
+        public TMP_Text itemDescription;
+
+        public void ShowItemDetails(Item item)
+        {
+            itemName.text = item.itemName;
+            itemDescription.text = item.description;
+        }
     }
 }

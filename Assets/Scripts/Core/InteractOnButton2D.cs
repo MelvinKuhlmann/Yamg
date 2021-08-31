@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class InteractOnButton2D : InteractOnTrigger2D
+namespace YAMG
 {
-    public UnityEvent OnButtonPress;
-
-    bool m_CanExecuteButtons;
-
-    protected override void ExecuteOnEnter(Collider2D other)
+    public class InteractOnButton2D : InteractOnTrigger2D
     {
-        m_CanExecuteButtons = true;
-        OnEnter.Invoke();
-    }
+        public UnityEvent OnButtonPress;
 
-    protected override void ExecuteOnExit(Collider2D other)
-    {
-        m_CanExecuteButtons = false;
-        OnExit.Invoke();
-    }
+        bool m_CanExecuteButtons;
 
-    void Update()
-    {
-        if (m_CanExecuteButtons)
+        protected override void ExecuteOnEnter(Collider2D other)
         {
-            if (OnButtonPress.GetPersistentEventCount() > 0 && PlayerInput.Instance.Interact.Down)
+            m_CanExecuteButtons = true;
+            OnEnter.Invoke();
+        }
+
+        protected override void ExecuteOnExit(Collider2D other)
+        {
+            m_CanExecuteButtons = false;
+            OnExit.Invoke();
+        }
+
+        void Update()
+        {
+            if (m_CanExecuteButtons)
             {
-                OnButtonPress.Invoke();
+                if (OnButtonPress.GetPersistentEventCount() > 0 && PlayerInput.Instance.Interact.Down)
+                {
+                    OnButtonPress.Invoke();
+                }
             }
         }
     }

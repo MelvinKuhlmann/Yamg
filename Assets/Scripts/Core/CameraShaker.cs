@@ -1,43 +1,46 @@
 ﻿using UnityEngine;
 
-public class CameraShaker : MonoBehaviour
+namespace YAMG
 {
-    static protected CameraShaker s_Instance = null;
-
-
-    protected Vector3 m_LastVector;
-    protected float m_SinceShakeTime = 0.0f;
-    protected float m_ShakeIntensity = 0.2f;
-
-    private void OnEnable()
+    public class CameraShaker : MonoBehaviour
     {
-        s_Instance = this;
-    }
+        static protected CameraShaker s_Instance = null;
 
-    private void OnPreRender()
-    {
-        if (m_SinceShakeTime > 0.0f)
+
+        protected Vector3 m_LastVector;
+        protected float m_SinceShakeTime = 0.0f;
+        protected float m_ShakeIntensity = 0.2f;
+
+        private void OnEnable()
         {
-            m_LastVector = Random.insideUnitCircle * m_ShakeIntensity;
-            transform.localPosition = transform.localPosition + m_LastVector;
+            s_Instance = this;
         }
-    }
 
-    private void OnPostRender()
-    {
-        if (m_SinceShakeTime > 0.0f)
+        private void OnPreRender()
         {
-            transform.localPosition = transform.localPosition - m_LastVector;
-            m_SinceShakeTime -= Time.deltaTime;
+            if (m_SinceShakeTime > 0.0f)
+            {
+                m_LastVector = Random.insideUnitCircle * m_ShakeIntensity;
+                transform.localPosition = transform.localPosition + m_LastVector;
+            }
         }
-    }
 
-    static public void Shake(float amount, float time)
-    {
-        if (s_Instance == null)
-            return;
+        private void OnPostRender()
+        {
+            if (m_SinceShakeTime > 0.0f)
+            {
+                transform.localPosition = transform.localPosition - m_LastVector;
+                m_SinceShakeTime -= Time.deltaTime;
+            }
+        }
 
-        s_Instance.m_ShakeIntensity = amount;
-        s_Instance.m_SinceShakeTime = time;
+        static public void Shake(float amount, float time)
+        {
+            if (s_Instance == null)
+                return;
+
+            s_Instance.m_ShakeIntensity = amount;
+            s_Instance.m_SinceShakeTime = time;
+        }
     }
 }

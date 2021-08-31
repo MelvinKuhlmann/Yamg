@@ -1,116 +1,114 @@
 ﻿using System;
 
-
-/// <summary>
-/// Classes that implement this interface should have an serialized instance of DataSettings to register through.
-/// </summary>
-public interface IDataPersister
+namespace YAMG
 {
-    DataSettings GetDataSettings();
 
-    void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType);
-
-    Data SaveData();
-
-    void LoadData(Data data);
-}
-
-[Serializable]
-public class DataSettings
-{
-    public enum PersistenceType
+    /// <summary>
+    /// Classes that implement this interface should have an serialized instance of DataSettings to register through.
+    /// </summary>
+    public interface IDataPersister
     {
-        DoNotPersist,
-        ReadOnly,
-        WriteOnly,
-        ReadWrite,
+        DataSettings GetDataSettings();
+
+        void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType);
+
+        Data SaveData();
+
+        void LoadData(Data data);
     }
 
-    public string dataTag = System.Guid.NewGuid().ToString();
-    public PersistenceType persistenceType = PersistenceType.ReadWrite;
-
-    public override string ToString()
+    [Serializable]
+    public class DataSettings
     {
-        return dataTag + " " + persistenceType.ToString();
+        public enum PersistenceType
+        {
+            DoNotPersist,
+            ReadOnly,
+            WriteOnly,
+            ReadWrite,
+        }
+
+        public string dataTag = System.Guid.NewGuid().ToString();
+        public PersistenceType persistenceType = PersistenceType.ReadWrite;
+
+        public override string ToString()
+        {
+            return dataTag + " " + persistenceType.ToString();
+        }
     }
-}
 
-public class Data
-{
-
-}
-
-
-public class Data<T> : Data
-{
-    public T value;
-
-    public Data(T value)
+    public class Data
     {
-        this.value = value;
+
     }
-}
 
-
-public class Data<T0, T1> : Data
-{
-    public T0 value0;
-    public T1 value1;
-
-    public Data(T0 value0, T1 value1)
+    public class Data<T> : Data
     {
-        this.value0 = value0;
-        this.value1 = value1;
+        public T value;
+
+        public Data(T value)
+        {
+            this.value = value;
+        }
     }
-}
 
-
-public class Data<T0, T1, T2> : Data
-{
-    public T0 value0;
-    public T1 value1;
-    public T2 value2;
-
-    public Data(T0 value0, T1 value1, T2 value2)
+    public class Data<T0, T1> : Data
     {
-        this.value0 = value0;
-        this.value1 = value1;
-        this.value2 = value2;
+        public T0 value0;
+        public T1 value1;
+
+        public Data(T0 value0, T1 value1)
+        {
+            this.value0 = value0;
+            this.value1 = value1;
+        }
     }
-}
 
-
-public class Data<T0, T1, T2, T3> : Data
-{
-    public T0 value0;
-    public T1 value1;
-    public T2 value2;
-    public T3 value3;
-
-    public Data(T0 value0, T1 value1, T2 value2, T3 value3)
+    public class Data<T0, T1, T2> : Data
     {
-        this.value0 = value0;
-        this.value1 = value1;
-        this.value2 = value2;
-        this.value3 = value3;
+        public T0 value0;
+        public T1 value1;
+        public T2 value2;
+
+        public Data(T0 value0, T1 value1, T2 value2)
+        {
+            this.value0 = value0;
+            this.value1 = value1;
+            this.value2 = value2;
+        }
     }
-}
 
-
-public class Data<T0, T1, T2, T3, T4> : Data
-{
-    public T0 value0;
-    public T1 value1;
-    public T2 value2;
-    public T3 value3;
-    public T4 value4;
-
-    public Data(T0 value0, T1 value1, T2 value2, T3 value3, T4 value4)
+    public class Data<T0, T1, T2, T3> : Data
     {
-        this.value0 = value0;
-        this.value1 = value1;
-        this.value2 = value2;
-        this.value3 = value3;
-        this.value4 = value4;
+        public T0 value0;
+        public T1 value1;
+        public T2 value2;
+        public T3 value3;
+
+        public Data(T0 value0, T1 value1, T2 value2, T3 value3)
+        {
+            this.value0 = value0;
+            this.value1 = value1;
+            this.value2 = value2;
+            this.value3 = value3;
+        }
+    }
+
+    public class Data<T0, T1, T2, T3, T4> : Data
+    {
+        public T0 value0;
+        public T1 value1;
+        public T2 value2;
+        public T3 value3;
+        public T4 value4;
+
+        public Data(T0 value0, T1 value1, T2 value2, T3 value3, T4 value4)
+        {
+            this.value0 = value0;
+            this.value1 = value1;
+            this.value2 = value2;
+            this.value3 = value3;
+            this.value4 = value4;
+        }
     }
 }

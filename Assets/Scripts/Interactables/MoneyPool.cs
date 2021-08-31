@@ -1,81 +1,84 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class MoneyPool : ObjectPool<MoneyPool, MoneyObject, Vector2>
+namespace YAMG
 {
-    public float rangeMin = -5f;
-    public float rangeMax = 5f;
-    public float forceMin = 5f;
-    public float forceMax = 10f;
-
-    static protected Dictionary<GameObject, MoneyPool> s_PoolInstances = new Dictionary<GameObject, MoneyPool>();
-
-    private void Awake()
+    public class MoneyPool : ObjectPool<MoneyPool, MoneyObject, Vector2>
     {
-        //This allow to make Pool manually added in the scene still automatically findable & usable
-        if (prefab != null && !s_PoolInstances.ContainsKey(prefab))
-            s_PoolInstances.Add(prefab, this);
-    }
+        public float rangeMin = -5f;
+        public float rangeMax = 5f;
+        public float forceMin = 5f;
+        public float forceMax = 10f;
 
-    private void OnDestroy()
-    {
-        s_PoolInstances.Remove(prefab);
-    }
+        static protected Dictionary<GameObject, MoneyPool> s_PoolInstances = new Dictionary<GameObject, MoneyPool>();
 
-    //initialPoolCount is only used when the objectpool don't exist
-    static public MoneyPool GetObjectPool(GameObject prefab, int initialPoolCount = 10)
-    {
-        MoneyPool objPool = null;
-        if (!s_PoolInstances.TryGetValue(prefab, out objPool))
+        private void Awake()
         {
-            GameObject obj = new GameObject(prefab.name + "_Pool");
-            objPool = obj.AddComponent<MoneyPool>();
-            objPool.prefab = prefab;
-            objPool.initialPoolCount = initialPoolCount;
-
-            s_PoolInstances[prefab] = objPool;
+            //This allow to make Pool manually added in the scene still automatically findable & usable
+            if (prefab != null && !s_PoolInstances.ContainsKey(prefab))
+                s_PoolInstances.Add(prefab, this);
         }
 
-        return objPool;
-    }
-
-    public void Spawn()
-    {
-        MoneyObject mo = Pop(new Vector2(transform.position.x, (transform.position.y + 2)));
-        mo.rigidbody2D.velocity = new Vector2(Random.Range(rangeMin, rangeMax), Random.Range(forceMin, forceMax));
-    }
-
-    public void SpawnAmount(int amountToSpawn)
-    {
-        int i = 0;
-        while(i < amountToSpawn)
+        private void OnDestroy()
         {
-            i++;
-            Spawn();
+            s_PoolInstances.Remove(prefab);
+        }
+
+        //initialPoolCount is only used when the objectpool don't exist
+        static public MoneyPool GetObjectPool(GameObject prefab, int initialPoolCount = 10)
+        {
+            MoneyPool objPool = null;
+            if (!s_PoolInstances.TryGetValue(prefab, out objPool))
+            {
+                GameObject obj = new GameObject(prefab.name + "_Pool");
+                objPool = obj.AddComponent<MoneyPool>();
+                objPool.prefab = prefab;
+                objPool.initialPoolCount = initialPoolCount;
+
+                s_PoolInstances[prefab] = objPool;
+            }
+
+            return objPool;
+        }
+
+        public void Spawn()
+        {
+            MoneyObject mo = Pop(new Vector2(transform.position.x, (transform.position.y + 2)));
+            mo.rigidbody2D.velocity = new Vector2(Random.Range(rangeMin, rangeMax), Random.Range(forceMin, forceMax));
+        }
+
+        public void SpawnAmount(int amountToSpawn)
+        {
+            int i = 0;
+            while (i < amountToSpawn)
+            {
+                i++;
+                Spawn();
+            }
         }
     }
-}
-public class MoneyObject : PoolObject<MoneyPool, MoneyObject, Vector2>
-{
-    public Transform transform;
-    public Rigidbody2D rigidbody2D;
-    public SpriteRenderer spriteRenderer;
-
-    protected override void SetReferences()
+    public class MoneyObject : PoolObject<MoneyPool, MoneyObject, Vector2>
     {
-        transform = instance.transform;
-        rigidbody2D = instance.GetComponent<Rigidbody2D>();
-        spriteRenderer = instance.GetComponent<SpriteRenderer>();
-    }
+        public Transform transform;
+        public Rigidbody2D rigidbody2D;
+        public SpriteRenderer spriteRenderer;
 
-    public override void WakeUp(Vector2 position)
-    {
-        transform.position = position;
-        instance.SetActive(true);
-    }
+        protected override void SetReferences()
+        {
+            transform = instance.transform;
+            rigidbody2D = instance.GetComponent<Rigidbody2D>();
+            spriteRenderer = instance.GetComponent<SpriteRenderer>();
+        }
 
-    public override void Sleep()
-    {
-        instance.SetActive(false);
+        public override void WakeUp(Vector2 position)
+        {
+            transform.position = position;
+            instance.SetActive(true);
+        }
+
+        public override void Sleep()
+        {
+            instance.SetActive(false);
+        }
     }
 }

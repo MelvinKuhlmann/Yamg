@@ -1,85 +1,88 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
-public class InventoryItem : MonoBehaviour, IDataPersister
+namespace YAMG
 {
-    public Item item;
-    public int quantity = 1;
-    public LayerMask layers;
-    public bool disableOnEnter = false;
-
-    [HideInInspector]
-    new public CircleCollider2D collider;
-
-    public AudioClip clip;
-    public DataSettings dataSettings;
-
-    void OnEnable()
+    [RequireComponent(typeof(CircleCollider2D))]
+    public class InventoryItem : MonoBehaviour, IDataPersister
     {
-        collider = GetComponent<CircleCollider2D>();
-        PersistentDataManager.RegisterPersister(this);
-    }
+        public Item item;
+        public int quantity = 1;
+        public LayerMask layers;
+        public bool disableOnEnter = false;
 
-    void OnDisable()
-    {
-        PersistentDataManager.UnregisterPersister(this);
-    }
+        [HideInInspector]
+        new public CircleCollider2D collider;
 
-    void Reset()
-    {
-        layers = LayerMask.NameToLayer("Everything");
-        collider = GetComponent<CircleCollider2D>();
-        collider.radius = 5;
-        collider.isTrigger = true;
-        dataSettings = new DataSettings();
-    }
+        public AudioClip clip;
+        public DataSettings dataSettings;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (layers.Contains(other.gameObject))
+        void OnEnable()
         {
-            var ic = other.GetComponent<InventoryController>();
-            ic.AddItem(item, quantity);
-            if (disableOnEnter)
-            {
-                gameObject.SetActive(false);
-                Save();
-            }
-
-            if (clip) AudioSource.PlayClipAtPoint(clip, transform.position);
-
+            collider = GetComponent<CircleCollider2D>();
+            PersistentDataManager.RegisterPersister(this);
         }
-    }
 
-    public void Save()
-    {
-        PersistentDataManager.SetDirty(this);
-    }
+        void OnDisable()
+        {
+            PersistentDataManager.UnregisterPersister(this);
+        }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawIcon(transform.position, "InventoryItem", false);
-    }
+        void Reset()
+        {
+            layers = LayerMask.NameToLayer("Everything");
+            collider = GetComponent<CircleCollider2D>();
+            collider.radius = 5;
+            collider.isTrigger = true;
+            dataSettings = new DataSettings();
+        }
 
-    public DataSettings GetDataSettings()
-    {
-        return dataSettings;
-    }
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (layers.Contains(other.gameObject))
+            {
+                var ic = other.GetComponent<InventoryController>();
+                ic.AddItem(item, quantity);
+                if (disableOnEnter)
+                {
+                    gameObject.SetActive(false);
+                    Save();
+                }
 
-    public void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType)
-    {
-        dataSettings.dataTag = dataTag;
-        dataSettings.persistenceType = persistenceType;
-    }
+                if (clip) AudioSource.PlayClipAtPoint(clip, transform.position);
 
-    public Data SaveData()
-    {
-        return new Data<bool>(gameObject.activeSelf);
-    }
+            }
+        }
 
-    public void LoadData(Data data)
-    {
-        Data<bool> inventoryItemData = (Data<bool>)data;
-        gameObject.SetActive(inventoryItemData.value);
+        public void Save()
+        {
+            PersistentDataManager.SetDirty(this);
+        }
+
+        void OnDrawGizmos()
+        {
+            Gizmos.DrawIcon(transform.position, "InventoryItem", false);
+        }
+
+        public DataSettings GetDataSettings()
+        {
+            return dataSettings;
+        }
+
+        public void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType)
+        {
+            dataSettings.dataTag = dataTag;
+            dataSettings.persistenceType = persistenceType;
+        }
+
+        public Data SaveData()
+        {
+            return new Data<bool>(gameObject.activeSelf);
+        }
+
+        public void LoadData(Data data)
+        {
+            Data<bool> inventoryItemData = (Data<bool>)data;
+            gameObject.SetActive(inventoryItemData.value);
+        }
     }
 }

@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-//Allow to bubble up a OnBecameVisible call. usefull to have parent object (without renderer)
-//be notified when a child become visible
-public class VisibleBubbleUp : MonoBehaviour
+namespace YAMG
 {
-    public System.Action<VisibleBubbleUp> objectBecameVisible;
-
-    private void OnBecameVisible()
+    //Allow to bubble up a OnBecameVisible call. usefull to have parent object (without renderer)
+    //be notified when a child become visible
+    public class VisibleBubbleUp : MonoBehaviour
     {
-        objectBecameVisible(this);
+        public System.Action<VisibleBubbleUp> objectBecameVisible;
+
+        private void OnBecameVisible()
+        {
+            objectBecameVisible(this);
+        }
     }
 }

@@ -2,30 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class OriginalPhrases : ScriptableObject
+namespace YAMG
 {
-    public string language;
-    public List<Phrase> phrases = new List<Phrase>();
-
-    public string this[string key]
+    [CreateAssetMenu]
+    public class OriginalPhrases : ScriptableObject
     {
-        get
-        {
-            for (int i = 0; i < phrases.Count; i++)
-            {
-                if (phrases[i].key == key)
-                    return phrases[i].value;
-            }
+        public string language;
+        public List<Phrase> phrases = new List<Phrase>();
 
-            return "Key not found.";
+        public string this[string key]
+        {
+            get
+            {
+                for (int i = 0; i < phrases.Count; i++)
+                {
+                    if (phrases[i].key == key)
+                        return phrases[i].value;
+                }
+
+                return "Key not found.";
+            }
         }
     }
-}
 
-[Serializable]
-public class Phrase
-{
-    public string key;
-    public string value;
+    [Serializable]
+    public class Phrase
+    {
+        public string key;
+        public string value;
+    }
 }

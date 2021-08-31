@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
 
-public class MeleeAttackSMB : SceneLinkedSMB<PlayerCharacter>
+namespace YAMG
 {
-    int m_HashAirborneMeleeAttackState = Animator.StringToHash("AirborneMeleeAttack");
-    
-    public override void OnSLStatePostEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class MeleeAttackSMB : SceneLinkedSMB<PlayerCharacter>
     {
-        m_MonoBehaviour.ForceNotHoldingGun();
-        m_MonoBehaviour.EnableMeleeAttack();
-      //  m_MonoBehaviour.SetHorizontalMovement(m_MonoBehaviour.meleeAttackDashSpeed * m_MonoBehaviour.GetFacing());
-    }
+        int m_HashAirborneMeleeAttackState = Animator.StringToHash("AirborneMeleeAttack");
 
-    public override void OnSLStateNoTransitionUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (!m_MonoBehaviour.CheckForGrounded())
-            animator.Play(m_HashAirborneMeleeAttackState, layerIndex, stateInfo.normalizedTime);
-        
-        m_MonoBehaviour.GroundedHorizontalMovement(false);
-    }
+        public override void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            m_MonoBehaviour.ForceNotHoldingGun();
+            m_MonoBehaviour.EnableMeleeAttack();
+        }
 
-    public override void OnSLStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        m_MonoBehaviour.DisableMeleeAttack();
+        public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            if (!m_MonoBehaviour.CheckForGrounded())
+                animator.Play(m_HashAirborneMeleeAttackState, layerIndex, stateInfo.normalizedTime);
+
+            m_MonoBehaviour.GroundedHorizontalMovement(false);
+        }
+
+        public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            m_MonoBehaviour.DisableMeleeAttack();
+        }
     }
 }

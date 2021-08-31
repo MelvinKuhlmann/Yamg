@@ -1,53 +1,56 @@
 ﻿using Cinemachine;
 using UnityEngine;
 
-public class AutoCameraSetup : MonoBehaviour
+namespace YAMG
 {
-    public bool autoSetupCameraFollow = true;
-    public string cameraFollowGameObjectName = "Player";
-
-    void Awake()
+    public class AutoCameraSetup : MonoBehaviour
     {
-        if (!autoSetupCameraFollow)
-            return;
+        public bool autoSetupCameraFollow = true;
+        public string cameraFollowGameObjectName = "Player";
 
-        CinemachineVirtualCamera cam = GetComponent<CinemachineVirtualCamera>();
-
-        if (cam == null)
-            throw new UnityException("Virtual Camera was not found, default follow cannot be assigned.");
-
-        //we manually do a "find", because otherwise, GameObject.Find seem to return object from a "preview scene" breaking the camera as the object is not the right one
-        var rootObj = gameObject.scene.GetRootGameObjects();
-        GameObject cameraFollowGameObject = null;
-        foreach (var go in rootObj)
+        void Awake()
         {
-            if (go.name == cameraFollowGameObjectName)
+            if (!autoSetupCameraFollow)
+                return;
+
+            CinemachineVirtualCamera cam = GetComponent<CinemachineVirtualCamera>();
+
+            if (cam == null)
+                throw new UnityException("Virtual Camera was not found, default follow cannot be assigned.");
+
+            //we manually do a "find", because otherwise, GameObject.Find seem to return object from a "preview scene" breaking the camera as the object is not the right one
+            var rootObj = gameObject.scene.GetRootGameObjects();
+            GameObject cameraFollowGameObject = null;
+            foreach (var go in rootObj)
             {
-                cameraFollowGameObject = go;
-            }
-            else
-            {
-                var t = go.transform.Find(cameraFollowGameObjectName);
-                if (t != null)
+                if (go.name == cameraFollowGameObjectName)
                 {
-                    cameraFollowGameObject = t.gameObject;
+                    cameraFollowGameObject = go;
+                }
+                else
+                {
+                    var t = go.transform.Find(cameraFollowGameObjectName);
+                    if (t != null)
+                    {
+                        cameraFollowGameObject = t.gameObject;
+                    }
+                }
+
+                if (cameraFollowGameObject != null)
+                {
+                    break;
                 }
             }
 
-            if (cameraFollowGameObject != null) 
-            { 
-                break; 
+            if (cameraFollowGameObject == null)
+            {
+                throw new UnityException("GameObject called " + cameraFollowGameObjectName + " was not found, default follow cannot be assigned.");
             }
-        }
 
-        if (cameraFollowGameObject == null)
-        {
-            throw new UnityException("GameObject called " + cameraFollowGameObjectName + " was not found, default follow cannot be assigned.");
-        }
-
-        if (cam.Follow == null)
-        {
-            cam.Follow = cameraFollowGameObject.transform;
+            if (cam.Follow == null)
+            {
+                cam.Follow = cameraFollowGameObject.transform;
+            }
         }
     }
 }

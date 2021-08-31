@@ -2,31 +2,34 @@
 using TMPro;
 using System;
 
-public class MoneyUI : MonoBehaviour
+namespace YAMG
 {
-    public static MoneyUI Instance { get; protected set; }
-
-    public TMP_Text quantityLabel;
-    public Item item;
-
-    private void Awake()
+    public class MoneyUI : MonoBehaviour
     {
-        Instance = this;
-    }
+        public static MoneyUI Instance { get; protected set; }
 
-    private void Start()
-    {
-        SetInitialKeyCount();
-    }
+        public TMP_Text quantityLabel;
+        public Item item;
 
-    public void SetInitialKeyCount()
-    {
-        quantityLabel.SetText("0");
-    }
+        private void Awake()
+        {
+            Instance = this;
+        }
 
-    public void UpdateMoneyUI(InventoryController controller)
-    {
-        if (item == null) throw new NotImplementedException("UI can not be updated, Item has not been set in the prefab");
-        quantityLabel.SetText(controller.GetItemAmount(item).ToString());
+        private void Start()
+        {
+            SetInitialKeyCount();
+        }
+
+        public void SetInitialKeyCount()
+        {
+            quantityLabel.SetText("0");
+        }
+
+        public void UpdateMoneyUI(InventoryController controller)
+        {
+            if (item == null) throw new NotImplementedException("UI can not be updated, Item has not been set in the prefab");
+            quantityLabel.SetText(controller.GetItemAmount(item).ToString());
+        }
     }
 }
