@@ -10,7 +10,6 @@ namespace YAMG
         public class DamagableEvent : UnityEvent<Damager, Damageable>
         { }
 
-
         [Serializable]
         public class NonDamagableEvent : UnityEvent<Damager>
         { }
@@ -99,14 +98,15 @@ namespace YAMG
             Vector2 pointB = pointA + scaledSize;
 
             int hitCount = Physics2D.OverlapArea(pointA, pointB, m_AttackContactFilter, m_AttackOverlapResults);
-
             for (int i = 0; i < hitCount; i++)
             {
+                Debug.Log(hitCount);
                 m_LastHit = m_AttackOverlapResults[i];
                 Damageable damageable = m_LastHit.GetComponent<Damageable>();
 
                 if (damageable)
                 {
+                    Debug.Log(ignoreInvincibility);
                     OnDamageableHit.Invoke(this, damageable);
                     damageable.TakeDamage(this, ignoreInvincibility);
                     if (disableDamageAfterHit)

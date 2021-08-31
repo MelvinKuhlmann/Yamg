@@ -90,6 +90,9 @@ namespace YAMG
 
         public void TakeDamage(Damager damager, bool ignoreInvincible = false)
         {
+
+            Debug.LogWarning(m_Invulnerable + " : " + ignoreInvincible);
+
             if ((m_Invulnerable && !ignoreInvincible) || m_CurrentHealth <= 0)
                 return;
 
@@ -97,6 +100,7 @@ namespace YAMG
             //We still want the callback that we were hit, but not the damage to be removed from health.
             if (!m_Invulnerable)
             {
+                Debug.LogWarning(" subtract health" );
                 m_CurrentHealth -= damager.damage;
                 OnHealthSet.Invoke(this);
             }

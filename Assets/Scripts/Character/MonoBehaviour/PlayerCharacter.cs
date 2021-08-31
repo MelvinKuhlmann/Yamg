@@ -723,7 +723,7 @@ namespace YAMG
 
             m_Animator.SetTrigger(m_HashHurtPara);
 
-            //we only force respawn if helath > 0, otherwise both forceRespawn & Death trigger are set in the animator, messing with each other.
+            //we only force respawn if health > 0, otherwise both forceRespawn & Death trigger are set in the animator, messing with each other.
             if (damageable.CurrentHealth > 0 && damager.forceRespawn)
                 m_Animator.SetTrigger(m_HashForcedRespawnPara);
 
