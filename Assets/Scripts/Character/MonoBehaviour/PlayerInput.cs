@@ -116,8 +116,6 @@ namespace YAMG
 
         public void ReleaseMenuNavigationControl(bool resetValues = true)
         {
-            m_HaveControl = false;
-
             ReleaseControl(NavigationVertical, resetValues);
             ReleaseControl(Buy, resetValues);
             ReleaseControl(Cancel, resetValues);

@@ -33,7 +33,7 @@ namespace YAMG
         public DataSettings dataSettings;
 
         protected bool m_Invulnerable;
-        protected float m_InulnerabilityTimer;
+        protected float m_InvulnerabilityTimer;
         protected int m_CurrentHealth;
         protected Vector2 m_DamageDirection;
         protected bool m_ResetHealthOnSceneReload;
@@ -62,9 +62,9 @@ namespace YAMG
         {
             if (m_Invulnerable)
             {
-                m_InulnerabilityTimer -= Time.deltaTime;
+                m_InvulnerabilityTimer -= Time.deltaTime;
 
-                if (m_InulnerabilityTimer <= 0f)
+                if (m_InvulnerabilityTimer <= 0f)
                 {
                     m_Invulnerable = false;
                 }
@@ -75,7 +75,7 @@ namespace YAMG
         {
             m_Invulnerable = true;
             //technically don't ignore timer, just set it to an insanly big number. Allow to avoid to add more test & special case.
-            m_InulnerabilityTimer = ignoreTimer ? float.MaxValue : invulnerabilityDuration;
+            m_InvulnerabilityTimer = ignoreTimer ? float.MaxValue : invulnerabilityDuration;
         }
 
         public void DisableInvulnerability()
@@ -90,9 +90,6 @@ namespace YAMG
 
         public void TakeDamage(Damager damager, bool ignoreInvincible = false)
         {
-
-            Debug.LogWarning(m_Invulnerable + " : " + ignoreInvincible);
-
             if ((m_Invulnerable && !ignoreInvincible) || m_CurrentHealth <= 0)
                 return;
 
@@ -100,7 +97,6 @@ namespace YAMG
             //We still want the callback that we were hit, but not the damage to be removed from health.
             if (!m_Invulnerable)
             {
-                Debug.LogWarning(" subtract health" );
                 m_CurrentHealth -= damager.damage;
                 OnHealthSet.Invoke(this);
             }

@@ -105,7 +105,6 @@ namespace YAMG
         protected readonly int m_HashGroundedPara = Animator.StringToHash("Grounded");
         protected readonly int m_HashWallSlidingPara = Animator.StringToHash("WallSlide");
         protected readonly int m_HashWallJumpPara = Animator.StringToHash("WallJump");
-        //  protected readonly int m_HashCrouchingPara = Animator.StringToHash("Crouching");
         protected readonly int m_HashPushingPara = Animator.StringToHash("Pushing");
         protected readonly int m_HashRespawnPara = Animator.StringToHash("Respawn");
         protected readonly int m_HashDeadPara = Animator.StringToHash("Dead");
@@ -436,11 +435,6 @@ namespace YAMG
             m_MoveVector.x = Mathf.MoveTowards(m_MoveVector.x, desiredSpeed, acceleration * Time.deltaTime);
         }
 
-        /* public void CheckForCrouching()
-         {
-             m_Animator.SetBool(m_HashCrouchingPara, PlayerInput.Instance.Vertical.Value < 0f);
-         }*/
-
         public void CheckForHealing()
         {
             // TODO add energy check
@@ -715,6 +709,7 @@ namespace YAMG
         public void OnHurt(Damager damager, Damageable damageable)
         {
             //if the player don't have control, we shouldn't be able to be hurt as this wouldn't be fair
+            Debug.LogError(PlayerInput.Instance.HaveControl);
             if (!PlayerInput.Instance.HaveControl)
                 return;
 
@@ -723,6 +718,7 @@ namespace YAMG
 
             m_Animator.SetTrigger(m_HashHurtPara);
 
+            Debug.LogError(damager.forceRespawn + " : " + damageable.CurrentHealth);
             //we only force respawn if health > 0, otherwise both forceRespawn & Death trigger are set in the animator, messing with each other.
             if (damageable.CurrentHealth > 0 && damager.forceRespawn)
                 m_Animator.SetTrigger(m_HashForcedRespawnPara);
