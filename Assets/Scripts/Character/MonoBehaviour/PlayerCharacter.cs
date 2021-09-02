@@ -39,6 +39,8 @@ namespace YAMG
         public float gravity = 50f;
         public float jumpSpeed = 20f;
         public float jumpAbortSpeedReduction = 100f;
+        public float minimalFallSpeedForHardLanding = 55f;
+        public float hardLandingDuration = 1.5f;
 
         [Range(k_MinHurtJumpAngle, k_MaxHurtJumpAngle)] public float hurtJumpAngle = 45f;
         public float hurtJumpSpeed = 5f;
@@ -805,7 +807,7 @@ namespace YAMG
 
         public bool CheckLandingHard()
         {
-            return m_MoveVector.y < (60 *-1);
+            return m_MoveVector.y < (minimalFallSpeedForHardLanding * -1);
         }
 
         public void TeleportToColliderBottom()

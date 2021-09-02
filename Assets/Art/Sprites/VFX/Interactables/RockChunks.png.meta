@@ -1,34 +1,19 @@
 fileFormatVersion: 2
-guid: 4f9babc4e315c4841b3a34d17d949b0b
+guid: 208fcd20e1e75c443b1bb7fac0a8c692
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2599909639219421642
-    second: PlayerHealth_Empty
+      213: -7060992207108183986
+    second: RockChunks_0
   - first:
-      213: -755620296721411651
-    second: PlayerHealth_Full
+      213: 4130874467423690928
+    second: RockChunks_1
   - first:
-      213: 4240221089544513789
-    second: PlayerHealth_Gaining00
+      213: 4314175711967482404
+    second: RockChunks_2
   - first:
-      213: -8589325537171013114
-    second: PlayerHealth_Gaining01
-  - first:
-      213: 8277267440595731610
-    second: PlayerHealth_Gaining02
-  - first:
-      213: 8789861351731967298
-    second: PlayerHealth_Gaining03
-  - first:
-      213: -3367742713912197627
-    second: PlayerHealth_Losing00
-  - first:
-      213: 279416726442236656
-    second: PlayerHealth_Losing01
-  - first:
-      213: -8456685236807993261
-    second: PlayerHealth_Losing02
+      213: -2177275604933829992
+    second: RockChunks_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -73,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -102,7 +87,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -114,7 +99,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -126,7 +111,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -140,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerHealth_Empty
+      name: RockChunks_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63e563245f34bebd0800000000000000
-      internalID: -2599909639219421642
+      spriteID: e48e3859ff0520e90800000000000000
+      internalID: -7060992207108183986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerHealth_Full
+      name: RockChunks_1
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,104 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db158d4f75f7385f0800000000000000
-      internalID: -755620296721411651
+      spriteID: 0b0258a1170d35930800000000000000
+      internalID: 4130874467423690928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerHealth_Gaining00
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df8ab638d9a48da30800000000000000
-      internalID: 4240221089544513789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerHealth_Gaining01
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6020bb0aee59cc880800000000000000
-      internalID: -8589325537171013114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerHealth_Gaining02
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a948d93e1e2ced270800000000000000
-      internalID: 8277267440595731610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerHealth_Gaining03
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2453be6245cdbf970800000000000000
-      internalID: 8789861351731967298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerHealth_Losing00
+      name: RockChunks_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50e7a5248df5341d0800000000000000
-      internalID: -3367742713912197627
+      spriteID: 422907ad3f70fdb30800000000000000
+      internalID: 4314175711967482404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerHealth_Losing01
+      name: RockChunks_3
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,29 +202,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fa54e34800b0e300800000000000000
-      internalID: 279416726442236656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerHealth_Losing02
-      rect:
-        serializedVersion: 2
-        x: 511
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 358f4c22591d3aa80800000000000000
-      internalID: -8456685236807993261
+      spriteID: 89a9bcd7f53c8c1e0800000000000000
+      internalID: -2177275604933829992
       vertices: []
       indices: 
       edges: []

@@ -25,6 +25,8 @@ namespace YAMG
         SerializedProperty m_GravityProp;
         SerializedProperty m_JumpSpeedProp;
         SerializedProperty m_JumpAbortSpeedReductionProp;
+        SerializedProperty m_MinimalFallSpeedForHardLandingProp;
+        SerializedProperty m_HardLandingDurationProp;
 
         SerializedProperty m_HurtJumpAngleProp;
         SerializedProperty m_HurtJumpSpeedProp;
@@ -93,6 +95,8 @@ namespace YAMG
         readonly GUIContent m_GravityContent = new GUIContent("Gravity");
         readonly GUIContent m_JumpSpeedContent = new GUIContent("Jump Speed");
         readonly GUIContent m_JumpAbortSpeedReductionContent = new GUIContent("Jump Abort Speed Reduction");
+        readonly GUIContent m_MinimalFallSpeedForHardLandingContent = new GUIContent("Minimum fall speed to trigger hard landing animation");
+        readonly GUIContent m_HardLandingDurationContent = new GUIContent("Duration for player to recover from landing");
 
         readonly GUIContent m_HurtJumpAngleContent = new GUIContent("Hurt Jump Angle");
         readonly GUIContent m_HurtJumpSpeedContent = new GUIContent("Hurt Jump Speed");
@@ -163,6 +167,9 @@ namespace YAMG
             m_GravityProp = serializedObject.FindProperty("gravity");
             m_JumpSpeedProp = serializedObject.FindProperty("jumpSpeed");
             m_JumpAbortSpeedReductionProp = serializedObject.FindProperty("jumpAbortSpeedReduction");
+            m_MinimalFallSpeedForHardLandingProp = serializedObject.FindProperty("minimalFallSpeedForHardLanding");
+            m_HardLandingDurationProp = serializedObject.FindProperty("hardLandingDuration");
+            
 
             m_HurtJumpAngleProp = serializedObject.FindProperty("hurtJumpAngle");
             m_HurtJumpSpeedProp = serializedObject.FindProperty("hurtJumpSpeed");
@@ -252,6 +259,8 @@ namespace YAMG
                 EditorGUILayout.PropertyField(m_GravityProp, m_GravityContent);
                 EditorGUILayout.PropertyField(m_JumpSpeedProp, m_JumpSpeedContent);
                 EditorGUILayout.PropertyField(m_JumpAbortSpeedReductionProp, m_JumpAbortSpeedReductionContent);
+                EditorGUILayout.PropertyField(m_MinimalFallSpeedForHardLandingProp, m_MinimalFallSpeedForHardLandingContent);
+                EditorGUILayout.PropertyField(m_HardLandingDurationProp, m_HardLandingDurationContent);
             }
 
             EditorGUI.indentLevel--;
