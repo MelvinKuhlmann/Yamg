@@ -709,7 +709,6 @@ namespace YAMG
         public void OnHurt(Damager damager, Damageable damageable)
         {
             //if the player don't have control, we shouldn't be able to be hurt as this wouldn't be fair
-            Debug.LogError(PlayerInput.Instance.HaveControl);
             if (!PlayerInput.Instance.HaveControl)
                 return;
 
@@ -718,7 +717,6 @@ namespace YAMG
 
             m_Animator.SetTrigger(m_HashHurtPara);
 
-            Debug.LogError(damager.forceRespawn + " : " + damageable.CurrentHealth);
             //we only force respawn if health > 0, otherwise both forceRespawn & Death trigger are set in the animator, messing with each other.
             if (damageable.CurrentHealth > 0 && damager.forceRespawn)
                 m_Animator.SetTrigger(m_HashForcedRespawnPara);
@@ -803,6 +801,11 @@ namespace YAMG
         public void DisableMeleeAttack()
         {
             meleeDamager.DisableDamage();
+        }
+
+        public bool CheckLandingHard()
+        {
+            return m_MoveVector.y < (60 *-1);
         }
 
         public void TeleportToColliderBottom()
